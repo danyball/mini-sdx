@@ -5,6 +5,9 @@ export const config: Config = {
   namespace: 'stencil-starter-project-name',
   outputTargets: [
     {
+      type: 'dist-hydrate-script',
+    },
+    {
       type: 'dist',
       esmLoaderPath: '../loader',
     },
