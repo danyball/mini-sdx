@@ -1,0 +1,665 @@
+//
+// Range Sliders
+// --------------------------------------------------
+
+// Variables
+// -------------------------
+
+@use "sass:math";
+
+$track-border-width: 0;
+$track-border-color: transparent;
+$track-border-radius: 20px;
+$track-height: 2px;
+$thumb-height: 28px;
+$track-offset: 32px;
+$tooltip-size: 48px;
+$tick-hover-top: 12px;
+$tick-top: $tick-hover-top + 1;
+
+// --------------------------------------------------
+
+@mixin range-track {
+  transition: all 200ms ease;
+
+  width: 100%;
+  height: $track-height;
+}
+
+@mixin range-thumb($height: 28px, $width: 28px) {
+  z-index: 1;
+
+  border: 2px solid $color-blue;
+  border-radius: 50%;
+
+  box-shadow: inset 0 0 0 3px $color-white;
+  background-color: $color-white;
+
+  width: $width;
+  height: $height;
+
+  transform-origin: 50% 50%;
+  user-select: none;
+
+  &:active {
+    background-color: $color-int-blue--active;
+  }
+
+  &:hover {
+    border-color: $color-int-blue--active;
+  }
+}
+
+@mixin range-thumb--active {
+  border-color: $color-int-blue--active;
+  background-color: $color-int-blue--active;
+
+  .range-thumb__value {
+    transform: scale(1);
+  }
+}
+
+@mixin range-thumb--disabled {
+  .range-thumb__value {
+    transform: scale(0);
+  }
+}
+
+// --------------------------------------------------
+
+// Range wrapper styles
+// -------------------------
+
+.range {
+  @include font-sans;
+  @include font-smoothing;
+
+  position: relative;
+
+  margin: 0 16px 24px;
+  @include bp-tablet {
+    margin: 0 32px 24px;
+  }
+
+  outline: none;
+  height: auto;
+  user-select: none;
+
+  // Remove default Range
+  // -------------------------
+
+  input[type="range"] {
+    display: none;
+  }
+
+  // Label and Output styles
+  // -------------------------
+
+  label {
+    margin: 0;
+    margin-top: 32px;
+  }
+
+  output {
+    @include font-semi-bold;
+    @include text-smaller;
+
+    color: $color-gray;
+  }
+
+  // Range styles
+  // -------------------------
+
+  .range-container {
+    position: relative;
+
+    margin-top: 19px;
+
+    cursor: pointer;
+
+    width: 100%;
+    height: auto;
+    min-height: $thumb-height;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .range-track {
+    @include range-track;
+
+    position: absolute;
+    top: 13px;
+    left: 0;
+
+    z-index: 1;
+    background: $color-gray-tint-6;
+
+    &__progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      background: $color-blue;
+
+      width: 0;
+      height: $track-height;
+    }
+  }
+
+  .range-slider {
+    display: table;
+  }
+
+  .range-tick {
+    display: table-cell;
+    position: relative;
+
+    padding: 40px 8px 0;
+
+    height: auto;
+
+    text-align: center;
+    color: $color-gray-tint-6;
+
+    user-select: none;
+
+    word-break: break-all;
+
+    &::before {
+      position: absolute;
+      top: $tick-top;
+      left: 50%;
+
+      background: $color-gray-tint-6;
+
+      width: 1px;
+      height: 8px;
+
+      content: "";
+    }
+
+    &:first-child {
+      padding-left: 0;
+
+      text-align: left;
+
+      &::before {
+        position: absolute;
+        top: $tick-top;
+        left: $track-offset;
+      }
+
+      &::after {
+        position: absolute;
+        top: $tick-hover-top;
+        left: $track-offset - 2px;
+      }
+    }
+
+    &:last-child {
+      padding-right: 0;
+
+      text-align: right;
+
+      &::before {
+        position: absolute;
+        top: $tick-top;
+        right: $track-offset;
+        left: inherit;
+      }
+
+      &::after {
+        position: absolute;
+        top: $tick-hover-top;
+        right: $track-offset - 2px;
+        left: inherit;
+      }
+    }
+
+    &::after {
+      position: absolute;
+      top: $tick-hover-top;
+      left: calc(50% - 2px);
+
+      transform: scale(0);
+      transition: 120ms all ease-in-out;
+
+      z-index: 5;
+
+      border-radius: 100%;
+      background: $color-int-blue--active;
+
+      width: 5px;
+      height: 5px;
+
+      content: "";
+
+      transform-origin: 50% 50%;
+    }
+
+    &__label {
+      @include font-semi-light;
+
+      position: relative;
+
+      text-align: center;
+
+      color: $color-gray;
+      font-size: 14px;
+
+      user-select: none;
+    }
+
+    &--active,
+    &:hover {
+      .range-tick__label {
+        @include font-semi-bold;
+
+        color: $color-int-blue--active;
+      }
+    }
+
+    &:hover {
+      &::after {
+        transform: scale(1);
+      }
+    }
+  }
+
+  .range-thumb {
+    @include range-thumb;
+    position: absolute;
+    top: 0;
+
+    z-index: 10;
+    margin: 0;
+
+    &__value {
+      position: absolute;
+      bottom: 37px;
+      left: calc(50% - 25px);
+
+      transform: scale(0);
+      transition: 120ms all;
+
+      opacity: 1;
+
+      border-radius: 8px;
+      background: $color-int-blue--active;
+
+      min-width: $tooltip-size;
+      height: $tooltip-size;
+
+      text-align: center;
+      line-height: $tooltip-size;
+
+      color: $color-white;
+
+      font-size: 16px;
+    }
+
+    &:active {
+      @include range-thumb--active;
+    }
+  }
+
+  &--active {
+    .range-thumb {
+      @include range-thumb--active;
+    }
+  }
+
+  // Disabled style
+  // -------------------------
+
+  &--disabled {
+    .range-container {
+      cursor: not-allowed;
+    }
+
+    .range-track {
+      background: $color-disabled !important;
+
+      &__progress {
+        background: $color-disabled !important;
+      }
+    }
+
+    .range-thumb {
+      @include range-thumb--disabled;
+
+      &,
+      &:hover {
+        border-color: $color-disabled !important;
+      }
+
+      &:active {
+        @include range-thumb--disabled;
+
+        background-color: $color-white;
+      }
+    }
+
+    .range-tick {
+      color: $color-disabled !important;
+
+      &::before {
+        background: $color-disabled !important;
+      }
+
+      &,
+      &:hover {
+        .range-tick__label {
+          @include font-semi-light;
+
+          color: $color-disabled !important;
+        }
+
+        &::after {
+          transform: scale(0);
+        }
+      }
+    }
+  }
+
+  // While dragging the thumb
+  // --------------------------------------------------
+
+  &--dragging {
+    .range-tick {
+      &:hover {
+        &::after {
+          transform: scale(0);
+        }
+      }
+    }
+  }
+}
+
+// Light styles
+// --------------------------------------------------
+
+.range--light {
+  margin: 40px;
+  @include bp-tablet {
+    margin: 40px;
+  }
+}
+
+.sdx--dark-theme {
+  .range {
+    output {
+      color: $color-gray-dark-theme;
+    }
+
+    .range-track {
+      background: $color-gray-tint-7-dark-theme;
+
+      &__progress {
+        background: $color-int-blue-dark-theme;
+      }
+    }
+
+    .range-tick {
+      color: $color-gray-tint-7-dark-theme;
+
+      &::before {
+        background: $color-gray-tint-7-dark-theme;
+      }
+
+      &::after {
+        background: $color-int-blue-dark-theme--active;
+      }
+
+      &__label {
+        color: $color-gray-dark-theme;
+      }
+
+      &--active,
+      &:hover {
+        .range-tick__label {
+          color: $color-int-blue-dark-theme--active;
+        }
+      }
+    }
+
+    .range-thumb {
+      border-color: $color-int-blue-dark-theme;
+      box-shadow: inset 0 0 0 3px $color-dusk-tint-2-dark-theme;
+      background-color: $color-dusk-tint-2-dark-theme;
+
+      &:active {
+        background-color: $color-int-blue-dark-theme--active;
+      }
+
+      &:hover {
+        border-color: $color-int-blue-dark-theme--active;
+      }
+
+      &__value {
+        background: $color-int-blue-dark-theme;
+      }
+
+      &:active {
+        border-color: $color-int-blue-dark-theme--active;
+        background-color: $color-int-blue-dark-theme--active;
+      }
+    }
+
+    &--active {
+      .range-thumb {
+        border-color: $color-int-blue-dark-theme--active;
+        background-color: $color-int-blue-dark-theme--active;
+      }
+    }
+
+    &--disabled {
+      .range-track {
+        background: $color-disabled-dark-theme !important;
+
+        &__progress {
+          background: $color-disabled-dark-theme !important;
+        }
+      }
+
+      .range-thumb {
+        &,
+        &:hover {
+          border-color: $color-disabled-dark-theme !important;
+        }
+
+        &:active {
+          background-color: $color-dusk-tint-2-dark-theme;
+        }
+      }
+
+      .range-tick {
+        color: $color-disabled-dark-theme !important;
+
+        &::before {
+          background: $color-disabled-dark-theme !important;
+        }
+
+        &,
+        &:hover {
+          .range-tick__label {
+            color: $color-disabled-dark-theme !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Dark Background
+// --------------------------------------------------
+
+.bg--dark {
+  .range {
+    output {
+      color: $color-white;
+    }
+
+    .range-track {
+      background: $color-white;
+    }
+
+    .range-tick {
+      &,
+      &__label {
+        color: $color-white;
+      }
+
+      &--active,
+      &:hover {
+        .range-tick__label {
+          color: $color-int-blue--active;
+        }
+      }
+    }
+
+    .range-thumb {
+      box-shadow: inset 0 0 0 3px $color-navy;
+      background-color: $color-navy;
+
+      &:active {
+        @include range-thumb--active;
+      }
+    }
+
+    &--active {
+      .range-thumb {
+        @include range-thumb--active;
+      }
+    }
+
+    &--disabled {
+      opacity: 0.5;
+
+      .range-thumb {
+        @include range-thumb--disabled;
+
+        &:active {
+          @include range-thumb--disabled;
+
+          background-color: $color-navy;
+        }
+      }
+    }
+  }
+}
+
+// HTML 5 range styles
+// --------------------------------------------------
+
+// To use the HTML5 styling add the class "html5" to your input element.
+
+// NOTE: Due to the limited styling capabilities of the range input element the below style
+// definition is not conform to the SDX. The styles are defined as a fallback and
+// for future use once styling capabilities improve.
+
+@mixin range-thumb-html5($height: 28px, $width: 28px) {
+  @include range-thumb($height, $width);
+  margin: math.div($height, 2) 0 0;
+}
+
+input[type="range"].html5 {
+  position: relative;
+  margin: math.div($thumb-height, 2) 0;
+
+  outline: none;
+  border: 0;
+
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+// WebKit
+// -------------------------
+
+input[type="range"].html5 {
+  &::-webkit-slider-runnable-track {
+    @include range-track;
+
+    border: $track-border-width solid $track-border-color;
+    border-radius: $track-border-radius;
+    background: $color-gray-tint-6;
+  }
+
+  &::-webkit-slider-thumb {
+    @include range-thumb-html5;
+    margin-top: math.div((-$track-border-width * 2 + $track-height), 2) - math.div(
+        $thumb-height,
+        2
+      );
+    -webkit-appearance: none;
+  }
+}
+
+// FireFox
+// -------------------------
+
+input[type="range"].html5 {
+  /* fix for FF unable to apply focus style bug  */
+  border: 1px solid #fff;
+
+  &::-moz-range-track {
+    /*required for proper track sizing in FF*/
+    border: 0;
+    background: $color-gray-tint-6;
+    height: $track-height;
+  }
+
+  &::-moz-range-thumb {
+    @include range-thumb-html5(24px, 24px);
+    outline: none;
+  }
+
+  // hide the outline behind the border
+  &:-moz-focusring {
+    outline: 1px solid transparent;
+    outline-offset: -1px;
+  }
+
+  &::-moz-focus-outer {
+    border: 0;
+  }
+}
+
+// IE 10+ / Edge
+// -------------------------
+
+input[type="range"].html5 {
+  &::-ms-track {
+    @include range-track;
+    border-width: $thumb-height 0;
+    border-color: transparent;
+    background: transparent;
+    color: transparent;
+  }
+
+  &::-ms-fill-lower {
+    background: $color-blue;
+  }
+
+  &::-ms-fill-upper {
+    background: $color-gray-tint-6;
+  }
+
+  &::-ms-thumb {
+    @include range-thumb-html5;
+    margin: math.div($thumb-height, 2) 0;
+  }
+
+  &::-ms-tooltip {
+    display: none;
+  }
+}

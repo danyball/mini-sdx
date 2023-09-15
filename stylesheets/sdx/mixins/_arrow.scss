@@ -1,0 +1,103 @@
+// Arrow normal
+// --------------------------------------------------
+
+@mixin arrow($color) {
+  position: relative;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 50%;
+
+    transition: all 300ms $standard-easing;
+
+    border-radius: 2px;
+    background: $color;
+
+    width: 10px;
+    height: 2px;
+
+    backface-visibility: hidden;
+
+    content: "";
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    left: 6px;
+  }
+}
+
+@mixin arrow--down {
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+}
+
+@mixin arrow--up {
+  &::before {
+    transform: rotate(-45deg);
+  }
+
+  &::after {
+    transform: rotate(45deg);
+  }
+}
+
+@mixin arrow--left {
+  &::before {
+    top: 6px;
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    left: 0;
+    transform: rotate(-45deg);
+  }
+}
+
+@mixin arrow--right {
+  &::before {
+    right: 0;
+    top: 6px;
+    transform: rotate(-45deg);
+  }
+
+  &::after {
+    left: 0;
+    right: 0;
+    transform: rotate(45deg);
+  }
+}
+
+// Arrow flat
+// --------------------------------------------------
+
+@mixin arrow-flat($color) {
+  @include arrow(
+    $color
+  ); // backwards compatibility (flat does not exist anymore)
+}
+
+@mixin arrow-flat--down {
+  @include arrow--down; // backwards compatibility (flat does not exist anymore)
+}
+
+@mixin arrow-flat--up {
+  @include arrow--up; // backwards compatibility (flat does not exist anymore)
+}
+
+@mixin arrow-flat--left {
+  @include arrow--left; // backwards compatibility (flat does not exist anymore)
+}
+
+@mixin arrow-flat--right {
+  @include arrow--right; // backwards compatibility (flat does not exist anymore)
+}

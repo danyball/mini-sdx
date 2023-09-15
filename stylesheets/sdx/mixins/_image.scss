@@ -1,0 +1,85 @@
+//
+// Image Mixins
+// --------------------------------------------------
+
+// Retina background images
+// -------------------------
+
+@mixin background(
+  $path,
+  $ext,
+  $w: auto,
+  $h: auto,
+  $posX: left,
+  $posY: top,
+  $repeat: no-repeat
+) {
+  $at1x-path: "#{$path}.#{$ext}";
+  $at2x-path: "#{$path}@2x.#{$ext}";
+
+  background-size: $w $h;
+  background-position: $posX $posY;
+  background-repeat: $repeat;
+
+  background-image: url("#{$at1x-path}");
+
+  @include retina {
+    background-image: url("#{$at2x-path}");
+  }
+}
+
+// Retina spritesheet
+// -------------------------
+
+@mixin spritesheet(
+  $path,
+  $ext,
+  $w: auto,
+  $h: auto,
+  $sw: auto,
+  $sh: auto,
+  $posX: 0,
+  $posY: 0
+) {
+  @include background($path, $ext, $sw, $sh, $posX, $posY);
+
+  width: $w;
+  height: $h;
+
+  backface-visibility: hidden;
+}
+
+// Retina spritesheet animation
+// -------------------------
+
+@mixin spritesheet-animation(
+  $id,
+  $path,
+  $ext,
+  $w,
+  $h,
+  $sw,
+  $sh,
+  $duration,
+  $steps,
+  $offsetX: 0,
+  $offsetY: 0,
+  $loop: infinite
+) {
+  @include spritesheet($path, $ext, $w, $h, $sw, $sh, $offsetX, $offsetY);
+
+  $animation: anim-sheet-#{$id};
+
+  // The animation of the sprite
+  @keyframes #{$animation} {
+    0% {
+      background-position: $offsetX $offsetY;
+    }
+
+    100% {
+      background-position: #{$offsetX - $sw} $offsetY;
+    }
+  }
+
+  animation: $animation $duration steps($steps) $loop;
+}

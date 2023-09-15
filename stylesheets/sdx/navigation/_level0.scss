@@ -1,0 +1,384 @@
+//
+// Navigation Level 0 / CFU Switcher
+// --------------------------------------------------
+
+// Extends
+// -------------------------
+
+%primary-nav-link {
+  .nav-link {
+    color: $color-nav-link;
+
+    .text-underline {
+      display: inline-block;
+      position: relative;
+      pointer-events: none;
+
+      &::before {
+        position: absolute;
+        top: 28px;
+
+        width: 100%;
+        height: 1px;
+
+        pointer-events: none;
+
+        background-color: $color-nav-link;
+
+        transform: scaleX(0);
+        transition: all 200ms $standard-easing;
+
+        content: "";
+      }
+    }
+
+    &--header {
+      .arrow-icon {
+        @include arrow($color-nav-link);
+        @include arrow--down;
+
+        display: inline-block;
+
+        top: 3px;
+        left: 2px;
+
+        width: 16px;
+        height: 16px;
+
+        pointer-events: none;
+
+        transform: scale(0.8125);
+        transform-origin: 50% 50%;
+      }
+    }
+
+    &.is-active,
+    &--active {
+      .text-underline {
+        &::before {
+          transform: scaleX(1);
+        }
+      }
+
+      .arrow-icon {
+        @include arrow--up;
+      }
+    }
+
+    &:hover {
+      color: $color-nav-link--active;
+
+      .text-underline {
+        &::before {
+          background-color: $color-nav-link--active;
+        }
+      }
+
+      .arrow-icon {
+        @include arrow($color-nav-link--active);
+      }
+    }
+  }
+}
+
+%secondary-nav-link {
+  .nav-link {
+    color: $color-nav-link-alt;
+
+    &:hover,
+    &:focus-visible {
+      color: $color-nav-link-alt--active;
+    }
+
+    .icon {
+      margin-right: 7px;
+    }
+  }
+}
+
+// Level 0 Navigation
+// --------------------------------------------------
+
+.nav__level0 {
+  display: none;
+  position: relative;
+  float: none;
+
+  background: $color-nav-bg;
+
+  z-index: $zindex-navigation + 1000;
+
+  @include bp-tablet {
+    display: block;
+  }
+
+  .nav-section {
+    margin: 0;
+    padding: 20px 0 2px;
+
+    .nav-col {
+      padding-bottom: 23px;
+      opacity: 0;
+
+      &.is-active {
+        opacity: 1;
+      }
+    }
+  }
+
+  a,
+  button {
+    &.nav-icon,
+    &.nav-title,
+    &.nav-link {
+      color: $color-nav-link;
+
+      &:hover,
+      &:focus-visible {
+        color: $color-nav-link--active;
+      }
+    }
+  }
+
+  .nav-item {
+    position: relative;
+    margin: 0;
+  }
+
+  .language-selector {
+    .nav-link {
+      text-transform: uppercase;
+    }
+  }
+
+  // Main Navigation
+  // --------------------------------------------------
+
+  > .nav__mainnav {
+    height: $navigation-level0-height;
+
+    border-bottom: 1px solid $color-nav-divider;
+    transform-origin: bottom;
+
+    .nav-item {
+      float: left;
+    }
+
+    .nav-link {
+      @include typo-nav-level0;
+
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    // Navigation Types
+    // -------------------------
+
+    .nav {
+      &__primary,
+      &__secondary {
+        padding-top: 10px;
+
+        .nav-item {
+          display: flex;
+
+          &:first-child {
+            margin-left: 0;
+          }
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+
+      // Primary Navigation
+      // -------------------------
+
+      &__primary {
+        float: left;
+
+        .nav-item {
+          margin-right: 40px;
+        }
+
+        @extend %primary-nav-link;
+      }
+
+      // Secondary Navigation
+      // -------------------------
+
+      &__secondary {
+        float: right;
+
+        .nav-item {
+          margin-left: 22px;
+        }
+
+        @extend %secondary-nav-link;
+      }
+    }
+  }
+
+  // Sub Navigation
+  // --------------------------------------------------
+
+  > .nav__subnav {
+    display: none;
+    height: 0;
+
+    overflow: hidden;
+
+    background: $color-nav-menu-bg;
+
+    &.is-open {
+      display: block;
+      height: 100%;
+    }
+
+    .nav-section {
+      display: none;
+
+      column-count: 2;
+
+      @include bp-xl {
+        column-count: 4;
+      }
+
+      &.is-open {
+        display: block;
+      }
+
+      .nav-col {
+        transition: opacity 500ms $standard-easing;
+
+        break-inside: avoid;
+
+        @include bp-xl {
+          break-after: column;
+        }
+      }
+    }
+
+    .nav-title {
+      @include typo-nav-content-title;
+
+      padding-bottom: 4px;
+    }
+
+    .nav-link {
+      @include typo-nav-content-text;
+
+      text-decoration: none;
+    }
+
+    .nav-items {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+// Mobile Nav Level 0 Styles
+// --------------------------------------------------
+
+.nav__level1 .nav__mainnav {
+  .nav__level0-mobile {
+    display: none;
+
+    .nav-link {
+      @include typo-nav-level0;
+
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav__primary,
+    .nav__secondary {
+      display: block;
+      position: static;
+      height: auto;
+
+      .nav-link {
+        height: auto;
+
+        padding: 16px $navigation-margin-width 15px;
+      }
+    }
+
+    .nav__primary {
+      @extend %primary-nav-link;
+
+      .nav-link {
+        .text-underline {
+          &::before {
+            top: 22px;
+          }
+        }
+
+        &--header {
+          display: flex;
+          justify-content: space-between;
+
+          .arrow-icon {
+            left: 0;
+            margin-bottom: 0;
+
+            transform: scale(1);
+          }
+        }
+      }
+
+      .nav__subnav {
+        .nav-section {
+          padding: 22px $navigation-margin-width 7px;
+          border: 0;
+        }
+
+        .nav-col {
+          padding: 0 0 23px;
+          border: 0;
+        }
+
+        .nav-title {
+          @include typo-nav-content-title;
+
+          padding-bottom: 4px;
+        }
+
+        .nav-link {
+          @include typo-nav-content-text;
+
+          text-decoration: none;
+
+          padding: 0;
+          border: 0;
+        }
+
+        .nav-items {
+          margin: 0;
+        }
+
+        .nav-item {
+          display: inline;
+        }
+
+        .nav-link {
+          padding: 0;
+          border: 0;
+        }
+      }
+    }
+
+    .nav__secondary {
+      @extend %secondary-nav-link;
+    }
+
+    // Mobile Styles
+    // --------------------------------------------------
+
+    @include bp-phone-max {
+      display: block;
+    }
+  }
+}

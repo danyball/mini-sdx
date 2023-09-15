@@ -1,0 +1,82 @@
+//
+// Forms
+// --------------------------------------------------
+
+// Normalize
+// --------------------------------------------------
+
+// Normalize non-controls
+//
+// Restyle and baseline non-control form elements.
+
+fieldset {
+  margin: 0;
+  border: 0;
+  padding: 0;
+
+  // Chrome and Firefox set a `min-width: min-content;` on fieldsets,
+  // so we reset that to ensure it behaves more like a standard block element.
+  // See https://github.com/twbs/bootstrap/issues/12359.
+  min-width: 0;
+}
+
+legend {
+  display: block;
+
+  border: 0;
+  padding: 0;
+
+  width: 100%;
+  line-height: inherit;
+}
+
+// Override content-box in Normalize (* isn't specific enough)
+input[type="search"] {
+  box-sizing: border-box;
+}
+
+input[type="file"] {
+  display: block;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Generic Styles
+// --------------------------------------------------
+
+label,
+.label {
+  display: inline-block;
+
+  margin-bottom: 4px;
+  cursor: text;
+
+  max-width: 100%;
+
+  color: $color-input-label;
+  font-size: $form-input-label-font-size;
+}
+
+// Dark Background
+// --------------------------------------------------
+
+.bg--dark {
+  label,
+  .label {
+    color: $color-white;
+  }
+}
+
+// Dark theme
+// --------------------------------------------------
+
+.sdx--dark-theme {
+  label,
+  .label {
+    color: $color-gray-dark-theme;
+  }
+}

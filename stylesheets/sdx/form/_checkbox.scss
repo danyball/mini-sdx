@@ -1,0 +1,343 @@
+//
+// Checkbox
+// --------------------------------------------------
+
+@mixin checkbox-hover(
+  $scale,
+  $border-color,
+  $tick-color,
+  $bg-color: transparent
+) {
+  &::before {
+    border: $border-width solid $border-color;
+    background: $bg-color;
+  }
+
+  &::after {
+    transform: scale($scale);
+    color: $tick-color;
+  }
+}
+
+@mixin checkbox-focus($border-color, $tick-color) {
+  &::before {
+    border: $border-width solid $border-color;
+  }
+
+  &::after {
+    color: $tick-color;
+  }
+}
+
+// Checkbox wrapper styles
+// --------------------------------------------------
+
+.checkbox {
+  box-sizing: border-box;
+  + .checkbox {
+    margin-top: 24px;
+  }
+
+  &.add-space {
+    margin-bottom: 24px;
+  }
+
+  p {
+    @include font-semi-light;
+    @include text-small;
+
+    margin-top: 5px;
+    margin-bottom: 0;
+
+    padding-left: 36px;
+
+    color: $color-checkbox-supporting;
+  }
+
+  // Validation Message
+  // -------------------------
+
+  .message {
+    max-height: 0;
+    margin-top: 0;
+
+    opacity: 0;
+
+    transition: 150ms all $standard-easing;
+
+    z-index: 10;
+  }
+
+  // Invalid Input Style
+  // -------------------------
+
+  &.invalid {
+    > .message {
+      max-height: 50px;
+      margin-top: 6px;
+
+      opacity: 1;
+
+      color: $color-input-invalid-text;
+      font-size: $form-input-invalid-font-size;
+    }
+  }
+
+  // Remove default Checkbox
+  // -------------------------
+
+  [type="checkbox"]:not(:checked),
+  [type="checkbox"]:checked {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+  }
+
+  // Checkbox styles
+  // -------------------------
+
+  [type="checkbox"] {
+    // Base styles
+    // -------------------------
+
+    + label {
+      @include font-semi-light;
+      @include text-standard;
+
+      position: relative;
+
+      cursor: pointer;
+
+      margin-bottom: 0;
+      padding-left: 36px;
+
+      color: $color-checkbox-label;
+
+      user-select: none;
+      backface-visibility: hidden;
+
+      &::before,
+      &::after {
+        position: absolute;
+        top: 1px;
+        left: 0;
+
+        z-index: 0;
+        content: "";
+      }
+
+      &::before {
+        transition: all 300ms $standard-easing;
+
+        border: $border-width solid $color-checkbox-empty;
+        border-radius: $border-radius;
+
+        width: $checkbox-size;
+        height: $checkbox-size;
+      }
+
+      &::after {
+        transform: scale(0);
+
+        transition: all 200ms $standard-easing;
+        transform-origin: 50% 50%;
+
+        width: $checkbox-size;
+        height: auto;
+
+        text-align: center;
+        line-height: $checkbox-size;
+
+        color: $color-checkbox-empty;
+
+        font-family: $font-family-sdx;
+        font-size: $checkbox-active-size;
+
+        content: "\E00B"; // .icon-check-mark
+      }
+    }
+
+    // Hover styles
+    // -------------------------
+
+    &:hover + label {
+      @include checkbox-hover(
+        0.5,
+        $color-input-normal-form-hover,
+        $color-input-normal-form-hover
+      );
+    }
+
+    // Focus styles
+    // -------------------------
+
+    &:focus + label {
+      @include checkbox-focus($color-checkbox-focus, $color-checkbox-focus);
+    }
+
+    // Checked styles
+    // -------------------------
+
+    &:checked + label {
+      @include checkbox-hover(1, $color-checkbox-fill, $color-checkbox-fill);
+    }
+
+    &:checked:focus + label {
+      @include checkbox-focus($color-checkbox-focus, $color-checkbox-focus);
+    }
+
+    &:checked:hover + label {
+      @include checkbox-hover(
+        1,
+        $color-checkbox-fill-hover,
+        $color-checkbox-fill-hover
+      );
+    }
+
+    // Disabled style
+    // -------------------------
+
+    &:disabled + label {
+      &,
+      + p {
+        opacity: 0.4;
+        pointer-events: none;
+      }
+    }
+  }
+
+  // Checkbox only style no label
+  // --------------------------------------------------
+
+  &--only {
+    [type="checkbox"] + label {
+      display: inline;
+
+      padding-left: $checkbox-size;
+    }
+  }
+
+  // Checkobox inverted style
+  // --------------------------------------------------
+
+  &--inverted {
+    [type="checkbox"] {
+      // Hover styles
+      // -------------------------
+
+      &:hover + label {
+        @include checkbox-hover(
+          0.5,
+          $color-checkbox-inverted-fill-hover,
+          $color-checkbox-inverted-bg,
+          $color-checkbox-inverted-fill-hover
+        );
+      }
+
+      // Focus styles
+      // -------------------------
+
+      &:focus + label {
+        @include checkbox-focus(
+          $color-checkbox-inverted-focus,
+          $color-checkbox-inverted-bg
+        );
+      }
+
+      // Checked styles
+      // -------------------------
+
+      &:checked + label {
+        @include checkbox-hover(
+          1,
+          $color-checkbox-inverted-fill,
+          $color-checkbox-inverted-bg,
+          $color-checkbox-inverted-fill
+        );
+      }
+
+      &:checked:focus + label {
+        @include checkbox-focus(
+          $color-checkbox-inverted-focus,
+          $color-checkbox-inverted-bg
+        );
+      }
+    }
+
+    // Mobile/Touch Device styles
+    // --------------------------------------------------
+
+    .hiddenscroll.touchevents & {
+      [type="checkbox"] {
+        // Hover styles
+        // -------------------------
+
+        &:hover + label {
+          @include checkbox-hover(
+            0,
+            $color-checkbox-empty,
+            $color-checkbox-empty
+          );
+        }
+
+        // Focus styles
+        // -------------------------
+
+        &:focus + label {
+          @include checkbox-focus(
+            $color-checkbox-inverted-focus,
+            $color-checkbox-inverted-bg
+          );
+        }
+
+        // Checked styles
+        // -------------------------
+
+        &:checked + label {
+          @include checkbox-hover(
+            1,
+            $color-checkbox-inverted-fill,
+            $color-checkbox-inverted-bg,
+            $color-checkbox-inverted-fill
+          );
+        }
+
+        &:checked:focus + label {
+          @include checkbox-focus(
+            $color-checkbox-inverted-focus,
+            $color-checkbox-inverted-bg
+          );
+        }
+      }
+    }
+  }
+}
+
+// Radio Form styles
+// --------------------------------------------------
+
+// Inline styles
+// -------------------------
+
+.form-inline {
+  .checkbox {
+    display: inline-block;
+    vertical-align: top;
+
+    + .checkbox {
+      margin-top: 0;
+      margin-left: 14px;
+    }
+  }
+}
+
+// Group styles
+// -------------------------
+
+.form-group {
+  label,
+  .label {
+    display: block;
+    margin-bottom: 8px;
+  }
+}

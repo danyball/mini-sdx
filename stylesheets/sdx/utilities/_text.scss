@@ -1,0 +1,58 @@
+//
+// Text Dev Utilities
+// --------------------------------------------------
+
+// Align
+// -------------------------
+
+.text-align-left {
+  text-align: left !important;
+}
+
+.text-align-center {
+  text-align: center !important;
+}
+
+@each $bp in map-keys($grid-breakpoints) {
+  @include media-breakpoint-down($bp) {
+    .text-align-center-#{$bp}-down {
+      text-align: center !important;
+    }
+  }
+}
+
+.text-align-right {
+  text-align: right !important;
+}
+
+.text-align-justify {
+  text-align: justify !important;
+}
+
+// Transformation
+// -------------------------
+
+.text-lowercase {
+  text-transform: lowercase !important;
+}
+
+.text-uppercase {
+  text-transform: uppercase !important;
+}
+
+.text-capitalize {
+  text-transform: capitalize !important;
+}
+
+// Truncate
+// -------------------------
+
+.text-truncate {
+  @include text-truncate;
+}
+
+// Recommended max width
+// -------------------------
+.text-recommended-max-width {
+  max-width: $font-text-recomended-max-width;
+}

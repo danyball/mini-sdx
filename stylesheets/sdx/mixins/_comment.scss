@@ -1,0 +1,30 @@
+//
+// Comment Mixins
+// --------------------------------------------------
+
+@use "sass:math";
+
+@mixin make-comment-indent(
+  $size,
+  $columns: $grid-columns,
+  $gutters: $grid-gutters,
+  $widths: $container-widths,
+  $bps: $grid-breakpoints
+) {
+  @each $bp in map-keys($bps) {
+    @include media-breakpoint-up($bp, $bps) {
+      $width: map-get($widths, $bp);
+      $gutter: map-get($gutters, $bp);
+
+      $padding: 0;
+      @if ($width != null) and ($gutter != null) {
+        $padding: math.div(($width + $gutter), $columns) * $size;
+      } @else if ($gutter != null) {
+        $padding: calc(
+          (98vw - #{2 * $container-margin-width}) / #{$columns * $size}
+        );
+      }
+      padding-left: $padding;
+    }
+  }
+}

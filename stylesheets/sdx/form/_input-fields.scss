@@ -1,0 +1,578 @@
+//
+// Input Fields & Textarea
+// --------------------------------------------------
+
+@mixin label-fixed {
+  margin-top: 29px;
+
+  + label {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// --------------------------------------------------
+
+// Text input styles
+// -------------------------
+
+input,
+textarea {
+  -webkit-border-radius: 0;
+
+  &::-ms-clear {
+    display: none;
+  }
+
+  @keyframes onAutoFillStart {
+    from {
+      /* Empty */
+    }
+    to {
+      /* Empty */
+    }
+  }
+
+  &:-webkit-autofill {
+    // Expose a hook for JavaScript when auto fill is shown.
+    // JavaScript can capture 'animationstart' events
+    animation-name: onAutoFillStart;
+
+    // Make the backgound color become yellow _really slowly_
+    transition: background-color 50000s ease-in-out 0s;
+  }
+}
+
+// Input field wrapper styles
+// -------------------------
+
+.input-field {
+  box-sizing: border-box;
+  position: relative;
+
+  margin-bottom: $baseline * 2;
+  padding: 0;
+
+  .message {
+    max-height: 0;
+    margin-top: 0;
+
+    opacity: 0;
+    z-index: $zindex-form + 1;
+
+    transition: 150ms all $standard-easing;
+  }
+
+  .icon {
+    margin-right: $form-input-icon-margin;
+  }
+
+  &:first-child {
+    input:not([type]),
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="url"],
+    input[type="time"],
+    input[type="date"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="search"],
+    textarea {
+      margin-top: 0;
+    }
+  }
+
+  &:hover {
+    input:not([type]),
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="url"],
+    input[type="time"],
+    input[type="date"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="search"],
+    textarea {
+      border-color: $color-input-normal-form-hover;
+    }
+  }
+
+  // Text input styles
+  // -------------------------
+
+  input,
+  textarea {
+    -webkit-border-radius: 0;
+
+    &::-ms-clear {
+      display: none;
+    }
+  }
+
+  input:not([type]),
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="url"],
+  input[type="time"],
+  input[type="date"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="search"],
+  textarea {
+    @include text-standard;
+
+    position: relative;
+
+    transition: all 150ms $standard-easing;
+    z-index: $zindex-form;
+
+    margin-top: 13px;
+
+    outline: none;
+
+    border: $border-width solid $color-input-normal-form;
+    border-radius: $border-radius;
+
+    background-color: $color-input-bg;
+
+    padding: 0 16px;
+
+    width: 100%;
+    height: $form-input-height;
+
+    color: $color-input-normal-text;
+
+    font-weight: 300;
+
+    user-select: text;
+    backface-visibility: hidden;
+
+    caret-color: $color-int-blue;
+
+    + label {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      transform: translateY(24px);
+      transition: 150ms all $standard-easing;
+
+      opacity: 0;
+
+      cursor: text;
+
+      color: $color-input-label;
+      font-size: $form-input-label-font-size;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    // icon
+    ~ .icon {
+      display: block;
+
+      position: absolute;
+      right: 0;
+      bottom: 0;
+
+      opacity: 0;
+      z-index: $zindex-form + 1;
+
+      width: $form-input-height;
+      height: $form-input-height;
+
+      text-align: center;
+      line-height: $form-input-height;
+
+      color: $color-input-success-icon;
+      font-size: 22px;
+    }
+
+    &::placeholder {
+      transition: 150ms opacity $standard-easing;
+
+      opacity: 1;
+      color: $color-input-placeholder;
+    }
+
+    &:-ms-input-placeholder {
+      color: $color-input-placeholder !important;
+    }
+
+    // Focused input styles
+    // -------------------------
+
+    &:focus:not([readonly]) {
+      @include label-fixed;
+
+      border-color: $color-input-selected-form;
+      color: $color-input-selected-text;
+
+      &::placeholder {
+        opacity: 0;
+      }
+    }
+
+    // Disabled and read-only input styles
+    // -------------------------
+
+    &:disabled,
+    &[readonly] {
+      &,
+      & + label {
+        opacity: 0.4 !important; // otherwise, .is-fixed is stronger
+        cursor: not-allowed;
+      }
+    }
+
+    // Validation Input Style
+    // -------------------------
+
+    &.valid,
+    &:valid,
+    &.invalid,
+    &:invalid {
+      box-shadow: none;
+
+      background-repeat: no-repeat;
+      background-position: center right 16px;
+      background-size: 22px 22px;
+
+      ~ .icon {
+        display: none;
+      }
+    }
+
+    // Valid Input Style
+    // -------------------------
+
+    &.valid {
+      padding-right: $form-input-height + $form-input-icon-margin;
+      color: $color-input-success-text;
+
+      @include background-svg($icon-ok);
+
+      &:hover {
+        border-color: $color-input-normal-form-hover;
+      }
+    }
+
+    // Invalid Input Style
+    // -------------------------
+
+    &.invalid {
+      border-color: $color-input-invalid-form;
+      color: $color-input-invalid-text;
+
+      &:hover {
+        border-color: $color-input-invalid-form-hover;
+      }
+
+      ~ .message {
+        max-height: 50px;
+        margin-top: $form-input-invalid-message-margin;
+
+        opacity: 1;
+
+        color: $color-input-invalid-text;
+        font-size: $form-input-invalid-font-size;
+      }
+    }
+
+    // Full width label when using validate for error messages
+    &.validate + label {
+      width: 100%;
+      pointer-events: none;
+    }
+
+    // Custom classes
+    // -------------------------
+
+    &.is-fixed {
+      @include label-fixed;
+    }
+  }
+
+  // Fixed Height Input Field
+  // --------------------------------------------------
+
+  &--fixed {
+    input:not([type]),
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="url"],
+    input[type="time"],
+    input[type="date"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="search"],
+    textarea {
+      margin-top: 29px;
+    }
+  }
+
+  // Static Label Input Field
+  // --------------------------------------------------
+  input:not([type]),
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="url"],
+  input[type="time"],
+  input[type="date"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="search"],
+  textarea {
+    &:first-child,
+    & {
+      @include label-fixed;
+    }
+  }
+
+  // Autocomplete styles
+  // --------------------------------------------------
+
+  &--autocomplete {
+    .autocomplete {
+      position: absolute;
+
+      transform: scale(1, 0);
+      transform-origin: 50% 0;
+      transition: all 200ms $standard-easing;
+
+      opacity: 0.2;
+
+      width: 100%;
+      height: auto;
+
+      margin-top: -1px;
+
+      z-index: $zindex-form + 1;
+
+      cursor: pointer;
+      overflow: hidden;
+
+      background: $color-input-autocomplete-bg;
+      box-shadow: 0 0 4px 0 rgba($color-black, 0.2);
+
+      color: $color-input-autocomplete-text;
+
+      strong {
+        @include font-semi-light;
+        color: $color-search-live-text-match;
+      }
+
+      li {
+        &.js-hover,
+        &:hover {
+          background: $color-input-autocomplete-bg-hover;
+        }
+
+        .autocomplete__result {
+          margin: 0 22px;
+          padding: 12px 0;
+        }
+
+        &:not(:last-child) {
+          .autocomplete__result {
+            border-bottom: 1px solid $color-aluminum-tint-2;
+          }
+        }
+      }
+    }
+
+    &.is-open {
+      input:not([type]),
+      input[type="text"],
+      input[type="password"],
+      input[type="email"],
+      input[type="url"],
+      input[type="time"],
+      input[type="date"],
+      input[type="datetime"],
+      input[type="datetime-local"],
+      input[type="tel"],
+      input[type="number"],
+      input[type="search"],
+      textarea {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      .autocomplete {
+        transform: scale(1, 1);
+
+        opacity: 1;
+        z-index: $zindex-topmost;
+      }
+    }
+  }
+}
+
+// Date Field styles
+// -------------------------
+
+.input-field.flatpickr {
+  .flatpickr-input.valid + i + a[data-toggle],
+  .flatpickr-input.valid + label + i + a[data-toggle],
+  .flatpickr-input.invalid--inline + a[data-toggle],
+  .flatpickr-input.invalid--inline + label + a[data-toggle] {
+    display: none;
+  }
+  .flatpickr-input {
+    -webkit-appearance: none;
+    padding-right: 48px;
+
+    &[readonly] {
+      cursor: text;
+    }
+  }
+  // show placeholder on mobile
+  .flatpickr-input.flatpickr-mobile {
+    font-size: 0;
+
+    &::before {
+      content: attr(placeholder);
+      color: $color-input-placeholder;
+      @include text-standard;
+    }
+  }
+  // hide placeholder when field is focused or filled
+  .flatpickr-input.flatpickr-mobile:focus,
+  .flatpickr-input.is-fixed + .flatpickr-mobile {
+    @include text-standard;
+    @include label-fixed;
+
+    &::before {
+      content: "";
+    }
+  }
+  input ~ a {
+    position: static;
+  }
+  input ~ a .icon-009-calendar {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 101;
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    line-height: 48px;
+    color: $color-gray-tint-4;
+    font-size: 30px;
+    margin: 0 6px 1px 0;
+  }
+  input:disabled ~ a .icon-009-calendar,
+  input[readonly] ~ a .icon-009-calendar {
+    color: $color-input-disabled-text;
+    pointer-events: none;
+  }
+  .flatpickr-input:focus:not([readonly]) ~ a .icon-009-calendar {
+    color: $color-int-blue;
+  }
+  input[type="date"] {
+    &::-webkit-datetime-edit-text {
+      color: transparent;
+    }
+    &::-webkit-datetime-edit-month-field {
+      color: transparent;
+    }
+    &::-webkit-datetime-edit-day-field {
+      color: transparent;
+    }
+    &::-webkit-datetime-edit-year-field {
+      color: transparent;
+    }
+  }
+  input[type="text"] {
+    margin-top: 29px;
+  }
+}
+
+// Textarea styles
+// -------------------------
+
+.input-multiline, // DEPRECATED
+.input-field--multiline {
+  textarea {
+    width: 100%;
+    height: auto;
+
+    padding: 11px 16px;
+
+    resize: none;
+    box-sizing: border-box;
+  }
+}
+
+.input-field__legend-mandatory {
+  color: $color-input-label;
+  font-size: $form-input-label-font-size;
+}
+
+.sdx--dark-theme {
+  .input-field {
+    input,
+    input[type="password"] {
+      border-color: $color-gray-tint-5-dark-theme;
+      background-color: $color-dusk-tint-2-dark-theme;
+      color: $color-gray-dark-theme;
+      caret-color: $color-int-blue2-dark-theme;
+
+      &::placeholder {
+        color: $color-placeholder-dark-theme;
+      }
+
+      &:hover {
+        &:not(:focus):not(.readonly):not([disabled]):not(.invalid) {
+          border-color: $color-gray-tint-2-dark-theme;
+        }
+
+        &.invalid {
+          border-color: $color-invalid-dark-theme;
+        }
+      }
+
+      &.readonly,
+      &[disabled] {
+        border-color: $color-disabled-dark-theme;
+      }
+
+      &:focus:not(.readonly) {
+        border-color: $color-int-blue2-dark-theme;
+        color: $color-gray-dark-theme;
+      }
+
+      &.invalid {
+        color: $color-invalid-dark-theme;
+        border-color: $color-invalid-dark-theme;
+
+        ~ .message {
+          color: $color-invalid-dark-theme;
+        }
+      }
+    }
+
+    input + label {
+      color: $color-gray-tint-5-dark-theme;
+    }
+  }
+}

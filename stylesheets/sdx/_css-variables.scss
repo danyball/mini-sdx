@@ -1,0 +1,58 @@
+// Global public CSS Variables, to be used exclusively by consumers
+:root {
+  --sdx-header-height-mobile: #{$header-height-mobile};
+  --sdx-header-height-mobile-with-breadcrumbs: #{$header-height-mobile-with-breadcrumbs};
+  --sdx-header-height-desktop: #{$header-height-desktop};
+  --sdx-header-height-desktop-with-breadcrumbs: #{$header-height-desktop-with-breadcrumbs};
+  --sdx-header-height-sticky: #{$header-sticky-height};
+
+  @each $bp in map-keys($grid-breakpoints) {
+    --sdx-grid-breakpoint-#{$bp}: #{map-get($grid-breakpoints, $bp)};
+  }
+
+  --sdx-baseline: #{$baseline};
+  --sdx-baseline-2: #{$baseline-2};
+  --sdx-baseline-3: #{$baseline-3};
+  --sdx-baseline-4: #{$baseline-4};
+  --sdx-baseline-5: #{$baseline-5};
+  --sdx-baseline-6: #{$baseline-6};
+
+  --sdx-color-sc-navy: #{$color-sc-navy};
+  --sdx-color-sc-blue: #{$color-sc-blue};
+  --sdx-color-sc-red: #{$color-sc-red};
+  --sdx-color-sc-white: #{$color-white};
+  --sdx-color-blue-tint-2: #{$color-blue-tint-2};
+  --sdx-color-blue-tint-3: #{$color-blue-tint-3};
+  --sdx-color-aluminum: #{$color-aluminum};
+  --sdx-color-aluminum-tint-2: #{$color-aluminum-tint-2};
+  --sdx-color-horizon: #{$color-horizon};
+  --sdx-color-horizon-tint-2: #{$color-horizon-tint-2};
+  --sdx-color-gray: #{$color-gray};
+  --sdx-color-gray-tint-2: #{$color-gray-tint-2};
+  --sdx-color-gray-tint-3: #{$color-gray-tint-3};
+  --sdx-color-gray-tint-4: #{$color-gray-tint-4};
+  --sdx-color-gray-tint-5: #{$color-gray-tint-5};
+  --sdx-color-gray-tint-6: #{$color-gray-tint-6};
+  --sdx-color-gray-tint-7: #{$color-gray-tint-7};
+  --sdx-color-gray-tint-8: #{$color-gray-tint-8};
+  --sdx-color-int-blue: #{$color-int-blue};
+  --sdx-color-int-blue--active: #{$color-int-blue--active};
+  --sdx-color-int-gray: #{$color-int-gray};
+  --sdx-color-int-gray--active: #{$color-int-gray--active};
+  --sdx-color-int-green: #{$color-int-green};
+  --sdx-color-int-green--active: #{$color-int-green--active};
+  --sdx-color-int-red: #{$color-int-red};
+  --sdx-color-int-red--active: #{$color-int-red--active};
+  --sdx-color-int-orange: #{$color-int-orange};
+  --sdx-color-int-orange--active: #{$color-int-orange--active};
+  --sdx-color-azure: #{$color-azure};
+  --sdx-color-azure--active: #{$color-azure--active};
+  --sdx-color-orchid: #{$color-orchid};
+  --sdx-color-orchid--active: #{$color-orchid--active};
+  --sdx-color-iris: #{$color-iris};
+  --sdx-color-iris--active: #{$color-iris--active};
+  --sdx-color-pink: #{$color-pink};
+  --sdx-color-pink--active: #{$color-pink--active};
+  --sdx-color-turquoise: #{$color-turquoise};
+  --sdx-color-turquoise--active: #{$color-turquoise--active};
+}

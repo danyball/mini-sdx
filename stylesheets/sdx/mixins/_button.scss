@@ -1,0 +1,88 @@
+//
+// Button Mixins
+// --------------------------------------------------
+
+@mixin button($settings) {
+  $button-color: map-get($settings, button-color);
+  $color: map-get($settings, color);
+  $border-color: map-get($settings, button-border-color);
+  $border-color-active: map-get($settings, button-border-color--active);
+  $disabled-button-color: rgba($button-color, 0.4);
+  $disabled-color: rgba($color, map-get($settings, text-opacity));
+
+  background-color: $button-color;
+  color: $color;
+  height: $button-height;
+
+  @if $border-color {
+    border: $button-border-width solid $border-color;
+  } @else {
+    border: $button-border-width solid $button-color;
+  }
+
+  // Hover, Focus, Active styles
+  // -------------------------
+
+  &:active,
+  &:hover,
+  &:focus-visible {
+    background-color: map-get($settings, button-color--active);
+    color: $color;
+
+    @if $border-color-active {
+      border: $button-border-width solid $border-color-active;
+      color: $border-color-active;
+    } @else {
+      border: $button-border-width
+        solid
+        map-get($settings, button-color--active);
+    }
+  }
+
+  // Disabled styles
+  // -------------------------
+
+  &.disabled,
+  &:disabled {
+    color: $disabled-color;
+
+    @if $border-color {
+      border: $button-border-width solid rgba($border-color, 0.4);
+      background-color: $button-color;
+    } @else {
+      border: 0;
+      background-color: $disabled-button-color;
+    }
+  }
+}
+
+@mixin button-thin($settings, $color) {
+  $button-color: map-get($settings, button-color);
+  $disabled-button-color: rgba($button-color, 0.4);
+  $disabled-color: rgba($color, 0.4);
+
+  border: $button-border-width solid $button-color;
+  background-color: transparent;
+  color: $color;
+
+  // Hover, Focus, Active styles
+  // -------------------------
+
+  &:active,
+  &:hover,
+  &:focus-visible {
+    border-color: map-get($settings, button-color--active);
+    background-color: rgba($button-color, 0.15);
+    color: $color;
+  }
+
+  // Disabled styles
+  // -------------------------
+
+  &.disabled,
+  &:disabled {
+    border-color: $disabled-button-color;
+    background-color: transparent;
+    color: $disabled-color;
+  }
+}

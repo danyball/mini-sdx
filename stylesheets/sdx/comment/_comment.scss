@@ -1,0 +1,210 @@
+//
+// Commenting
+// --------------------------------------------------
+
+.comments {
+  // Input Styles
+  // -------------------------
+
+  &__input {
+    @include text-standard;
+
+    display: flex;
+
+    border: 0;
+
+    .input-wrapper {
+      width: 100%;
+
+      .button {
+        float: right;
+        margin-bottom: 24px;
+
+        &.disabled {
+          border-color: rgba($color-button-secondary, 0.4);
+          background-color: rgba($color-button-secondary, 0.4);
+          color: rgba($color-gray, 0.4);
+        }
+
+        @include bp-phone-max {
+          display: none;
+        }
+      }
+    }
+
+    .avatar {
+      margin-right: 18px;
+      margin-top: 5px;
+
+      @include bp-phone-max {
+        display: none;
+      }
+
+      .avatar__image {
+        width: 41px;
+        height: 41px;
+
+        border-radius: 50%;
+      }
+    }
+
+    .input-multiline, // DEPRECATED
+    .input-field--multiline {
+      display: inline-flex;
+
+      width: 100%;
+      margin-bottom: 24px;
+
+      textarea {
+        margin-top: 0 !important;
+      }
+    }
+
+    .is-hidden {
+      display: none;
+    }
+  }
+
+  // Feed Styles
+  // -------------------------
+
+  &__feed {
+    margin-top: 1px;
+  }
+}
+
+// Comment Styles
+// --------------------------------------------------
+
+.comment {
+  @include text-standard;
+
+  // Comment indentation
+  > .comment {
+    @include make-comment-indent(1);
+
+    > .comment {
+      padding-left: 0;
+
+      @include bp-tablet {
+        @include make-comment-indent(1);
+      }
+
+      .comment {
+        padding-left: 0;
+      }
+    }
+  }
+
+  &__wrapper {
+    margin-top: -1px;
+    padding: 13px 0 16px;
+
+    border-top: 1px solid $color-comment-border;
+    border-bottom: 1px solid $color-comment-border;
+  }
+
+  &__header {
+    @include typo-headline-5;
+
+    display: flex;
+    margin-bottom: 8px;
+
+    .author {
+      flex: 1;
+      overflow: hidden;
+
+      &__title,
+      &__subtitle {
+        @include text-truncate;
+
+        display: block;
+
+        max-width: 100%;
+      }
+    }
+
+    .meta {
+      margin-left: 18px;
+      align-self: center;
+
+      @include bp-phone-max {
+        display: none;
+      }
+    }
+  }
+
+  &__body {
+    margin-bottom: 7px;
+  }
+
+  &__footer {
+    .icon {
+      bottom: -1px;
+      font-size: 20px;
+    }
+
+    .time {
+      @include text-smaller;
+
+      float: right;
+      margin-top: 2px;
+
+      opacity: 0.5;
+    }
+  }
+
+  .link {
+    &,
+    &:hover,
+    &:focus-visible {
+      text-decoration: none;
+    }
+  }
+
+  .avatar {
+    margin-right: 18px;
+    margin-top: 3px;
+
+    .avatar__image {
+      width: 41px;
+      height: 41px;
+
+      border-radius: 50%;
+    }
+  }
+}
+
+// Dark Background
+// --------------------------------------------------
+
+.bg--dark {
+  .comments__input {
+    .input-wrapper {
+      .button {
+        &.disabled {
+          background-color: transparent;
+          color: rgba($color-button-secondary, 0.4);
+        }
+      }
+    }
+  }
+
+  .comment {
+    &__wrapper {
+      border-top: 1px solid $color-comment-dark-border;
+      border-bottom: 1px solid $color-comment-dark-border;
+    }
+
+    .link {
+      text-decoration: none;
+      color: $color-link;
+
+      &:hover,
+      &:focus-visible {
+        text-decoration: none;
+        color: $color-link--active;
+      }
+    }
+  }
+}

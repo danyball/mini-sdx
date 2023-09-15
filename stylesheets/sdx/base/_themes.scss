@@ -1,0 +1,5 @@
+// not(.hydrated) to ensure styles are not applied to Web Components
+.sdx--dark-theme:not(.hydrated) {
+  background-color: $color-dusk-dark-theme;
+  color: $color-gray-dark-theme; // will be inherited to shadowRoot elements
+}

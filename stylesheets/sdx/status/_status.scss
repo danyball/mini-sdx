@@ -1,0 +1,14 @@
+//
+// Status
+// --------------------------------------------------
+
+.status:before {
+  color: $color-blue;
+  content: "\e040"; // .icon-record-filled
+  display: inline-block;
+  font-family: "sdx-icons";
+}
+
+.sdx--dark-theme .status:before {
+  color: $color-int-blue2-dark-theme;
+}

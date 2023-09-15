@@ -1,0 +1,365 @@
+// Body text
+// -------------------------
+
+.text-body-1,
+.text-standard {
+  @include text-standard;
+}
+
+.text-body-2,
+.text-small {
+  @include text-small;
+}
+
+// Headings
+// -------------------------
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.hero,
+.d1,
+.d2,
+.d3 {
+  color: $color-sc-navy;
+}
+
+.h1,
+.text-h1,
+h1 {
+  @include typo-headline-1;
+  @include font-bold;
+  margin-bottom: $baseline-3;
+
+  @include bp-desktop {
+    margin-bottom: $baseline-4;
+  }
+}
+
+.h2,
+.text-h2,
+h2 {
+  @include typo-headline-2;
+  @include font-bold;
+  margin-bottom: 20px;
+
+  @include bp-desktop {
+    margin-bottom: $baseline-3;
+  }
+}
+
+.h3,
+.h4,
+.text-h3,
+.text-h4,
+h3,
+h4 {
+  margin-bottom: $baseline-2;
+
+  @include bp-desktop {
+    margin-bottom: 20px;
+  }
+}
+
+.h3,
+.text-h3,
+h3 {
+  @include typo-headline-3;
+  @include font-semi-bold;
+}
+
+.h4,
+.text-h4,
+h4 {
+  @include typo-headline-4;
+  @include font-semi-bold;
+}
+
+.text-h3 {
+  &.text-compact {
+    line-height: 31px;
+  }
+}
+
+.text-h4 {
+  &.text-compact {
+    line-height: 27px;
+  }
+}
+
+.h5,
+.h6,
+.text-h5,
+.text-h6,
+h5,
+h6 {
+  margin-bottom: $baseline;
+}
+
+.h5,
+.text-h5,
+h5 {
+  @include typo-headline-5;
+  @include font-semi-bold;
+}
+
+.h6,
+.text-h6,
+h6 {
+  @include typo-headline-6;
+  @include font-semi-bold;
+}
+
+.paragraph,
+p {
+  @include text-standard;
+  margin-bottom: 20px;
+
+  @include bp-desktop {
+    margin-bottom: $baseline-3;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Display Styles
+// -------------------------
+
+.hero,
+.text-hero,
+.d1,
+.text-d1,
+.d2,
+.text-d2,
+.d3,
+.text-d3 {
+  @include font-bold;
+}
+
+.hero,
+.text-hero {
+  @include typo-display-hero;
+}
+
+.d1,
+.text-d1 {
+  @include typo-display-1;
+}
+
+.d2,
+.text-d2 {
+  @include typo-display-2;
+}
+
+.d3,
+.text-d3 {
+  @include typo-display-3;
+}
+
+// Body Text
+// -------------------------
+
+// @deprecated, use .text-standard instead
+.text-b1 {
+  @include text-standard;
+  @include font-semi-light;
+}
+
+// @deprecated, use .text-small instead
+.text-b2 {
+  @include text-small;
+  @include font-semi-light;
+}
+
+// @deprecated, use .text-smaller instead
+.text-sm,
+.text-smaller {
+  @include text-smaller;
+  @include font-semi-light;
+}
+
+// Line height reduction
+// -------------------------
+
+.text-compact {
+  @include text-compact;
+}
+
+// Misc Styles
+// -------------------------
+
+.figcaption {
+  @include text-smaller;
+}
+
+.code {
+  font-family: monospace;
+  background-color: $color-horizon-tint-2;
+  border-radius: 4px;
+  border: 1px solid $color-gray-tint-8;
+  color: $color-gray-tint-2;
+  font-size: 16px;
+  padding: 0 6px;
+}
+
+address {
+  font-style: normal;
+}
+
+strong {
+  @include font-semi-bold;
+}
+
+em {
+  font-style: italic;
+}
+
+// Font Styles
+// --------------------------------------------------
+
+.font {
+  @include font-sans;
+
+  &--sans {
+    @include font-sans;
+  }
+
+  &--serif {
+    @include font-serif;
+  }
+
+  &--light {
+    @include font-light;
+  }
+
+  &--semi-light {
+    @include font-semi-light;
+  }
+
+  &--semi-bold {
+    @include font-semi-bold;
+  }
+}
+
+.sdx--dark-theme {
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6,
+  .hero,
+  .d1,
+  .d2,
+  .d3 {
+    color: unset;
+  }
+
+  .h1,
+  .text-h1,
+  h1,
+  .h2,
+  .text-h2,
+  h2,
+  .h3,
+  .text-h3,
+  h3,
+  .h4,
+  .text-h4,
+  h4,
+  .d1,
+  .text-d1,
+  .d2,
+  .text-d2,
+  .d3,
+  .text-d3 {
+    @include font-semi-bold;
+  }
+
+  .p,
+  .paragraph,
+  p {
+    @include font-plain;
+  }
+
+  .h1,
+  .text-h1,
+  h1 {
+    letter-spacing: -0.8px;
+  }
+
+  .h2,
+  .text-h2,
+  h2 {
+    letter-spacing: -0.6px;
+  }
+
+  .h3,
+  .text-h3,
+  h3 {
+    letter-spacing: -0.5px;
+  }
+
+  .h4,
+  .text-h4,
+  h4 {
+    letter-spacing: -0.2px;
+  }
+
+  .h5,
+  .text-h5,
+  h5 {
+    letter-spacing: -0.1px;
+  }
+
+  .h6,
+  .text-h6,
+  h6 {
+    letter-spacing: 0px;
+  }
+
+  .d1,
+  .text-d1 {
+    letter-spacing: -1.4px;
+  }
+
+  .d2,
+  .text-d2 {
+    letter-spacing: -1px;
+  }
+
+  .d3,
+  .text-d3 {
+    letter-spacing: -0.9px;
+  }
+
+  .code {
+    background-color: $color-dusk-tint-4-dark-theme;
+    border: 1px solid $color-gray-tint-4-dark-theme;
+    border-radius: 4px;
+    color: $color-gray-tint-3-dark-theme;
+    font-size: 16px;
+  }
+
+  strong,
+  b {
+    color: $color-sc-white;
+  }
+}

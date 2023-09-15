@@ -1,0 +1,22 @@
+[
+  [
+    "sdx-accordion",
+    "sdx-accordion-item-body",
+    "sdx-accordion-item-header",
+    "sdx-accordion-item-section",
+    "sdx-accordion-item"
+  ],
+  ["sdx-dialog", "sdx-dialog-content", "sdx-dialog-toggle"],
+  ["sdx-header", "sdx-header-left-hand-menu", "sdx-header-menu"],
+  ["sdx-input-group", "sdx-input-item"],
+  [
+    "sdx-menu-flyout",
+    "sdx-menu-flyout-content",
+    "sdx-menu-flyout-list-item",
+    "sdx-menu-flyout-list",
+    "sdx-menu-flyout-toggle"
+  ],
+  ["sdx-progress-full", "sdx-progress-full-step"],
+  ["sdx-select", "sdx-select-list", "sdx-select-optgroup", "sdx-select-option"],
+  ["sdx-tabs", "sdx-tabs-item"]
+]

@@ -1,0 +1,95 @@
+//
+// Visibility Dev Utilities
+// --------------------------------------------------
+
+.visible {
+  visibility: visible !important;
+}
+
+.invisible {
+  visibility: hidden !important;
+}
+
+.hide,
+.hidden {
+  display: none !important;
+}
+
+.show {
+  display: block !important;
+}
+
+// Responsive Visibility Dev Utilities
+// --------------------------------------------------
+
+@each $bp in map-keys($grid-breakpoints) {
+  .hidden-#{$bp}-up {
+    @include media-breakpoint-up($bp) {
+      display: none !important;
+    }
+  }
+  .hidden-#{$bp}-down {
+    @include media-breakpoint-down($bp) {
+      display: none !important;
+    }
+  }
+  .visible-#{$bp}-up {
+    @include media-breakpoint-up($bp) {
+      display: block !important;
+    }
+  }
+}
+
+.hidden-phone-up {
+  @include bp-phone {
+    display: none !important;
+  }
+}
+
+.hidden-phone-down {
+  @include bp-phone-max {
+    display: none !important;
+  }
+}
+
+.hidden-tablet-up {
+  @include bp-tablet {
+    display: none !important;
+  }
+}
+
+.hidden-tablet-down {
+  @include bp-tablet-max {
+    display: none !important;
+  }
+}
+
+.hidden-desktop-up {
+  @include bp-desktop {
+    display: none !important;
+  }
+}
+
+.hidden-desktop-down {
+  @include bp-desktop-max {
+    display: none !important;
+  }
+}
+
+.visible-phone-up {
+  @include bp-phone {
+    display: block !important;
+  }
+}
+
+.visible-tablet-up {
+  @include bp-tablet {
+    display: block !important;
+  }
+}
+
+.visible-desktop-up {
+  @include bp-desktop {
+    display: block !important;
+  }
+}

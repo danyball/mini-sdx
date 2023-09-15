@@ -1,0 +1,257 @@
+//
+// Flyout Menu
+// --------------------------------------------------
+
+.flyout {
+  display: none;
+
+  position: absolute;
+  top: 20px;
+
+  opacity: 0;
+  transform: translateY(-20px);
+
+  z-index: $zindex-menu;
+
+  background: $color-white;
+  box-shadow: 0 0 4px 0 rgba($color-black, 0.2);
+
+  &.is-open {
+    display: block;
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+// Menu Position
+// -------------------------
+
+.flyout--left {
+  left: 0;
+
+  .flyout__indicator::before {
+    left: 24px;
+  }
+}
+
+.flyout--right {
+  right: 0;
+}
+
+.flyout--top {
+  top: auto;
+  bottom: 100%;
+  transform: translateY(20px);
+
+  .flyout__indicator::before {
+    top: auto;
+    bottom: -7px;
+    box-shadow: 1px 1px 2px 0 rgba($color-black, 0.15);
+  }
+}
+
+// -------------------------
+
+.flyout__indicator::before {
+  position: absolute;
+  top: -7px;
+  right: 24px;
+
+  width: 14px;
+  height: 14px;
+
+  background: inherit;
+  box-shadow: -1px -1px 2px 0 rgba($color-black, 0.15);
+
+  transform: rotate(45deg);
+  z-index: -1;
+
+  content: "";
+}
+
+.flyout__content {
+  background: inherit;
+}
+
+// -------------------------
+
+.flyout__title {
+  margin-top: -4px;
+
+  text-align: center;
+}
+
+.flyout__text {
+  margin-bottom: 16px;
+
+  text-align: center;
+}
+
+// -------------------------
+
+.flyout--list {
+  width: 254px;
+
+  padding: 0;
+
+  li:not(:last-child) {
+    border-bottom: 1px solid $color-aluminum-tint-2;
+  }
+
+  .list-link {
+    display: block;
+
+    width: 100%;
+    padding: 12px 24px;
+
+    text-decoration: none;
+
+    background: $color-white;
+
+    &:hover,
+    &:focus-visible {
+      color: $color-white;
+      background: $color-int-blue;
+    }
+  }
+}
+
+.flyout--info {
+  width: 369px;
+
+  padding: 24px;
+
+  hr,
+  .divider {
+    margin: 16px 0;
+  }
+}
+
+.context {
+  position: fixed;
+  bottom: 0;
+
+  width: 100%;
+
+  z-index: $zindex-menu;
+
+  background: $color-white;
+  box-shadow: 0 0 4px 0 rgba($color-black, 0.2);
+
+  // -------------------------
+
+  .context-link {
+    @include text-truncate;
+
+    display: inline-block;
+
+    width: 100%;
+    height: $menu-context-height;
+
+    padding: 0 24px;
+
+    flex: 1;
+
+    color: $color-int-blue;
+
+    text-decoration: none;
+    background: $color-white;
+
+    line-height: $menu-context-height;
+
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  // -------------------------
+
+  &__primary {
+    display: flex;
+
+    position: relative;
+    width: 100%;
+    height: $menu-context-height;
+
+    z-index: $zindex-menu + 10;
+
+    .context-link {
+      color: $color-white;
+      background: $color-int-blue;
+
+      &:not(:last-child) {
+        border-right: 1px solid $color-aluminum-tint-2;
+      }
+
+      &--more {
+        width: $menu-context-height;
+        padding: 0;
+
+        flex: 0 0 auto;
+
+        font-size: 40px;
+
+        &.is-open {
+          color: $color-int-blue;
+          background: $color-white;
+        }
+      }
+    }
+  }
+
+  // -------------------------
+
+  &__secondary {
+    display: none;
+
+    position: absolute;
+    bottom: $menu-context-height;
+
+    width: 100%;
+
+    padding: 0;
+
+    opacity: 0;
+
+    background: $color-white;
+    box-shadow: 0 0 4px 0 rgba($color-black, 0.2);
+
+    z-index: $zindex-menu + 5;
+
+    &.is-open {
+      display: block;
+      opacity: 1;
+    }
+
+    li {
+      border-bottom: 1px solid $color-aluminum-tint-2;
+    }
+  }
+
+  // -------------------------
+
+  &--flyout {
+    position: initial;
+
+    display: flex;
+    justify-content: space-between;
+
+    padding: 24px;
+    box-shadow: none;
+
+    .flyout-icon {
+      color: $color-navy;
+    }
+
+    ~ .flyout {
+      top: 67px;
+      right: 20px;
+      max-width: 280px;
+      width: 100%;
+
+      &::before {
+        right: 13px;
+      }
+    }
+  }
+}

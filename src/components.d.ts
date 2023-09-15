@@ -6,56 +6,143 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
+    interface SdxTabs {
         /**
-          * The first name
+          * Disable animations for testing.
+          * @private
          */
-        "first": string;
+        "animated": boolean;
         /**
-          * The last name
+          * Callback that will fire when the active tab has changed. Provides the active tab DOM node.
+          * @deprecated use sdxselect event instead.
          */
-        "last": string;
+        "changeCallback"?: ((activeTab: Node) => void) | string;
         /**
-          * The middle name
+          * Draws the layout. Useful to redraw the component when initially rendered on a hidden parent (e.g. an sdx-tabs-item).
          */
-        "middle": string;
+        "layout": () => Promise<void>;
+        /**
+          * Description text read by the screen reader.
+         */
+        "srHint": string;
+        /**
+          * Arranges the tabs appearance to be either left-aligned (default) or centralised.
+         */
+        "theme": "left-aligned" | "centered";
+    }
+    interface SdxTabsItem {
+        /**
+          * The tab is not selectable.
+         */
+        "disabled": boolean;
+        /**
+          * Renders anchor element instead of a button. Can be useful for deep linking, SEO, etc.
+         */
+        "href"?: string;
+        /**
+          * Title of the tab.
+         */
+        "label": string;
+        /**
+          * The tab is active.
+         */
+        "selected": boolean;
+        /**
+          * Callback that will fire when the tabs item has become visible. Also fires when opened by default.
+          * @deprecated use sdxselect event instead.
+         */
+        "selectedCallback"?: (() => void) | string;
     }
 }
+export interface SdxTabsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLSdxTabsElement;
+}
+export interface SdxTabsItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLSdxTabsItemElement;
+}
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLSdxTabsElement extends Components.SdxTabs, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLSdxTabsElement: {
+        prototype: HTMLSdxTabsElement;
+        new (): HTMLSdxTabsElement;
+    };
+    interface HTMLSdxTabsItemElement extends Components.SdxTabsItem, HTMLStencilElement {
+    }
+    var HTMLSdxTabsItemElement: {
+        prototype: HTMLSdxTabsItemElement;
+        new (): HTMLSdxTabsItemElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "sdx-tabs": HTMLSdxTabsElement;
+        "sdx-tabs-item": HTMLSdxTabsItemElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
+    interface SdxTabs {
         /**
-          * The first name
+          * Disable animations for testing.
+          * @private
          */
-        "first"?: string;
+        "animated"?: boolean;
         /**
-          * The last name
+          * Callback that will fire when the active tab has changed. Provides the active tab DOM node.
+          * @deprecated use sdxselect event instead.
          */
-        "last"?: string;
+        "changeCallback"?: ((activeTab: Node) => void) | string;
         /**
-          * The middle name
+          * Emitted when an item becomes visible.
          */
-        "middle"?: string;
+        "onSdxselect"?: (event: SdxTabsCustomEvent<any>) => void;
+        /**
+          * Description text read by the screen reader.
+         */
+        "srHint"?: string;
+        /**
+          * Arranges the tabs appearance to be either left-aligned (default) or centralised.
+         */
+        "theme"?: "left-aligned" | "centered";
+    }
+    interface SdxTabsItem {
+        /**
+          * The tab is not selectable.
+         */
+        "disabled"?: boolean;
+        /**
+          * Renders anchor element instead of a button. Can be useful for deep linking, SEO, etc.
+         */
+        "href"?: string;
+        /**
+          * Title of the tab.
+         */
+        "label"?: string;
+        /**
+          * Emitted when the item becomes visible.
+         */
+        "onSdxselect"?: (event: SdxTabsItemCustomEvent<any>) => void;
+        /**
+          * The tab is active.
+         */
+        "selected"?: boolean;
+        /**
+          * Callback that will fire when the tabs item has become visible. Also fires when opened by default.
+          * @deprecated use sdxselect event instead.
+         */
+        "selectedCallback"?: (() => void) | string;
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "sdx-tabs": SdxTabs;
+        "sdx-tabs-item": SdxTabsItem;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "sdx-tabs": LocalJSX.SdxTabs & JSXBase.HTMLAttributes<HTMLSdxTabsElement>;
+            "sdx-tabs-item": LocalJSX.SdxTabsItem & JSXBase.HTMLAttributes<HTMLSdxTabsItemElement>;
         }
     }
 }

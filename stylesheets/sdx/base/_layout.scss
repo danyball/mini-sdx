@@ -1,0 +1,30 @@
+//
+// Core
+// --------------------------------------------------
+
+// Page wrapper styles
+// -------------------------
+.major-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-wrapper {
+  display: flex;
+  min-height: 100vh;
+
+  // make sure things like tooltips don't cause the page to scroll
+  flex-direction: column;
+
+  &.flex {
+    flex: 1 0 auto;
+  }
+}
+
+// Page wrapper styles
+// -------------------------
+
+.page {
+  flex: 1 0 auto; // fix for bottom footer
+  min-height: 1px; // fixed ie11 flexbox image resizing bug
+}

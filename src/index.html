@@ -9,6 +9,15 @@
     <script nomodule src="/build/stencil-starter-project-name.js"></script>
   </head>
   <body>
-    <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+
+  <sdx-tabs sr-hint="Tabs with text.">
+    <sdx-tabs-item label="Tab 1">This is the content of Tab 1.</sdx-tabs-item>
+    <sdx-tabs-item label="Tab 2">This is the content of Tab 2.</sdx-tabs-item>
+    <sdx-tabs-item label="Tab 3 with very long text that will be truncated" selected>This is the content of Tab 3.</sdx-tabs-item>
+    <sdx-tabs-item label="Tab 4">This is the content of Tab 4.</sdx-tabs-item>
+    <sdx-tabs-item label="Tab 5 with extra text">This is the content of Tab 5.</sdx-tabs-item>
+    <sdx-tabs-item label="Tab 6" disabled>This is the content of the disabled Tab 6.</sdx-tabs-item>
+  </sdx-tabs>
+
   </body>
 </html>

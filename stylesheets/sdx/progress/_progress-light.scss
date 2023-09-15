@@ -1,0 +1,146 @@
+//
+// Light progress bar
+// --------------------------------------------------
+
+// --------------------------------------------------
+
+$bar-height: 9px;
+$bar-margin: 18px;
+
+// --------------------------------------------------
+
+// Progress-Light wrapper
+// -------------------------
+
+.progress-light {
+  position: relative;
+
+  margin: 24px 0;
+
+  width: 100%;
+
+  @include bp-tablet {
+    margin: 32px 0;
+  }
+
+  .arrow {
+    position: absolute;
+    top: 16px;
+
+    width: 24px;
+    height: 24px;
+
+    @include bp-tablet {
+      top: 22px;
+    }
+
+    .icon {
+      line-height: 24px;
+
+      font-size: 17px;
+      font-weight: bold;
+
+      pointer-events: none;
+      color: $color-int-blue;
+
+      outline: none;
+    }
+
+    &:hover .icon {
+      color: $color-int-blue--active;
+    }
+
+    &--disabled {
+      .icon {
+        color: $color-int-gray;
+      }
+
+      &:hover .icon {
+        color: $color-int-gray--active;
+      }
+    }
+
+    &--left {
+      left: -8px;
+    }
+
+    &--right {
+      right: -8px;
+    }
+  }
+
+  &__detail {
+    @include text-small;
+    @include font-semi-light;
+
+    display: block;
+    color: $color-gray-tint-4;
+
+    margin: 0 $bar-margin 7px;
+
+    line-height: 1;
+
+    @include bp-tablet {
+      margin: 0 $bar-margin 13px;
+    }
+  }
+
+  &__bar {
+    position: relative;
+
+    background-color: $color-loader-bar-bg;
+    height: $bar-height;
+
+    margin: 0 $bar-margin 10px;
+
+    overflow: hidden;
+    border-radius: $bar-height;
+
+    @include bp-tablet {
+      margin: 0 $bar-margin;
+    }
+
+    .bar {
+      &__progress {
+        background-color: $color-int-blue;
+        height: $bar-height;
+        width: 0;
+
+        &--complete {
+          background-color: $color-int-green;
+        }
+      }
+
+      &__tick {
+        position: absolute;
+
+        &::before {
+          position: absolute;
+          top: 0;
+          background: $color-black;
+          opacity: 0.5;
+
+          width: 1px;
+          height: $bar-height;
+
+          content: "";
+        }
+      }
+    }
+  }
+}
+
+// Dark Background
+// -------------------------
+
+.bg--dark {
+  .progress-light {
+    &__detail {
+      color: $color-white;
+    }
+
+    &__bar {
+      background-color: $color-white;
+    }
+  }
+}

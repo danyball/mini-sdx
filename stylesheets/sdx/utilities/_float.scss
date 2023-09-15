@@ -1,0 +1,21 @@
+//
+// Float classes
+// --------------------------------------------------
+
+@each $bp in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($bp) {
+    $infix: breakpoint-infix($bp, $grid-breakpoints);
+
+    .float#{$infix}-left {
+      @include float-left;
+    }
+
+    .float#{$infix}-right {
+      @include float-right;
+    }
+
+    .float#{$infix}-none {
+      @include float-none;
+    }
+  }
+}

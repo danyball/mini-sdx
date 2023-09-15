@@ -1,0 +1,699 @@
+//
+// Footer
+// --------------------------------------------------
+
+.footer {
+  // Reset global styles
+  // -------------------------
+
+  a,
+  button {
+    margin: 0;
+    padding: 0;
+  }
+
+  // Generic Footer Styles
+  // -------------------------
+
+  z-index: $zindex-footer;
+  overflow: hidden;
+  text-align: left;
+
+  .logo {
+    border: 0;
+  }
+
+  // generic
+  // -------------------------
+
+  @include make-nav-section-columns(nav-section);
+
+  .nav-section {
+    .nav-col {
+      display: table;
+
+      width: 100%;
+
+      overflow: hidden; // Edge and IE11 hack
+      -webkit-transform: scale(1); // Safari hack
+
+      @media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+        -webkit-transform: none; // reset hack for non-Safari browsers (prevent "Layout Shift" report in Lighthouse)
+      }
+
+      page-break-inside: avoid;
+      break-inside: avoid;
+
+      @include bp-desktop {
+        break-after: column;
+      }
+    }
+  }
+
+  .nav-items {
+    @include clearfix;
+  }
+
+  // Footer Swisscom Logo
+  // -------------------------
+
+  .logo {
+    display: flex;
+    width: 100%;
+
+    margin-top: 31px;
+    text-align: center;
+
+    justify-content: center;
+
+    @include bp-tablet {
+      width: auto;
+
+      margin-top: 22px;
+      margin-left: -18px;
+
+      float: left;
+      text-align: left;
+    }
+
+    .logo-lifeform {
+      @include logo-lifeform;
+
+      display: inline-block;
+
+      position: relative;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  // footer-compact
+
+  &--compact {
+    @include bp-tablet {
+      height: $footer-compact-height;
+    }
+
+    .nav-link {
+      @include typo-footer;
+      text-decoration: none;
+      border-bottom: transparent solid 1px;
+    }
+
+    .nav-items {
+      margin-top: 26px;
+      margin-bottom: 49px;
+
+      text-align: center;
+
+      @include bp-tablet {
+        float: right;
+
+        margin-top: 29px;
+        margin-bottom: 0;
+
+        text-align: inherit;
+      }
+
+      .nav-item {
+        margin-bottom: 22px;
+        margin-right: 0;
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        @include bp-tablet {
+          float: left;
+          margin-bottom: 0;
+          margin-right: 22px;
+        }
+      }
+    }
+  }
+
+  // Footer-full
+
+  &--full {
+    .nav-section {
+      // #59 fixes an issue where the footer ist not correctly
+      // displayed on large screens in safari
+      min-height: 100%;
+    }
+
+    .nav-title {
+      &,
+      .text-underline,
+      .nav-link {
+        @include typo-footer;
+        @include font-semi-bold;
+      }
+
+      border: 0;
+    }
+
+    .nav-link {
+      @include typo-footer-small;
+      text-decoration: none;
+      // border-bottom because Chrome glitched using text-decoration:underline on hover
+      border-bottom: transparent solid 1px;
+    }
+
+    .nav-icon {
+      display: flex;
+      border: 0;
+      background: 0;
+
+      @include bp-phone-only {
+        width: 90%;
+        height: auto;
+        padding-right: $baseline;
+      }
+    }
+
+    .nav-items {
+      text-align: center;
+
+      @include bp-tablet {
+        text-align: inherit;
+      }
+
+      &--divider {
+        .nav-item {
+          margin: 0;
+
+          &:not(:first-child)::before {
+            content: "|";
+            position: relative;
+            top: -1px;
+
+            margin: 0;
+
+            padding-left: 11px;
+            padding-right: 11px;
+
+            font-size: 16px;
+
+            color: $color-footer-dark-link;
+          }
+        }
+      }
+    }
+
+    @include bp-tablet-max {
+      .nav-section {
+        column-count: 1;
+      }
+    }
+
+    // Footer Top
+    // -------------------------
+
+    .footer__top {
+      padding: 36px 0 26px;
+
+      .nav-col {
+        > .container {
+          @include make-container-fluid(xs);
+          @include make-container-fluid(sm);
+
+          @include make-container-fixed(md);
+
+          @include bp-desktop {
+            padding: 0;
+            margin: 0;
+
+            width: auto;
+          }
+        }
+      }
+
+      .nav-items {
+        margin-top: 8px;
+
+        .nav-item {
+          margin-bottom: 8px;
+
+          &:last-child {
+            margin: 0;
+          }
+        }
+      }
+
+      @include bp-tablet-max {
+        padding: 0;
+
+        > .container {
+          padding: 0;
+          margin: 0;
+
+          width: auto;
+        }
+
+        .nav-col {
+          padding: 22px 0 24px;
+
+          border-bottom: 1px solid $color-footer-dark-divider;
+        }
+
+        .nav-items {
+          text-align: inherit;
+        }
+      }
+    }
+
+    // Footer Center
+    //------------------------
+
+    .footer__center {
+      padding: 0 0 $baseline-4;
+
+      @include bp-tablet-max {
+        padding-top: 30px;
+      }
+
+      hr {
+        margin-top: 0;
+        border-bottom-color: $color-footer-dark-divider;
+
+        @include media-breakpoint-down(md) {
+          display: none;
+        }
+      }
+
+      .input-field label {
+        @include font-semi-light;
+      }
+      .subscribe {
+        vertical-align: bottom; // IE11 fix
+
+        @include media-breakpoint-down(md) {
+          width: 100%;
+        }
+      }
+
+      .app-wrapper {
+        display: inline-block;
+      }
+      .app-link {
+        border: 0;
+      }
+      .app-icon {
+        height: $footer-app-icon-size;
+      }
+      @include media-breakpoint-down(md) {
+        // mobile: center below the icon
+        .app-link-text {
+          text-align: center;
+          display: block;
+        }
+      }
+      @include media-breakpoint-up(lg) {
+        // tablet: space between button and app-link
+        .app-wrapper {
+          margin-left: $baseline-4;
+        }
+      }
+      @include media-breakpoint-up(lg) {
+        .app-wrapper {
+          max-width: $footer-app-container-width;
+          text-align: left;
+        }
+        .app-icon {
+          float: left;
+        }
+      }
+      @include media-breakpoint-up(xl) {
+        .app-wrapper {
+          max-width: none;
+        }
+        .app-link-text {
+          line-height: $footer-app-icon-size;
+        }
+      }
+
+      .awards {
+        display: flex;
+        a {
+          border: 0;
+        }
+      }
+      .award {
+        display: block;
+
+        img {
+          height: $footer-award-height;
+          vertical-align: top;
+        }
+        @include media-breakpoint-up(md) {
+          margin-left: $baseline-5;
+
+          &:first-child {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+
+    // Footer Bottom
+    // -------------------------
+
+    .footer__bottom {
+      height: 100%;
+      padding: 27px 0 25px;
+
+      @include bp-desktop {
+        height: 90px;
+        padding: 25px 0;
+      }
+
+      .row {
+        margin-bottom: 0;
+
+        @include bp-tablet {
+          margin-bottom: 13px;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      .nav-items {
+        display: inline-block;
+
+        &--divider {
+          .nav-item {
+            margin: 0 0 $baseline 0;
+          }
+          @include bp-tablet {
+            margin: 0;
+          }
+        }
+      }
+
+      .nav-item {
+        display: inline-block;
+        margin-right: 22px;
+
+        text-align: center;
+
+        &:last-child {
+          margin: 0;
+
+          .nav-icon {
+            padding-right: 0;
+          }
+        }
+
+        @include bp-tablet {
+          text-align: left;
+        }
+      }
+
+      .footer--left,
+      .footer--right {
+        float: none;
+        margin-top: 0;
+
+        text-align: center;
+      }
+
+      .footer--social-icons {
+        text-align: center;
+
+        margin-bottom: 12px;
+
+        @include bp-tablet {
+          margin-bottom: 0;
+        }
+
+        .nav-item {
+          margin-right: 24px;
+
+          @include bp-phone-only {
+            margin-right: -4px;
+          }
+
+          @include bp-tablet {
+            margin-right: 6px;
+          }
+
+          &:last-child {
+            margin: 0;
+          }
+        }
+      }
+
+      .footer--copyright {
+        @include typo-footer-small;
+
+        text-align: center;
+
+        @include bp-tablet {
+          @include typo-footer-tiny;
+        }
+      }
+
+      @include bp-desktop {
+        .footer--left {
+          float: left;
+        }
+
+        .footer--right {
+          float: right;
+        }
+
+        .footer--nav {
+          margin-top: 6px;
+        }
+      }
+    }
+
+    // Color options
+    // -------------------------
+
+    &:not(.footer--light) {
+      .footer__center {
+        .input-field {
+          label {
+            color: $color-white;
+          }
+
+          input {
+            background-color: $color-footer-dark-input-bg;
+            border-color: $color-gray-tint-6;
+            color: $color-gray-tint-6;
+
+            &:hover {
+              border-color: $color-gray-tint-5;
+            }
+
+            &:focus {
+              border-color: $color-int-blue;
+              color: $color-white;
+            }
+          }
+        }
+
+        .subscribe[theme="secondary"] {
+          display: none;
+        }
+      }
+    }
+
+    &,
+    &.footer--dark {
+      .nav-title {
+        color: $color-footer-dark-link;
+      }
+
+      .footer__top {
+        background: $color-footer-dark-bg;
+
+        .nav-col {
+          border-bottom-color: $color-footer-dark-divider;
+        }
+
+        @include accordion-arrow-normal(
+          $color-footer-dark-link,
+          $color-footer-dark-link--active
+        );
+      }
+
+      .footer__bottom {
+        background: $color-footer-dark-bg-second;
+      }
+    }
+
+    &.footer--light {
+      .nav-title,
+      .nav-title .nav-link.nav-link {
+        color: $color-footer-light-link;
+      }
+
+      .nav-items--divider {
+        .nav-item {
+          &::before {
+            color: $color-footer-light-link;
+          }
+        }
+      }
+
+      .footer__top {
+        background: $color-footer-light-bg;
+
+        .nav-col {
+          border-bottom-color: $color-footer-light-divider;
+        }
+
+        .nav-link {
+          color: $color-footer-light-link-top;
+        }
+
+        @include accordion-arrow-normal(
+          $color-footer-light-link,
+          $color-footer-light-link--active
+        );
+      }
+
+      .footer__center {
+        hr {
+          border-bottom-color: $color-footer-light-divider;
+        }
+        .subscribe[background="dark"] {
+          display: none;
+        }
+      }
+
+      .footer__bottom {
+        background: $color-footer-light-bg-second;
+
+        .footer--copyright {
+          color: $color-footer-light-link-bottom;
+        }
+      }
+    }
+  }
+
+  // Color options
+  // -------------------------
+
+  &,
+  &.footer--dark {
+    color: $color-footer-dark-link;
+    background: $color-footer-dark-bg;
+
+    a,
+    button {
+      &.nav-title,
+      &.nav-link {
+        color: $color-footer-dark-link;
+        border-bottom-color: transparent;
+
+        &:hover,
+        &:focus-visible {
+          border-bottom-color: $color-footer-dark-link;
+          color: $color-footer-dark-link;
+        }
+
+        &--active {
+          border-bottom-color: $color-footer-dark-link;
+        }
+      }
+    }
+
+    svg .icon {
+      fill: $color-footer-dark-link;
+    }
+  }
+
+  &.footer--light {
+    color: $color-footer-light-link;
+
+    background: $color-footer-light-bg;
+
+    a,
+    button {
+      &.nav-title,
+      &.nav-link {
+        color: $color-footer-light-link;
+        border-bottom-color: transparent;
+
+        &:hover,
+        &:focus-visible {
+          border-bottom-color: $color-footer-light-link;
+          color: $color-footer-light-link;
+        }
+      }
+    }
+
+    svg .icon {
+      fill: $color-footer-light-link;
+    }
+  }
+
+  // Footer Position
+  // -------------------------
+
+  &--left {
+    float: left;
+  }
+
+  &--right {
+    float: right;
+  }
+
+  // Footer Font Override
+  // -------------------------
+
+  .text-sm {
+    @include typo-footer-tiny;
+  }
+}
+
+// Dark Theme
+// -------------------------
+.sdx--dark-theme {
+  .footer {
+    @include font-plain;
+
+    svg .icon {
+      fill: $color-gray-dark-theme;
+    }
+
+    .footer__top,
+    .footer__center {
+      background-color: $color-dusk-tint-4-dark-theme;
+    }
+
+    .footer__bottom {
+      background-color: $color-dusk-tint-2-dark-theme;
+
+      .nav-items--divider {
+        .nav-item {
+          &::before {
+            color: $color-gray-dark-theme;
+          }
+        }
+      }
+    }
+
+    .nav-link {
+      color: $color-gray-dark-theme;
+
+      &:hover,
+      &:focus-visible {
+        border-bottom-color: $color-gray-dark-theme;
+      }
+    }
+
+    &.footer--compact {
+      background-color: $color-dusk-tint-2-dark-theme;
+    }
+  }
+}

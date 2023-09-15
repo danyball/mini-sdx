@@ -1,0 +1,226 @@
+//
+// Modal
+// --------------------------------------------------
+
+// Modal Dialog
+// --------------------------------------------------
+
+.modal {
+  // NOTE: This is set to flex in JS to makes sure the animations work
+  // and the modal does not take up space when hidden.
+  display: none;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: $zindex-modal + 1;
+
+  width: 100%;
+  height: 100%;
+
+  outline: none;
+  pointer-events: none;
+
+  &--open {
+    display: flex;
+
+    .modal__content {
+      transform: scale(1);
+
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  // Container
+  // -------------------------
+
+  > .container {
+    display: flex;
+  }
+
+  // Modal Content
+  // -------------------------
+
+  &__content {
+    position: relative;
+
+    margin: auto;
+    max-height: calc(100vh - #{$modal-spacing-height});
+
+    align-self: center;
+
+    padding: 0;
+
+    box-shadow: 0 0 4px rgba($color-black, 0.15);
+    background: $color-white;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    pointer-events: auto;
+
+    visibility: hidden;
+    opacity: 0;
+
+    transform: scale(0.92);
+    transition:
+      transform 300ms 50ms,
+      opacity 300ms 50ms,
+      visibility 300ms 50ms;
+  }
+
+  // Modal Close Button
+  // -------------------------
+
+  &__close {
+    position: absolute;
+    top: 16px;
+    right: 13px;
+
+    width: 32px;
+    height: 32px;
+
+    cursor: pointer;
+    color: $color-navy;
+
+    @include bp-desktop {
+      top: 24px;
+      right: 26px;
+    }
+
+    .icon {
+      line-height: 32px;
+
+      font-size: 24px;
+      font-weight: 600;
+
+      @include bp-desktop {
+        font-size: 30px;
+        font-weight: 600;
+      }
+    }
+  }
+
+  // Modal Header
+  // -------------------------
+
+  &__header {
+    border-bottom: 1px solid $color-gray-tint-8;
+
+    padding: 20px 64px 0 $modal-margin;
+
+    width: 100%;
+    height: 64px;
+
+    @include bp-desktop {
+      padding: 24px 64px 0 $modal-margin-desktop;
+
+      height: 80px;
+    }
+
+    @include headings {
+      @include text-truncate;
+
+      margin-bottom: 0;
+    }
+
+    h1 {
+      @include typo-headline-5;
+
+      @include bp-desktop {
+        @include typo-headline-4;
+      }
+    }
+  }
+
+  // Modal Body
+  // -------------------------
+
+  &__body {
+    @include text-standard;
+    @include smooth-scroll-on-ios;
+
+    overflow-y: auto;
+    max-height: calc(100vh - #{$modal-spacing-height} - 80px);
+
+    padding: 21px $modal-margin $modal-margin;
+
+    @include bp-desktop {
+      padding: 29px $modal-margin-desktop $modal-margin-desktop;
+    }
+
+    .button-group {
+      margin-top: 21px;
+
+      @include bp-desktop {
+        margin-top: 34px;
+      }
+    }
+  }
+
+  // Grid Container in Modal
+  // --------------------------------------------------
+
+  > .container {
+    @include bp-xs-max {
+      width: calc(102% - (2 * #{$modal-margin}));
+    }
+  }
+}
+
+// Modal Backdrop
+// --------------------------------------------------
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  transition: opacity 300ms ease-out;
+
+  visibility: hidden;
+  opacity: 0;
+
+  z-index: $zindex-modal;
+
+  background: rgba($color-gray, 0.5);
+
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  width: 100%;
+  height: 100%;
+
+  &--open {
+    visibility: visible;
+    opacity: 1;
+
+    pointer-events: auto;
+  }
+}
+
+//used for empty state modal, remove as soon replaced with web component
+.sdx--dark-theme {
+  .modal {
+    &__content {
+      box-shadow: none;
+      background-color: $color-dusk-tint-4-dark-theme;
+    }
+
+    &__close {
+      color: $color-int-blue-dark-theme;
+    }
+
+    &__header {
+      border-bottom-color: $color-gray-tint-6-dark-theme;
+    }
+  }
+
+  .backdrop {
+    background: rgba($color-dusk-dark-theme, 0.5);
+  }
+}

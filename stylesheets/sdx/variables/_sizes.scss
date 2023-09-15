@@ -1,0 +1,223 @@
+@use "sass:math";
+
+//
+// Size Variables
+// --------------------------------------------------
+
+// Baseline
+$baseline: 8px !default;
+
+// Spaces
+$baseline-2: 2 * $baseline !default; // 16px
+$baseline-3: 3 * $baseline !default; // 24px
+$baseline-4: 4 * $baseline !default; // 32px
+$baseline-5: 5 * $baseline !default; // 40px
+$baseline-6: 6 * $baseline !default; // 48px
+
+// Default Interaction Element height
+$interaction-element-height: 48px !default;
+
+// Generic sizes
+// --------------------------------------------------
+
+$border-width: 1px !default;
+$border-radius: 5px !default; // used on small elements like input fields or checkboxes
+$border-radius-medium: 8px !default; // used on elements that can both contain other elements or be contained in other elements
+$border-radius-large: 12px !default; // used on containing elements like modals (containing other elements with borders)
+$image-border-radius: $border-radius-large !default; // deprecated
+
+$indicator-size: 14px !default;
+$indicator-spacing: 16px !default;
+
+$arrow-width: 15px;
+
+// Accordion sizes
+// --------------------------------------------------
+
+$accordion-padding-horizontal: 15px !default;
+$accordion-padding-vertical: 16px !default;
+
+// Button sizes
+// --------------------------------------------------
+
+$button-margin-horizontal: $baseline-2 !default;
+$button-margin-vertical: $baseline-2 !default;
+
+$button-border-width: $border-width;
+$button-border-radius: $border-radius; // deprecated
+
+$button-padding-horizontal: $baseline-3 !default;
+$button-padding-vertical: $baseline-3 * 0.5 !default; // vertically centered alignment and text-height being $baseline-3 too
+
+$button-height: $interaction-element-height;
+$button-min-width: 160px;
+
+// Form sizes
+// --------------------------------------------------
+
+$form-input-height: $interaction-element-height;
+$form-input-icon-margin: 4px !default;
+$form-input-label-font-size: 16px !default;
+$form-input-invalid-font-size: 16px !default;
+$form-input-invalid-message-margin: 6px !default;
+
+// Select sizes
+// -------------------------
+
+$select-height: $interaction-element-height;
+$select-outer-margin: 24px !default;
+$select-inner-margin: 16px !default;
+
+// Checkbox sizes
+// -------------------------
+
+$checkbox-size: 22px !default;
+$checkbox-active-size: 18px !default;
+
+// Radio sizes
+// -------------------------
+
+$radio-size: 22px !default;
+$radio-active-size: 10px !default;
+
+// Switch sizes
+// -------------------------
+
+$switch-width: 54px !default;
+$switch-height: 24px !default;
+$switch-border: 3px !default;
+$switch-margin-right: 74px !default; //switch width 54px plus 20px padding-right
+
+// Card sizes
+// --------------------------------------------------
+
+$card-grid-columns: 8 !default;
+$card-grid-gutter: 8px !default;
+
+$card-border: 3px !default;
+$card-compact-padding-left: 50px !default;
+$card-image-height: 168px !default;
+$card-image-news-height: 180px !default;
+
+// Menu sizes
+// --------------------------------------------------
+
+$menu-context-height: 73px !default;
+
+// Loader sizes
+// --------------------------------------------------
+
+$loader-spinner-large: 50px !default;
+$loader-spinner-small: 25px !default;
+
+// Carousel sizes (deprecated)
+// --------------------------------------------------
+
+$carousel-bullet-size: 16px !default;
+$carousel-button-large: 60px !default;
+$carousel-button-small: 24px !default;
+
+// Header sizes
+// --------------------------------------------------
+$header-level0-height: 40px;
+$header-level1-height: 72px;
+$header-breadcrumb-height: $interaction-element-height;
+$header-sticky-height: 72px;
+
+$header-height-mobile: $header-level1-height;
+$header-height-mobile-with-breadcrumbs: $header-height-mobile +
+  $header-breadcrumb-height;
+
+$header-height-desktop: $header-level0-height + $header-level1-height;
+$header-height-desktop-with-breadcrumbs: $header-height-desktop +
+  $header-breadcrumb-height;
+
+// Navigation sizes
+// --------------------------------------------------
+
+$navigation-margin-width: 24px !default;
+$navigation-level0-height: 40px !default;
+$navigation-level1-height: 80px !default;
+
+$navigation-breadcrumb-full-height: 104px;
+$navigation-breadcrumb-small-height: 48px;
+
+// Side Navigation sizes
+// -------------------------
+
+$navigation-side-width: 272px !default;
+$navigation-side-mobile-width: 250px !default;
+
+// Search sizes
+// --------------------------------------------------
+
+$search-height: 80px !default;
+$search-box-margin: 14px !default;
+$search-icon-size: 30px !default;
+$search-clear-size: 20px !default;
+
+// Footer sizes
+// --------------------------------------------------
+
+$footer-compact-height: 80px !default;
+$footer-app-container-width: 200px !default;
+$footer-app-icon-size: 48px !default;
+$footer-award-height: 92px !default;
+
+// Chart sizes
+// --------------------------------------------------
+
+$chart-bar-thickness: 8px;
+$chart-bar-min-width: 272px;
+
+// Tabs sizes
+// --------------------------------------------------
+
+$tabs-spacing-small: 5px;
+$tabs-spacing-normal: 6px;
+$tabs-spacing-big: 8px;
+
+$tabs-padding-short: $baseline * 4;
+$tabs-padding-long: $tabs-padding-short;
+
+$tabs-border: 1px;
+$tabs-bar-active: 5px;
+
+$tabs-with-image-size: 160px;
+$tabs-with-image-gutter: 20px;
+$tabs-with-image-gutter-sm: $baseline;
+$tabs-with-image-fade-out-width: 20px;
+
+$tabs-min-width: $baseline-3 + 66px + $baseline-3;
+$tabs-min-width-lg: $baseline * 7 + 66px + $baseline * 7;
+$tabs-max-width: $baseline-3 + 200px + $baseline-3;
+$tabs-max-width-lg: $baseline * 7 + 200px + $baseline * 7;
+$tabs-separator-width: 2px;
+
+// Modal sizes
+// --------------------------------------------------
+
+$modal-spacing-height: 80px;
+$modal-margin: 24px;
+$modal-margin-desktop: 32px;
+
+// Ribbon sizes (deprecated)
+// --------------------------------------------------
+
+$ribbon-font-small: 14px;
+$ribbon-font-normal: 16px;
+$ribbon-font-large: 18px;
+$ribbon-badge-padding-h: 8px;
+$ribbon-badge-padding-v-small: 4px;
+$ribbon-badge-padding-v: 6px;
+$ribbon-badge-padding-v-large: 8px;
+$ribbon-corner-size: 4px;
+$ribbon-badge-corner-size: 8px;
+$ribbon-small-dimension: 96px;
+$ribbon-regular-dimension: 112px;
+$ribbon-large-dimension: 128px;
+
+// Stepper sizes
+// --------------------------------------------------
+
+$stepper-width: 144px;

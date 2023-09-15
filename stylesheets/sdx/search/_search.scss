@@ -1,0 +1,331 @@
+//
+// Search
+// --------------------------------------------------
+
+.search {
+  z-index: $zindex-navigation + 500;
+
+  // Desktop Option
+  // --------------------------------------------------
+
+  &.search--mobile {
+    display: block;
+
+    @include bp-tablet {
+      display: none;
+    }
+  }
+
+  &.search--desktop {
+    display: none;
+
+    position: absolute;
+    left: 0;
+    width: 100%;
+
+    @include bp-tablet {
+      display: block;
+    }
+  }
+
+  // Imports
+  // -------------------------
+
+  // Search Input
+  // -------------------------
+
+  &__input {
+    // Search input styles
+    // -------------------------
+
+    display: block;
+    overflow: hidden;
+
+    position: relative;
+
+    width: 100%;
+
+    background: $color-search-light-bg;
+    color: $color-search-inactive-text;
+
+    transition:
+      background 200ms $standard-easing,
+      color 200ms $standard-easing;
+
+    .search__input-wrapper {
+      display: flex;
+      position: relative;
+
+      justify-content: space-between;
+      align-items: center;
+
+      width: 100%;
+      height: $search-height;
+    }
+
+    .search__box {
+      display: flex;
+      width: 100%;
+    }
+
+    .search__field {
+      @include typo-search;
+
+      // fixes edge line height bug
+      @supports (-ms-ime-align: auto) {
+        line-height: 0;
+      }
+
+      display: block;
+
+      width: 100%;
+
+      vertical-align: middle;
+
+      transform: translateX(0);
+      transition: transform 200ms $standard-easing;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      &::placeholder {
+        color: $color-search-inactive-text;
+        opacity: 1;
+      }
+    }
+
+    .search__field:invalid {
+      transform: translateX(-#{$search-clear-size + $search-box-margin});
+
+      ~ .search__icon-clear {
+        visibility: hidden;
+        opacity: 0;
+        transform: scale(0);
+      }
+    }
+
+    .search__icon {
+      &-clear {
+        margin-right: $search-box-margin;
+
+        z-index: 10;
+        order: -1;
+
+        font-size: $search-clear-size;
+
+        visibility: visible;
+        opacity: 1;
+        transform: scale(1);
+
+        transition:
+          visibility 200ms $standard-easing,
+          opacity 200ms $standard-easing,
+          transform 200ms $standard-easing;
+      }
+
+      &-close,
+      &-search {
+        margin-left: $search-box-margin;
+
+        font-size: $search-icon-size;
+      }
+    }
+
+    // Color options
+    // --------------------------------------------------
+
+    @mixin search-light {
+      background: $color-search-light-bg;
+      color: $color-search-light-text;
+
+      .search__field {
+        &,
+        &::placeholder {
+          color: $color-search-light-text;
+          opacity: 1;
+        }
+
+        &:focus {
+          &::placeholder {
+            color: $color-search-light-text;
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    @mixin search-dark {
+      background: $color-search-dark-bg;
+      color: $color-search-dark-text;
+
+      .search__field {
+        &,
+        &::placeholder {
+          color: $color-search-dark-text;
+          opacity: 1;
+        }
+
+        &:focus {
+          &::placeholder {
+            color: $color-search-dark-text;
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    &,
+    &.search--light {
+      &.is-active {
+        @include search-light;
+      }
+
+      @include bp-tablet {
+        @include search-light;
+      }
+    }
+
+    &.search--dark {
+      &.is-active {
+        @include search-dark;
+      }
+
+      @include bp-tablet {
+        @include search-dark;
+      }
+    }
+  }
+
+  // Desktop Option
+  // --------------------------------------------------
+
+  &--desktop {
+    .search__input {
+      @include bp-tablet {
+        max-height: 0;
+
+        transition:
+          max-height 200ms $standard-easing,
+          background 200ms $standard-easing,
+          color 200ms $standard-easing;
+
+        &.is-open {
+          max-height: $search-height;
+        }
+      }
+    }
+  }
+
+  // Search Input
+  // --------------------------------------------------
+
+  &__live {
+    // Search live styles
+    // -------------------------
+    display: none;
+    height: 0;
+    width: 100%;
+
+    overflow: hidden;
+    border-bottom: 1px solid $color-nav-footer-bg;
+
+    &.is-open {
+      display: block;
+      height: auto;
+    }
+
+    .live-suggestions {
+      display: none;
+      height: 0;
+
+      background: $color-search-live-bg;
+      color: $color-search-live-text;
+
+      &.is-open {
+        display: block;
+        height: auto;
+      }
+
+      strong {
+        @include font-semi-light;
+        color: $color-search-live-text-match;
+      }
+
+      li {
+        padding: 15px 0 16px;
+
+        &:not(:last-child) {
+          border-bottom: 1px solid $color-aluminum-tint-2;
+        }
+      }
+    }
+
+    .live-footer {
+      display: none;
+      height: 0;
+      background: $color-nav-footer-bg;
+
+      &.is-open {
+        display: block;
+        height: auto;
+      }
+
+      .container {
+        padding-top: 21px;
+        padding-bottom: 24px;
+      }
+
+      a,
+      button {
+        &.live-icon,
+        &.live-title,
+        &.live-link {
+          color: $color-nav-link;
+
+          &:hover,
+          &:focus-visible {
+            color: $color-nav-link--active;
+          }
+        }
+      }
+
+      .offer {
+        margin-top: 10px;
+
+        .offer__image {
+          float: left;
+          margin-right: 18px;
+
+          img {
+            max-width: 64px;
+            max-height: 64px;
+          }
+        }
+
+        .offer__content {
+          @include text-small;
+
+          display: table;
+          word-wrap: normal;
+        }
+      }
+    }
+  }
+}
+
+.sdx--dark-theme {
+  .search {
+    &__input {
+      background: $color-dusk-tint-3-dark-theme;
+      color: $color-gray-dark-theme;
+
+      .search__field {
+        &,
+        &::placeholder {
+          color: $color-gray-dark-theme;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,491 @@
+// Font/Icon Colours
+// ==================================================
+
+.white {
+  color: $color-white;
+}
+
+.navy {
+  color: $color-navy;
+}
+
+.blue {
+  color: $color-blue;
+
+  &-40, // deprecated
+  &-tint-2 {
+    color: $color-blue-tint-2;
+  }
+
+  &-20, // deprecated
+  &-tint-3 {
+    color: $color-blue-tint-3;
+  }
+}
+
+.aluminium, // deprecated
+.aluminum {
+  color: $color-aluminum;
+
+  &-80, // deprecated
+  &-tint-2 {
+    color: $color-aluminum-tint-2;
+  }
+}
+
+.horizon {
+  color: $color-horizon;
+
+  &-40, // deprecated
+  &-tint-2 {
+    color: $color-horizon-tint-2;
+  }
+}
+
+.gray {
+  color: $color-gray;
+
+  &-90, // deprecated
+  &-tint-2 {
+    color: $color-gray-tint-2;
+  }
+
+  &-80, // deprecated
+  &-tint-3 {
+    color: $color-gray-tint-3;
+  }
+
+  &-mid, // deprecated
+  &-tint-4 {
+    color: $color-gray-tint-4;
+  }
+
+  &-60, // deprecated
+  &-tint-5 {
+    color: $color-gray-tint-5;
+  }
+
+  &-40, // deprecated
+  &-tint-6 {
+    color: $color-gray-tint-6;
+  }
+
+  &-light, // deprecated
+  &-tint-7 {
+    color: $color-gray-tint-7;
+  }
+
+  &-20, // deprecated
+  &-tint-8 {
+    color: $color-gray-tint-8;
+  }
+}
+
+.sc {
+  &-blue {
+    color: $color-sc-blue;
+  }
+
+  &-red {
+    color: $color-sc-red;
+  }
+
+  &-purple {
+    // deprecated
+    color: $color-iris;
+  }
+
+  &-navy {
+    color: $color-sc-navy;
+  }
+
+  &-white {
+    color: $color-white;
+  }
+
+  &-gray {
+    // deprecated
+    color: $color-gray;
+
+    &-mid {
+      color: $color-gray-tint-4;
+    }
+
+    &-light {
+      color: $color-gray-tint-7;
+    }
+  }
+}
+
+// Interaction Colours
+// --------------------------------------------------
+
+.int {
+  &-blue {
+    color: $color-int-blue;
+
+    &--active {
+      color: $color-int-blue--active;
+    }
+  }
+
+  &-gray {
+    color: $color-int-gray;
+
+    &--active {
+      color: $color-int-gray--active;
+    }
+  }
+
+  &-green {
+    color: $color-int-green;
+
+    &--active {
+      color: $color-int-green--active;
+    }
+  }
+
+  &-red {
+    color: $color-int-red;
+
+    &--active {
+      color: $color-int-red--active;
+    }
+  }
+
+  &-orange {
+    color: $color-int-orange;
+
+    &--active {
+      color: $color-int-orange--active;
+    }
+  }
+}
+
+// Accent Colours
+// --------------------------------------------------
+
+.azure {
+  color: $color-azure;
+
+  &--active {
+    color: $color-azure--active;
+  }
+}
+
+.orchid {
+  color: $color-orchid;
+
+  &--active {
+    color: $color-orchid--active;
+  }
+
+  &-tint-2 {
+    color: $color-orchid-tint-2;
+  }
+
+  &-tint-3 {
+    color: $color-orchid-tint-3;
+  }
+
+  &-tint-4 {
+    color: $color-orchid-tint-4;
+  }
+
+  &-tint-5 {
+    color: $color-orchid-tint-5;
+  }
+
+  &-tint-6 {
+    color: $color-orchid-tint-6;
+  }
+
+  &-tint-7 {
+    color: $color-orchid-tint-7;
+  }
+
+  &-tint-8 {
+    color: $color-orchid-tint-8;
+  }
+}
+
+.iris {
+  color: $color-iris;
+
+  &--active {
+    color: $color-iris--active;
+  }
+
+  &-tint-2 {
+    color: $color-iris-tint-2;
+  }
+
+  &-tint-3 {
+    color: $color-iris-tint-3;
+  }
+
+  &-tint-4 {
+    color: $color-iris-tint-4;
+  }
+
+  &-tint-5 {
+    color: $color-iris-tint-5;
+  }
+
+  &-tint-6 {
+    color: $color-iris-tint-6;
+  }
+
+  &-tint-7 {
+    color: $color-iris-tint-7;
+  }
+
+  &-tint-8 {
+    color: $color-iris-tint-8;
+  }
+}
+
+.pink {
+  color: $color-pink;
+
+  &--active {
+    color: $color-pink--active;
+  }
+
+  &-tint-2 {
+    color: $color-pink-tint-2;
+  }
+
+  &-tint-3 {
+    color: $color-pink-tint-3;
+  }
+
+  &-tint-4 {
+    color: $color-pink-tint-4;
+  }
+
+  &-tint-5 {
+    color: $color-pink-tint-5;
+  }
+
+  &-tint-6 {
+    color: $color-pink-tint-6;
+  }
+
+  &-tint-7 {
+    color: $color-pink-tint-7;
+  }
+
+  &-tint-8 {
+    color: $color-pink-tint-8;
+  }
+}
+
+.apple, // deprecated
+.petrol, // deprecated
+.turquoise {
+  color: $color-turquoise;
+
+  &--active {
+    color: $color-turquoise--active;
+  }
+}
+
+.turquoise {
+  &-tint-2 {
+    color: $color-turquoise-tint-2;
+  }
+
+  &-tint-3 {
+    color: $color-turquoise-tint-3;
+  }
+
+  &-tint-4 {
+    color: $color-turquoise-tint-4;
+  }
+
+  &-tint-5 {
+    color: $color-turquoise-tint-5;
+  }
+
+  &-tint-6 {
+    color: $color-turquoise-tint-6;
+  }
+
+  &-tint-7 {
+    color: $color-turquoise-tint-7;
+  }
+
+  &-tint-8 {
+    color: $color-turquoise-tint-8;
+  }
+}
+
+// Dark theme colors
+// --------------------------------------------------
+
+.sdx--dark-theme {
+  .gray {
+    color: $color-gray-dark-theme;
+
+    &-tint-2 {
+      color: $color-gray-tint-2-dark-theme;
+    }
+
+    &-tint-3 {
+      color: $color-gray-tint-3-dark-theme;
+    }
+
+    &-tint-4 {
+      color: $color-gray-tint-4-dark-theme;
+    }
+
+    &-tint-5 {
+      color: $color-gray-tint-5-dark-theme;
+    }
+
+    &-tint-6 {
+      color: $color-gray-tint-6-dark-theme;
+    }
+
+    &-tint-7 {
+      color: $color-gray-tint-7-dark-theme;
+    }
+
+    &-tint-8 {
+      color: $color-gray-tint-8-dark-theme;
+    }
+  }
+
+  .dusk {
+    color: $color-dusk-dark-theme;
+
+    &-tint-2 {
+      color: $color-dusk-tint-2-dark-theme;
+    }
+
+    &-tint-3 {
+      color: $color-dusk-tint-3-dark-theme;
+    }
+
+    &-tint-4 {
+      color: $color-dusk-tint-4-dark-theme;
+    }
+  }
+
+  // Interaction Colours
+  // --------------------------------------------------
+
+  .int {
+    &-blue {
+      color: $color-int-blue-dark-theme;
+
+      &--active {
+        color: $color-int-blue-dark-theme--active;
+      }
+    }
+
+    &-blue2 {
+      color: $color-int-blue2-dark-theme;
+
+      &--active {
+        color: $color-int-blue2-dark-theme--active;
+      }
+    }
+
+    &-gray {
+      color: $color-gray-tint-5-dark-theme;
+
+      &--active {
+        color: $color-gray-tint-2-dark-theme;
+      }
+    }
+
+    &-green {
+      color: $color-int-green-dark-theme;
+
+      &--active {
+        color: $color-int-green--active;
+      }
+    }
+
+    &-green2 {
+      color: $color-int-green2-dark-theme;
+    }
+
+    &-red {
+      color: $color-int-red-dark-theme;
+
+      &--active {
+        color: $color-int-red--active;
+      }
+    }
+
+    &-red2 {
+      color: $color-int-red2-dark-theme;
+
+      &--active {
+        color: $color-int-red2-dark-theme--active;
+      }
+    }
+
+    &-orange {
+      color: $color-int-orange-dark-theme;
+
+      &--active {
+        color: $color-int-orange-dark-theme--active;
+      }
+    }
+
+    &-orange-2 {
+      color: $color-int-orange2-dark-theme;
+
+      &--active {
+        color: $color-int-orange2-dark-theme--active;
+      }
+    }
+  }
+
+  // Accent Colours
+  // --------------------------------------------------
+
+  .azure {
+    color: $color-azure-dark-theme;
+
+    &--active {
+      color: $color-azure-tint-2-dark-theme;
+    }
+  }
+
+  .orchid {
+    color: $color-orchid-dark-theme;
+
+    &--active {
+      color: $color-orchid-tint-2-dark-theme;
+    }
+  }
+
+  .iris {
+    color: $color-iris-dark-theme;
+
+    &--active {
+      color: $color-iris-tint-2-dark-theme;
+    }
+  }
+
+  .pink {
+    color: $color-pink-dark-theme;
+
+    &--active {
+      color: $color-pink-tint-2-dark-theme;
+    }
+  }
+
+  .turquoise {
+    color: $color-turquoise-dark-theme;
+
+    &--active {
+      color: $color-turquoise-tint-2-dark-theme;
+    }
+  }
+}

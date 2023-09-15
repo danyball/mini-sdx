@@ -1,0 +1,241 @@
+@use "sass:math";
+
+//
+// Switches
+// --------------------------------------------------
+
+// Switch wrapper styles
+// -------------------------
+
+$switch-circle-height: $switch-height - (2 * $switch-border);
+$switch-circle-offset-top: math.div($switch-height, 2) - math.div(
+    $switch-circle-height,
+    2
+  );
+$switch-offset-checked: $switch-width - $switch-border - $switch-circle-height;
+
+.switch {
+  display: flex;
+  position: relative;
+  margin-bottom: 12px;
+  backface-visibility: hidden;
+
+  //p tag classes for backwards compatibility. Padding is new placed in label tag.
+  p {
+    @include text-standard;
+    position: relative;
+    top: 2px;
+    color: $color-gray;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+  }
+
+  // Remove default Checkbox
+  // -------------------------
+
+  [type="checkbox"]:not(:checked),
+  [type="checkbox"]:checked {
+    position: absolute;
+    opacity: 0;
+  }
+
+  // Switch styles
+  // -------------------------
+
+  [type="checkbox"] {
+    // Base styles
+    // -------------------------
+
+    + label {
+      @include text-standard;
+      font-weight: 400;
+      color: $color-gray;
+      display: flex;
+      line-height: $switch-height;
+      margin-bottom: 8px;
+
+      position: relative;
+
+      cursor: pointer;
+      align-items: center;
+
+      backface-visibility: hidden;
+      padding-left: $switch-margin-right;
+      z-index: 0;
+
+      // 'off' state of the toggle switch
+      &::before {
+        position: absolute;
+
+        transition: all 180ms cubic-bezier(0.985, 0.385, 0.41, 0.445);
+        z-index: 1;
+
+        top: 0;
+        left: 0;
+        margin: 0 auto;
+
+        border-radius: $switch-height;
+        background: $color-gray-tint-5;
+
+        width: $switch-width;
+        height: $switch-height;
+
+        content: "";
+      }
+
+      &::after {
+        position: absolute;
+        left: $switch-border;
+
+        transition: all 180ms 120ms cubic-bezier(0.445, 0.41, 0.395, 0.985);
+        z-index: 2;
+
+        top: $switch-circle-offset-top;
+        margin: 0;
+
+        border-radius: $switch-circle-height;
+        background: $color-white;
+
+        width: $switch-circle-height;
+        height: $switch-circle-height;
+
+        content: "";
+      }
+    }
+
+    // Hover styles
+    // -------------------------
+
+    &:hover:enabled + label,
+    &:focus-visible:enabled + label {
+      &::before {
+        background-color: $color-gray-tint-4;
+      }
+    }
+
+    &:hover:enabled:checked + label,
+    &:focus-visible:enabled:checked + label {
+      &::before {
+        background-color: $color-int-blue--active;
+      }
+    }
+
+    // Checked / on styles
+    // -------------------------
+
+    &:checked + label {
+      &::before {
+        border-radius: $switch-height;
+        background-color: $color-int-blue;
+      }
+
+      &::after {
+        // make the switch move to the right when checked
+        left: $switch-offset-checked;
+      }
+    }
+
+    // Disabled style
+    // -------------------------
+
+    @include disabled-label;
+
+    &:disabled + label {
+      //p tag classes for backwards compatibility.
+      + p {
+        opacity: 0.6;
+      }
+    }
+  }
+}
+
+// Label on the left
+//
+.switch--left {
+  [type="checkbox"] {
+    + label {
+      padding: 0 20px 0 0;
+      margin-right: $switch-margin-right;
+
+      &::before {
+        left: calc(100% - #{$switch-border});
+      }
+
+      &::after {
+        left: 100%;
+      }
+    }
+
+    &:checked + label {
+      &::after {
+        // make the switch move to the right when checked
+        left: calc(100% - #{$switch-border} + #{$switch-offset-checked});
+      }
+    }
+  }
+}
+
+.sdx--dark-theme {
+  .switch {
+    p {
+      color: $color-gray-dark-theme;
+    }
+
+    [type="checkbox"] {
+      + label {
+        color: $color-gray-dark-theme;
+
+        // 'off' state of the toggle switch
+        &::before {
+          background: $color-gray-tint-5-dark-theme;
+        }
+
+        &::after {
+          background: $color-dusk-tint-2-dark-theme;
+        }
+      }
+
+      // Hover styles
+      // -------------------------
+
+      &:hover:enabled + label,
+      &:focus-visible:enabled + label {
+        &::before {
+          background-color: $color-gray-tint-4-dark-theme;
+        }
+      }
+
+      &:hover:enabled:checked + label,
+      &:focus-visible:enabled:checked + label {
+        &::before {
+          background-color: $color-int-blue-dark-theme--active;
+        }
+      }
+
+      // Checked / on styles
+      // -------------------------
+
+      &:checked + label {
+        &::before {
+          background-color: $color-int-blue-dark-theme;
+        }
+      }
+    }
+  }
+}
+
+// Dark Background
+// -------------------------
+
+.bg--dark {
+  .switch label {
+    color: $color-white;
+    font-weight: 400;
+  }
+
+  //p tag classes for backwards compatibility.
+  .switch p {
+    color: $color-white;
+  }
+}

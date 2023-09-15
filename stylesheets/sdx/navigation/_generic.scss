@@ -1,0 +1,79 @@
+//
+// Navigation Generic Classes
+// --------------------------------------------------
+
+& {
+  .nav-items {
+    @include clearfix;
+  }
+
+  // Swisscom Logo
+  // -------------------------
+
+  .logo {
+    .logo-lifeform,
+    .logo-type {
+      display: inline-block;
+      float: left;
+
+      position: relative;
+      left: 0;
+      top: 0;
+
+      height: 40px;
+    }
+
+    .logo-lifeform {
+      @include logo-lifeform;
+    }
+
+    // The nova variant
+    // --------------------------------------------------
+
+    .nova-flag {
+      display: inline-block;
+      float: left;
+
+      position: relative;
+      margin-left: 10px;
+      margin-top: 5px;
+    }
+  }
+
+  // Hamburger Icon
+  // -------------------------
+
+  .nav-hamburger {
+    display: block;
+
+    span {
+      display: block;
+      position: relative;
+      width: 20px;
+      height: 2px;
+      margin: 5px 0;
+      border-radius: 2px;
+
+      background: $color-navy;
+
+      transform-origin: center;
+      transition: all 75ms $standard-easing;
+    }
+
+    &.is-active {
+      span {
+        &:nth-child(1) {
+          transform: translateY(7px) rotate(45deg);
+        }
+
+        &:nth-child(2) {
+          opacity: 0;
+        }
+
+        &:nth-child(3) {
+          transform: translateY(-7px) rotate(-45deg);
+        }
+      }
+    }
+  }
+}

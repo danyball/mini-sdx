@@ -1,0 +1,110 @@
+@import "button";
+
+:host {
+  display: block;
+}
+
+.component {
+  display: flex;
+  flex-flow: column;
+
+  &.centered {
+    .header {
+      align-self: center;
+    }
+  }
+
+  &.left-aligned {
+    .header {
+      align-self: flex-start;
+    }
+  }
+
+  .header {
+    background: $color-horizon;
+    border-radius: $border-radius-large;
+    max-width: 100%;
+    align-self: flex-start;
+
+    .tablist {
+      position: relative; // for .indicator positioning
+      list-style-type: none;
+      margin: 0;
+      white-space: nowrap;
+
+      .indicator {
+        position: absolute;
+        width: $tabs-min-width;
+        top: 0;
+        bottom: 0;
+        background-color: $color-navy;
+        border-radius: $border-radius-large;
+
+        @include bp-md {
+          width: $tabs-min-width-lg;
+        }
+      }
+
+      .clickable {
+        cursor: pointer;
+        min-width: $tabs-min-width;
+        max-width: $tabs-max-width;
+        padding: 12px $baseline-3;
+        position: relative; // to be above .indicator
+
+        @include bp-md {
+          padding: 12px $baseline-6;
+          min-width: $tabs-min-width-lg;
+          max-width: $tabs-max-width-lg;
+        }
+
+        &:is(a) {
+          display: inline-block;
+        }
+
+        &:hover {
+          color: $color-int-blue--active;
+        }
+
+        &:disabled {
+          @include disabled;
+          color: rgba($color-gray, 0.4);
+        }
+
+        &.selected {
+          color: $color-white;
+        }
+      }
+    }
+  }
+
+  .body {
+    padding: $baseline-3 0 0;
+  }
+}
+
+.component.sdx--dark-theme {
+  .header {
+    background: $color-dusk-tint-4-dark-theme;
+
+    .tablist {
+      .indicator {
+        background-color: rgba($color-int-gray-dark-theme, 0.15);
+      }
+
+      .clickable {
+        &:hover {
+          color: $color-int-blue2-dark-theme--active;
+        }
+
+        &:disabled {
+          color: rgba($color-gray-dark-theme, 0.5);
+        }
+
+        &.selected {
+          color: $color-int-blue2-dark-theme;
+        }
+      }
+    }
+  }
+}

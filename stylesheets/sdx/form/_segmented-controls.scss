@@ -1,0 +1,100 @@
+//
+// Segmented Controls // DEPRECATED
+// --------------------------------------------------
+
+.segmented-controls-group,
+.toggle-button-group {
+  display: flex;
+  flex-wrap: wrap;
+
+  [type="radio"],
+  [type="checkbox"] {
+    // Remove default Radio Buttons
+    // ----------------------------
+    &:not(:checked),
+    &:checked {
+      position: absolute;
+      left: -9999px;
+      opacity: 0;
+    }
+
+    @include disabled-label;
+
+    & + label {
+      background-color: $color-white;
+      border: 1px solid $color-toggle-border;
+      border-radius: $border-radius;
+      color: $color-toggle-label;
+      cursor: pointer;
+      font-size: 18px;
+      padding: $button-padding-vertical $button-padding-horizontal;
+      margin-right: $button-margin-horizontal;
+      margin-bottom: $button-margin-vertical;
+      @include font-semi-light;
+
+      &:active,
+      &:focus {
+        outline: none;
+      }
+    }
+
+    & + label:last-child {
+      margin-right: 0;
+    }
+
+    &:checked + label {
+      border-color: $color-toggle-active;
+      color: $color-toggle-active;
+
+      &:hover {
+        color: $color-toggle-active-hover;
+      }
+    }
+
+    &:disabled + label:hover {
+      border-color: $color-toggle-border;
+      color: $color-toggle-label;
+    }
+  }
+
+  .icon {
+    margin-right: 5px;
+  }
+}
+
+// Toggle buttons centered
+// --------------------------------------------------
+
+.segmented-controls-group--centered,
+.toggle-button-group--centered {
+  .segmented-controls__label,
+  .toggle-button__label {
+    text-align: center;
+    max-width: 280px;
+    min-width: 280px;
+  }
+
+  .toggle-button__text {
+    float: left;
+  }
+}
+
+.segmented-controls-group--image,
+.toggle-button-group--image {
+  [type="checkbox"] + label,
+  [type="radio"] + label {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-origin: content-box;
+    display: inline;
+    height: 72px;
+    padding: 4px;
+    text-align: center;
+    width: 72px;
+
+    img {
+      pointer-events: none;
+    }
+  }
+}

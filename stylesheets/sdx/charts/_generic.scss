@@ -1,0 +1,138 @@
+.bar-chart-horizontal,
+.bar-chart-vertical,
+.pie-chart {
+  .js-data,
+  .js-data-list {
+    display: none;
+  }
+
+  .tooltip {
+    &--right::before {
+      margin-bottom: -13px;
+    }
+
+    &::after {
+      min-width: 200px;
+      font-size: 14px;
+    }
+  }
+}
+
+.bar-chart__legend,
+.pie-chart__legend {
+  @include text-standard;
+  @include font-smoothing;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  list-style-type: none;
+
+  min-height: 24px;
+
+  margin-top: 29px;
+  margin-bottom: 28px;
+
+  li {
+    margin: 0 20px 0 0;
+
+    &::before {
+      content: "";
+    }
+
+    .bullet {
+      display: inline-block;
+
+      width: 10px;
+      height: 10px;
+
+      margin-right: 7px;
+      border-radius: 50%;
+    }
+  }
+}
+
+// Chart Colors
+// --------------------------------------------------
+
+.pie-chart__legend,
+.bar-chart__legend,
+.bar-chart-horizontal,
+.bar-chart-vertical {
+  .orchid {
+    background-color: $color-orchid;
+
+    &--active {
+      background-color: $color-orchid--active;
+    }
+  }
+
+  .iris {
+    background-color: $color-iris;
+
+    &--active {
+      background-color: $color-iris--active;
+    }
+  }
+
+  .pink {
+    background-color: $color-pink;
+
+    &--active {
+      background-color: $color-pink--active;
+    }
+  }
+
+  .turquoise,
+  .apple,   // deprecated
+  .petrol {
+    // deprecated
+    background-color: $color-turquoise;
+
+    &--active {
+      background-color: $color-turquoise--active;
+    }
+  }
+}
+
+.sdx--dark-theme {
+  .pie-chart__legend,
+  .bar-chart__legend,
+  .bar-chart-horizontal,
+  .bar-chart-vertical {
+    .orchid {
+      background-color: $color-orchid-dark-theme;
+
+      &--active {
+        background-color: $color-orchid-tint-2-dark-theme;
+      }
+    }
+
+    .iris {
+      background-color: $color-iris-dark-theme;
+
+      &--active {
+        background-color: $color-iris-tint-2-dark-theme;
+      }
+    }
+
+    .pink {
+      background-color: $color-pink-dark-theme;
+
+      &--active {
+        background-color: $color-pink-tint-2-dark-theme;
+      }
+    }
+
+    .turquoise,
+    .apple,   // deprecated
+    .petrol {
+      // deprecated
+      background-color: $color-turquoise-dark-theme;
+
+      &--active {
+        background-color: $color-turquoise-tint-2-dark-theme;
+      }
+    }
+  }
+}

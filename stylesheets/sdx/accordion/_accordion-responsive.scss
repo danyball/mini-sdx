@@ -1,0 +1,99 @@
+//
+// Accordion visibility
+// --------------------------------------------------
+
+.accordion {
+  // Accordion mixin
+  // -------------------------
+
+  @mixin accordion-hidden {
+    .js-hidden {
+      visibility: hidden !important;
+    }
+
+    .accordion {
+      &__toggle {
+        display: inherit;
+        width: inherit;
+        justify-content: inherit;
+        align-items: inherit;
+        cursor: inherit;
+
+        .arrow-icon {
+          display: none !important;
+        }
+      }
+
+      &__collapse {
+        display: block;
+        height: 100%;
+        width: 100%;
+        opacity: 1;
+      }
+    }
+  }
+
+  // Responsive visibility utilities
+  // -------------------------
+
+  @each $bp in map-keys($grid-breakpoints) {
+    &--hidden-#{$bp}-up {
+      @include media-breakpoint-up($bp) {
+        @include accordion-hidden;
+      }
+    }
+    &--hidden-#{$bp}-down {
+      @include media-breakpoint-down($bp) {
+        @include accordion-hidden;
+      }
+    }
+  }
+
+  &--hidden-phone-up {
+    @include bp-phone {
+      @include accordion-hidden;
+    }
+  }
+
+  &--hidden-phone-down {
+    @include bp-phone-max {
+      @include accordion-hidden;
+    }
+  }
+
+  &--hidden-tablet-up {
+    @include bp-tablet {
+      @include accordion-hidden;
+    }
+  }
+
+  &--hidden-tablet-down {
+    @include bp-tablet-max {
+      @include accordion-hidden;
+    }
+  }
+
+  &--hidden-desktop-up {
+    @include bp-desktop {
+      @include accordion-hidden;
+    }
+  }
+
+  &--hidden-desktop-down {
+    @include bp-desktop-max {
+      @include accordion-hidden;
+    }
+  }
+
+  // JS Accordion classes
+  // -------------------------
+
+  .js-hidden {
+    display: none;
+
+    position: absolute;
+    left: -9999px;
+
+    visibility: visible;
+  }
+}

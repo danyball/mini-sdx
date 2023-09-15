@@ -1,0 +1,42 @@
+//
+// Layout classes
+// --------------------------------------------------
+
+.align-left {
+  @include float-left;
+}
+
+.align-right {
+  @include float-right;
+}
+
+.center-block {
+  @include center-block;
+}
+
+.center-vertical {
+  display: flex;
+  align-items: center;
+}
+
+.full-width {
+  @include full-width;
+}
+
+@each $bp in map-keys($grid-breakpoints) {
+  @include media-breakpoint-down($bp) {
+    .full-width-#{$bp}-down {
+      @include full-width;
+      overflow: hidden;
+    }
+  }
+}
+
+// deprecated
+.full-width--mobile-only {
+  @media only screen and (max-width: 479px) {
+    @include full-width;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}

@@ -1,0 +1,272 @@
+//
+// Bar chart (horizontal)
+// --------------------------------------------------
+
+.bar-chart__progress {
+  position: relative;
+
+  width: 100%;
+  height: $chart-bar-thickness;
+  margin-bottom: 32px;
+
+  .indicator {
+    position: relative;
+    float: left;
+
+    width: 100%;
+    height: $chart-bar-thickness;
+  }
+
+  .indicator-wrapper {
+    position: relative;
+    float: left;
+
+    &:first-child {
+      .indicator {
+        border-radius: $chart-bar-thickness 0 0 $chart-bar-thickness;
+      }
+    }
+  }
+}
+
+.bar-chart-horizontal {
+  position: relative;
+
+  min-width: $chart-bar-min-width;
+  margin-bottom: 32px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  color: $color-gray;
+
+  // Limited data chart styles
+  // -------------------------
+
+  &--limited {
+    padding: 16px 22px 22px;
+
+    background-color: $color-white;
+    border-radius: 4px;
+
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
+
+    .bar-chart__progress {
+      margin: 7px 0 0 0;
+      border-radius: $chart-bar-thickness;
+
+      background-color: $color-aluminum-tint-2;
+      overflow: hidden;
+    }
+
+    .detail-left {
+      @include typo-bar-chart-unlimited-title;
+      text-align: left;
+    }
+
+    .detail-bottom {
+      @include text-standard;
+
+      display: flex;
+
+      margin-top: 12px;
+
+      .value {
+        display: inline-block;
+        text-align: right;
+
+        &:not(:first-child) {
+          color: $color-gray-tint-4;
+
+          &::before {
+            content: "/ ";
+          }
+
+          &::after {
+            content: "\00a0 ";
+          }
+        }
+      }
+
+      .unit {
+        color: $color-gray-tint-4;
+      }
+    }
+  }
+
+  // Unlimited data chart styles
+  // -------------------------
+
+  &--unlimited {
+    padding: 16px 22px 22px;
+
+    background-color: $color-white;
+    border-radius: 4px;
+
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
+
+    .bar-chart__progress {
+      margin: 14px 0 0 0;
+    }
+
+    > .bar-chart__detail {
+      display: flex;
+      justify-content: space-between;
+
+      .detail-left {
+        @include typo-bar-chart-unlimited-title;
+        text-align: left;
+      }
+
+      .detail-right {
+        @include text-standard;
+
+        display: flex;
+
+        .value {
+          display: inline-block;
+          text-align: right;
+
+          &::before,
+          &::after {
+            content: "\00a0 ";
+          }
+        }
+
+        .unit {
+          color: $color-gray-tint-4;
+        }
+      }
+    }
+  }
+
+  // Split data chart styles
+  // -------------------------
+
+  &--split {
+    border-top: 1px solid $color-chart-divider;
+
+    > .bar-chart__detail {
+      display: flex;
+      justify-content: space-between;
+
+      margin: 13px 0 18px;
+      padding-top: 8px;
+
+      .detail-left {
+        @include text-standard;
+
+        text-align: left;
+      }
+
+      .detail-right {
+        @include text-standard;
+
+        display: flex;
+
+        .value {
+          @include font-semi-bold;
+
+          display: inline-block;
+          text-align: right;
+
+          &::before,
+          &::after {
+            content: "\00a0 ";
+          }
+
+          &:nth-child(3) {
+            &::before {
+              font-weight: normal;
+
+              content: " / ";
+              color: $color-gray-tint-4;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.bar-chart__legend {
+  padding-top: 32px;
+  border-top: 1px solid $color-chart-divider;
+}
+
+.sdx--dark-theme {
+  .bar-chart-horizontal {
+    color: $color-gray-dark-theme;
+
+    &--limited {
+      background-color: $color-dusk-tint-2-dark-theme;
+      box-shadow: none;
+
+      .bar-chart__progress {
+        background-color: $color-gray-tint-8-dark-theme;
+      }
+
+      .detail-bottom {
+        .value {
+          &:not(:first-child) {
+            color: $color-int-gray-dark-theme;
+          }
+        }
+
+        .unit {
+          color: $color-int-gray-dark-theme;
+        }
+      }
+    }
+
+    &--unlimited {
+      background-color: $color-dusk-tint-2-dark-theme;
+      > .bar-chart__detail {
+        .detail-right {
+          .unit {
+            color: $color-int-gray-dark-theme;
+          }
+        }
+      }
+    }
+
+    &--split {
+      border-top-color: $color-gray-tint-7-dark-theme;
+
+      > .bar-chart__detail {
+        .detail-right {
+          .value {
+            &:nth-child(3) {
+              &::before {
+                content: " / ";
+                color: $color-gray-tint-7-dark-theme;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .bar-chart__legend {
+    border-top-color: $color-gray-tint-7-dark-theme;
+  }
+}
+
+.bg--dark {
+  .bar-chart-horizontal--split {
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+
+    .detail-left,
+    .detail-right {
+      @include font-smoothing;
+
+      color: $color-white;
+    }
+  }
+
+  .bar-chart__legend {
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+  }
+}

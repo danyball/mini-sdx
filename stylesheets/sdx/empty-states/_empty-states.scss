@@ -1,0 +1,212 @@
+//
+// Empty states
+// --------------------------------------------------
+
+.empty-state {
+  display: flex;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  justify-content: center;
+  align-items: center;
+
+  input[type="file"] {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  label {
+    margin-top: 36px;
+    min-width: 206px;
+  }
+
+  &__icon {
+    width: 100%;
+    margin-top: -10px;
+
+    color: $color-gray-tint-8;
+    font-size: 230px;
+    text-align: center;
+
+    transition:
+      color 300ms $standard-easing,
+      transform 300ms $standard-easing;
+  }
+
+  &__body {
+    @include text-standard;
+    @include font-semi-light;
+
+    color: $color-gray;
+    text-align: center;
+
+    @include bp-tablet {
+      @include typo-headline-4;
+    }
+
+    .body__status {
+      transition:
+        visibility 300ms $standard-easing,
+        opacity 300ms $standard-easing;
+
+      @include bp-tablet {
+        @include font-semi-bold;
+      }
+    }
+
+    .body__cta {
+      display: none;
+      margin-bottom: 0;
+
+      @include bp-tablet {
+        display: inline;
+      }
+    }
+  }
+
+  &__footer {
+    text-align: center;
+
+    transition:
+      visibility 300ms $standard-easing,
+      opacity 300ms $standard-easing;
+  }
+
+  &.is-active {
+    @include bp-tablet {
+      z-index: $zindex-empty-state + 1;
+    }
+
+    form {
+      pointer-events: none;
+    }
+
+    .empty-state__icon {
+      color: $color-int-blue;
+
+      transform: scale(1.025);
+    }
+
+    .empty-state__footer {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .body__status {
+      opacity: 0;
+    }
+  }
+
+  &.has-files .body__status {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+// Empty State as modal
+// --------------------------------------------------
+
+.empty-state--modal {
+  position: relative;
+  width: auto;
+  height: auto;
+
+  pointer-events: none;
+
+  label {
+    pointer-events: auto;
+  }
+}
+
+// Empty State Bg
+// --------------------------------------------------
+
+.empty-state__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: $color-white;
+}
+
+// Empty State Border
+// --------------------------------------------------
+
+.empty-state__border {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  border: 10px solid $color-int-blue;
+  box-sizing: border-box;
+
+  background: rgba($color-white, 0.8);
+
+  visibility: hidden;
+  opacity: 0;
+
+  z-index: $zindex-empty-state;
+
+  pointer-events: none;
+
+  transition:
+    visibility 300ms $standard-easing,
+    opacity 300ms $standard-easing;
+
+  &--modal {
+    position: absolute;
+    pointer-events: none;
+    background: none;
+  }
+
+  &.is-active {
+    @include bp-tablet {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+.sdx--dark-theme {
+  .empty-state {
+    &__icon {
+      color: $color-gray-dark-theme;
+    }
+
+    &__body {
+      color: $color-gray-dark-theme;
+    }
+
+    &.is-active {
+      .empty-state__icon {
+        color: $color-int-blue-dark-theme;
+      }
+    }
+  }
+
+  .empty-state__bg {
+    background: $color-dusk-dark-theme;
+  }
+
+  .empty-state__border {
+    border-color: $color-int-blue-dark-theme;
+    background: rgba($color-dusk-dark-theme, 0.8);
+  }
+}

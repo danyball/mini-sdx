@@ -1,0 +1,288 @@
+//
+// Tabs
+// --------------------------------------------------
+
+.tabs {
+  @mixin disabled-tab {
+    @include disabled;
+    &.disabled,
+    &:disabled {
+      @include font-smoothing;
+      opacity: 0.4;
+    }
+  }
+
+  // Line below tabs
+  &:before {
+    content: "";
+    border-bottom: $tabs-border solid $color-tabs-light-border;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  position: relative;
+  width: 100%;
+  white-space: nowrap;
+  overflow-x: hidden;
+
+  &.tabs {
+    // more specificity (e.g. when an older version of SDX exists on the same page)
+    border-bottom: none;
+  }
+
+  .tab {
+    display: table-cell;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    list-style: none;
+    position: relative;
+    vertical-align: middle;
+
+    // Separator after each tab
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: $tabs-separator-width;
+      background-color: $color-white;
+    }
+
+    &:active {
+      outline: none;
+    }
+
+    &:focus {
+      outline: 1px dotted;
+    }
+
+    .tab-link {
+      @include text-truncate;
+      display: block;
+      border-bottom: $tabs-bar-active solid transparent;
+      border-top: $tabs-bar-active solid transparent;
+      background-color: $color-aluminum-tint-2;
+      margin-right: $tabs-separator-width;
+      transition: background-color 200ms $standard-easing;
+      user-select: none;
+      height: $interaction-element-height;
+      min-width: $tabs-min-width;
+      max-width: $tabs-max-width;
+
+      &.tab-link {
+        // more specificity (e.g. when an older version of SDX exists on the same page)
+        @include typo-tabs-small;
+        color: $color-tabs-light-text;
+        padding: 7px $baseline * 2;
+      }
+
+      // Hover and Focus styles
+      // -------------------------
+      &:hover,
+      &:focus-visible {
+        background-color: $color-aluminum;
+        color: $color-int-blue--active;
+      }
+
+      &:focus-visible {
+        color: $color-int-blue--active !important; // overwrite .active
+      }
+
+      // Active and Disabled styles
+      // -------------------------
+      &.active {
+        color: $color-int-blue;
+        border-top: $tabs-bar-active solid $color-tabs-light-indicator;
+        background-color: $color-white;
+        outline: none !important;
+
+        &.active {
+          // more specificity (e.g. when an older version of SDX exists on the same page)
+          border-bottom: none;
+        }
+      }
+
+      @include disabled-tab;
+
+      &.disabled,
+      &:disabled {
+        color: $color-tabs-light-disabled-text;
+      }
+    }
+
+    &--flyout {
+      .flyout__indicator::before {
+        right: calc(50% - 7px);
+      }
+    }
+  }
+
+  // Scrollable styles
+  // -------------------------
+  &--scrollable {
+    overflow-x: auto;
+  }
+
+  // Image styles
+  // -------------------------
+  &--image {
+    border-bottom: 0;
+    overflow-x: visible;
+    // scrollable, with fade-out to white
+    ul {
+      overflow-x: auto;
+      margin-left: -$tabs-with-image-fade-out-width;
+      padding-left: $tabs-with-image-fade-out-width;
+      margin-right: -$tabs-with-image-fade-out-width;
+
+      &::before,
+      &::after {
+        content: " ";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: $tabs-with-image-fade-out-width;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      &::before {
+        left: -$tabs-with-image-fade-out-width;
+        background: linear-gradient(
+          to right,
+          rgba(255, 255, 255, 1) 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
+      }
+
+      &::after {
+        right: -$tabs-with-image-fade-out-width;
+        background: linear-gradient(
+          to left,
+          rgba(255, 255, 255, 1) 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
+      }
+    }
+
+    .tab {
+      vertical-align: top;
+      padding-right: $tabs-with-image-gutter;
+
+      @include media-breakpoint-down(sm) {
+        padding-right: $tabs-with-image-gutter-sm;
+      }
+
+      &:last-child {
+        padding-right: $tabs-with-image-fade-out-width;
+      }
+
+      .tab-link {
+        @include typo-tabs-small;
+        background: $color-tabs-light-image-background;
+        width: $tabs-with-image-size;
+        height: $tabs-with-image-size;
+        display: flex;
+        flex-direction: column;
+      }
+
+      span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &.image {
+          height: 105px;
+
+          img {
+            max-height: 90px;
+            pointer-events: none;
+            -moz-user-select: none;
+          }
+        }
+
+        &.title {
+          white-space: normal;
+          line-height: 1;
+          flex: 1;
+        }
+      }
+    }
+  }
+
+  // Dark Background
+  // -------------------------
+
+  .bg--dark & {
+    border-bottom-color: $color-tabs-dark-border;
+
+    .tab .tab-link {
+      @include font-smoothing;
+      opacity: 0.7;
+      color: $color-tabs-dark-text;
+      border-bottom: $tabs-bar-active solid transparent;
+      // Hover and Focus styles
+      // -------------------------
+      &:hover,
+      &:focus-visible {
+        opacity: 1;
+        color: $color-tabs-dark-hover-text;
+        border-bottom: $tabs-bar-active solid transparent;
+        box-shadow: none;
+      }
+
+      // Active and Disabled styles
+      // -------------------------
+      &.active {
+        opacity: 1;
+        color: $color-tabs-dark-hover-text;
+        border-bottom: $tabs-bar-active solid $color-tabs-dark-indicator;
+      }
+
+      @include disabled-tab;
+
+      &.disabled,
+      &:disabled {
+        color: $color-tabs-dark-disabled-text;
+      }
+    }
+
+    // Inverted styles
+    // -------------------------
+    &--inverted {
+      background: $color-white;
+      border-bottom: 0;
+
+      .tab .tab-link {
+        @include default-font-smoothing;
+        color: $color-tabs-dark-inverted-text;
+
+        // Hover and Focus styles
+        // -------------------------
+        &:hover,
+        &:focus-visible {
+          color: $color-tabs-dark-inverted-hover-text;
+        }
+
+        // Active and Disabled styles
+        // -------------------------
+        &.active {
+          color: $color-tabs-dark-inverted-hover-text;
+          border-bottom: $tabs-bar-active solid
+            $color-tabs-dark-inverted-indicator;
+        }
+
+        @include disabled-tab;
+
+        &.disabled,
+        &:disabled {
+          color: $color-tabs-dark-inverted-disabled-text;
+        }
+      }
+    }
+  }
+}

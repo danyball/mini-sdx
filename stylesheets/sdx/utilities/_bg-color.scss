@@ -1,0 +1,365 @@
+// Background Colours
+// ==================================================
+
+.bg-white {
+  background-color: $color-white;
+}
+
+// deprecated
+.bg-navy {
+  background-color: $color-navy;
+}
+
+.bg-blue {
+  background-color: $color-blue;
+
+  &-tint-2,
+  &-40 {
+    background-color: $color-blue-tint-2;
+  }
+
+  &-tint-3,
+  &-20 {
+    background-color: $color-blue-tint-3;
+  }
+}
+
+.bg-aluminium,// deprecated
+.bg-aluminum {
+  background-color: $color-aluminum;
+
+  &-80, // deprecated
+  &-tint-2 {
+    background-color: $color-aluminum-tint-2;
+  }
+}
+
+.bg-horizon {
+  background-color: $color-horizon;
+
+  &-40, // deprecated
+  &-tint-2 {
+    background-color: $color-horizon-tint-2;
+  }
+}
+
+.bg-gray {
+  background-color: $color-gray;
+
+  &-90, // deprecated
+  &-tint-2 {
+    background-color: $color-gray-tint-2;
+  }
+
+  &-80, // deprecated
+  &-tint-3 {
+    background-color: $color-gray-tint-3;
+  }
+
+  &-mid, // deprecated
+  &-tint-4 {
+    background-color: $color-gray-tint-4;
+  }
+
+  &-60 , // deprecated
+  &-tint-5 {
+    background-color: $color-gray-tint-5;
+  }
+
+  &-40, // deprecated
+  &-tint-6 {
+    background-color: $color-gray-tint-6;
+  }
+
+  &-light, // deprecated
+  &-tint-7 {
+    background-color: $color-gray-tint-7;
+  }
+
+  &-20, // deprecated
+  &-tint-8 {
+    background-color: $color-gray-tint-8;
+  }
+}
+
+.bg-sc {
+  &-blue {
+    background-color: $color-sc-blue;
+  }
+
+  &-red {
+    background-color: $color-sc-red;
+  }
+
+  // deprecated
+  &-navy {
+    background-color: $color-sc-navy;
+  }
+
+  &-white {
+    background-color: $color-white;
+  }
+}
+
+.bg-gradient-1 {
+  @include gradient-1;
+}
+
+.bg-gradient-2 {
+  @include gradient-2;
+}
+
+.bg-cloud {
+  background: #f9f9f9; // this color is just for this background and therefore we didn't define a variable
+}
+
+// Interaction Colours
+// --------------------------------------------------
+
+.bg-int {
+  &-blue {
+    background-color: $color-int-blue;
+
+    &--active {
+      background-color: $color-int-blue--active;
+    }
+  }
+
+  &-gray {
+    background-color: $color-int-gray;
+
+    &--active {
+      background-color: $color-int-gray--active;
+    }
+  }
+
+  &-green {
+    background-color: $color-int-green;
+
+    &--active {
+      background-color: $color-int-green--active;
+    }
+  }
+
+  &-red {
+    background-color: $color-int-red;
+
+    &--active {
+      background-color: $color-int-red--active;
+    }
+  }
+
+  &-orange {
+    background-color: $color-int-orange;
+
+    &--active {
+      background-color: $color-int-orange--active;
+    }
+  }
+}
+
+// Accent Colours
+// --------------------------------------------------
+
+.bg-azure {
+  background-color: $color-azure;
+
+  &--active {
+    background-color: $color-azure--active;
+  }
+}
+
+.bg-orchid {
+  background-color: $color-orchid;
+
+  &--active {
+    background-color: $color-orchid--active;
+  }
+}
+
+.bg-iris {
+  background-color: $color-iris;
+
+  &--active {
+    background-color: $color-iris--active;
+  }
+}
+
+.bg-pink {
+  background-color: $color-pink;
+
+  &--active {
+    background-color: $color-pink--active;
+  }
+}
+
+.bg-apple, // deprecated
+.bg-petrol, // deprecated
+.bg-turquoise {
+  background-color: $color-turquoise;
+
+  &--active {
+    background-color: $color-turquoise--active;
+  }
+}
+
+// Background colours dark theme
+// ==================================================
+
+.sdx--dark-theme {
+  .bg {
+    &-dusk {
+      background-color: $color-dusk-dark-theme;
+
+      &-tint-2 {
+        background-color: $color-dusk-tint-2-dark-theme;
+      }
+
+      &-tint-3 {
+        background-color: $color-dusk-tint-3-dark-theme;
+      }
+
+      &-tint-4 {
+        background-color: $color-dusk-tint-4-dark-theme;
+      }
+    }
+
+    &-gray {
+      background-color: $color-gray-dark-theme;
+
+      &-tint-3 {
+        background-color: $color-gray-tint-3-dark-theme;
+      }
+
+      &-tint-4 {
+        background-color: $color-gray-tint-4-dark-theme;
+      }
+
+      &-tint-6 {
+        background-color: $color-gray-tint-6-dark-theme;
+      }
+
+      &-tint-7 {
+        background-color: $color-gray-tint-7-dark-theme;
+      }
+
+      &-tint-8 {
+        background-color: $color-gray-tint-8-dark-theme;
+      }
+    }
+
+    &-azure {
+      background-color: $color-azure-dark-theme;
+
+      &--active {
+        background-color: $color-azure-tint-2-dark-theme;
+      }
+    }
+
+    &-turquoise {
+      background-color: $color-turquoise-dark-theme;
+
+      &--active {
+        background-color: $color-turquoise-tint-2-dark-theme;
+      }
+    }
+
+    &-iris {
+      background-color: $color-iris-dark-theme;
+
+      &--active {
+        background-color: $color-iris-tint-2-dark-theme;
+      }
+    }
+
+    &-orchid {
+      background-color: $color-orchid-dark-theme;
+
+      &--active {
+        background-color: $color-orchid-tint-2-dark-theme;
+      }
+    }
+
+    &-pink {
+      background-color: $color-pink-dark-theme;
+
+      &--active {
+        background-color: $color-pink-tint-2-dark-theme;
+      }
+    }
+  }
+
+  .bg-int {
+    &-blue {
+      background-color: $color-int-blue-dark-theme;
+
+      &--active {
+        background-color: $color-int-blue-dark-theme--active;
+      }
+    }
+
+    &-blue2 {
+      background-color: $color-int-blue2-dark-theme;
+
+      &--active {
+        background-color: $color-int-blue2-dark-theme--active;
+      }
+    }
+
+    &-gray {
+      background-color: $color-int-gray-dark-theme;
+
+      &--active {
+        background-color: $color-int-gray-dark-theme--active;
+      }
+    }
+
+    &-green {
+      background-color: $color-int-green-dark-theme;
+
+      &--active {
+        background-color: $color-int-green-dark-theme--active;
+      }
+    }
+
+    &-green2 {
+      background-color: $color-int-green2-dark-theme;
+
+      &--active {
+        background-color: $color-int-green2-dark-theme--active;
+      }
+    }
+
+    &-red {
+      background-color: $color-int-red-dark-theme;
+
+      &--active {
+        background-color: $color-int-red-dark-theme--active;
+      }
+    }
+
+    &-red2 {
+      background-color: $color-int-red2-dark-theme;
+
+      &--active {
+        background-color: $color-int-red2-dark-theme--active;
+      }
+    }
+
+    &-orange {
+      background-color: $color-int-orange-dark-theme;
+
+      &--active {
+        background-color: $color-int-orange-dark-theme--active;
+      }
+    }
+
+    &-orange2 {
+      background-color: $color-int-orange2-dark-theme;
+
+      &--active {
+        background-color: $color-int-orange2-dark-theme--active;
+      }
+    }
+  }
+}

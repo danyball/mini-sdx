@@ -1,0 +1,169 @@
+//
+// Mediaqueries Mixins
+// --------------------------------------------------
+
+// Responsive Mixins
+// -------------------------
+
+// Min Size
+// Media of at least the minimum breakpoint width.
+
+@mixin bp-xs() {
+  @include media-breakpoint-up(xs) {
+    @content;
+  }
+}
+
+@mixin bp-sm {
+  @include media-breakpoint-up(sm) {
+    @content;
+  }
+}
+
+@mixin bp-md {
+  @include media-breakpoint-up(md) {
+    @content;
+  }
+}
+
+@mixin bp-lg {
+  @include media-breakpoint-up(lg) {
+    @content;
+  }
+}
+
+@mixin bp-xl {
+  @include media-breakpoint-up(xl) {
+    @content;
+  }
+}
+
+@mixin bp-ul {
+  @include media-breakpoint-up(ul) {
+    @content;
+  }
+}
+
+// Max Size
+// Media of at most the maximum breakpoint width.
+
+@mixin bp-xs-max {
+  @include media-breakpoint-down(xs) {
+    @content;
+  }
+}
+
+@mixin bp-sm-max {
+  @include media-breakpoint-down(sm) {
+    @content;
+  }
+}
+
+@mixin bp-md-max {
+  @include media-breakpoint-down(md) {
+    @content;
+  }
+}
+
+@mixin bp-lg-max {
+  @include media-breakpoint-down(lg) {
+    @content;
+  }
+}
+
+@mixin bp-xl-max {
+  @include media-breakpoint-down(xl) {
+    @content;
+  }
+}
+
+@mixin bp-ul-max {
+  @include media-breakpoint-down(ul) {
+    @content;
+  }
+}
+
+// Device Mixins
+// -------------------------
+
+// Default Behaviour
+// Media of at least the minimum breakpoint width.
+
+@mixin bp-phone {
+  @include media-breakpoint-up(xs) {
+    @content;
+  }
+}
+
+@mixin bp-tablet {
+  @include media-breakpoint-up(md) {
+    @content;
+  }
+}
+
+@mixin bp-desktop {
+  @include media-breakpoint-up(lg) {
+    @content;
+  }
+}
+
+// Max Size
+// Media of at most the maximum breakpoint width.
+
+@mixin bp-phone-max {
+  @include media-breakpoint-down(sm) {
+    @content;
+  }
+}
+
+@mixin bp-tablet-max {
+  @include media-breakpoint-down(md) {
+    @content;
+  }
+}
+
+@mixin bp-desktop-max {
+  @include media-breakpoint-down(lg) {
+    @content;
+  }
+}
+
+// Only Size
+
+@mixin bp-phone-only {
+  @include media-breakpoint-down(sm) {
+    @content;
+  }
+}
+
+@mixin bp-tablet-only {
+  @include media-breakpoint-only(md) {
+    @content;
+  }
+}
+
+@mixin bp-desktop-only {
+  @include media-breakpoint-up(lg) {
+    @content;
+  }
+}
+
+// Generic Mixins
+// -------------------------
+
+@mixin retina {
+  @media only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2 / 1),
+    only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx) {
+    @content;
+  }
+}
+
+@mixin print {
+  @media print {
+    @content;
+  }
+}

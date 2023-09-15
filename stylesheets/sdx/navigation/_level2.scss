@@ -1,0 +1,310 @@
+//
+// Navigation Level 2 / Breadcrumb
+// --------------------------------------------------
+
+// Extends
+// -------------------------
+
+%nav-back {
+  position: absolute;
+
+  margin-top: 14px;
+
+  &::after {
+    position: absolute;
+    top: 4px;
+    left: 32px;
+
+    height: 16px;
+
+    border-right: 1px solid #979797;
+
+    opacity: 1;
+
+    transition: opacity 200ms $standard-easing;
+
+    content: "";
+  }
+
+  .nav-text {
+    padding-left: 8px;
+
+    opacity: 0;
+
+    transition:
+      visibility 0ms linear,
+      opacity 200ms $standard-easing;
+  }
+}
+
+%nav-title {
+  @include font-smoothing;
+  @include text-truncate;
+  @include font-semi-light;
+  @include typo-headline-6;
+
+  position: relative;
+
+  width: 100%;
+
+  margin-left: 30px;
+  padding-left: 17px;
+
+  color: $color-gray-tint-4;
+
+  transition-property: margin, padding, line-height, letter-spacing, font-size;
+  transition-duration: 200ms;
+  transition-timing-function: $standard-easing;
+}
+
+// Level 2 Navigation
+// --------------------------------------------------
+
+.nav__level2 {
+  position: relative;
+
+  width: 100%;
+  height: $navigation-breadcrumb-small-height;
+
+  background: $color-nav-menu-bg;
+
+  transition: height 200ms $standard-easing;
+
+  .nav__wrapper {
+    display: block;
+
+    padding-top: 14px;
+
+    transition: padding 200ms $standard-easing;
+  }
+
+  .nav__currentpage {
+    display: flex;
+    justify-content: space-between;
+
+    cursor: pointer;
+
+    .arrow-icon {
+      @include arrow($color-nav-link);
+      @include arrow--down;
+
+      display: inline-block;
+      float: right;
+
+      top: 3px;
+      left: 2px;
+
+      width: 16px;
+      height: 16px;
+
+      pointer-events: none;
+
+      transform: scale(0.8125);
+      transform-origin: 50% 50%;
+    }
+
+    &.is-open {
+      .arrow-icon {
+        @include arrow--up;
+      }
+    }
+  }
+
+  .nav__quicklinks {
+    display: none;
+
+    position: absolute;
+    top: $navigation-breadcrumb-small-height;
+    left: 0;
+
+    width: 100%;
+    height: 0;
+
+    overflow: hidden;
+
+    background: $color-nav-footer-bg;
+
+    &.is-open {
+      display: block;
+      height: auto;
+    }
+  }
+
+  // Generic Styles
+  // -------------------------
+
+  .nav-back {
+    @extend %nav-back;
+  }
+
+  .nav-title {
+    @extend %nav-title;
+  }
+
+  .nav-link {
+    color: $color-nav-link;
+
+    .icon {
+      position: relative;
+      top: 1px;
+
+      margin-left: -2px;
+
+      font-size: 21px;
+    }
+
+    &:hover {
+      color: $color-nav-link--active;
+    }
+  }
+
+  .nav-items {
+    padding: 20px 24px 19px;
+
+    transition: padding 200ms $standard-easing;
+  }
+
+  .nav-item {
+    @include text-truncate;
+
+    margin-bottom: 15px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Tablet/Desktop Styles
+  // -------------------------
+
+  @include bp-tablet {
+    height: $navigation-breadcrumb-full-height;
+
+    .nav__wrapper {
+      display: flex;
+      justify-content: space-between;
+
+      padding-top: 55px;
+    }
+
+    .nav__currentpage {
+      cursor: auto;
+
+      .arrow-icon {
+        display: none;
+      }
+    }
+
+    .nav__quicklinks {
+      display: block;
+
+      position: static;
+      left: auto;
+
+      width: auto;
+      height: 100%;
+
+      margin: 0;
+      margin-left: 24px;
+
+      background: none;
+    }
+
+    .nav-back {
+      margin-top: 14px;
+
+      &::after {
+        opacity: 0;
+      }
+
+      .nav-text {
+        opacity: 1;
+      }
+    }
+
+    .nav-title {
+      @include typo-headline-4;
+
+      margin-left: 0;
+      padding-left: 0;
+
+      &::before {
+        content: none;
+      }
+    }
+
+    .nav-items {
+      display: flex;
+      justify-content: flex-end;
+
+      padding: 0;
+      padding-top: 6px;
+    }
+
+    .nav-item {
+      position: relative;
+
+      margin: 0;
+      padding: 0 18px;
+
+      flex: 0 1 auto;
+
+      &:first-child {
+        padding-left: 0;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+
+      &:not(:last-child) {
+        &::after {
+          position: absolute;
+          top: 2px;
+          right: 0;
+          height: 18px;
+
+          border-right: 1px solid $color-gray-tint-8;
+
+          content: "";
+        }
+      }
+    }
+  }
+
+  // Sticky Styles
+  // --------------------------------------------------
+
+  &.is-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    height: $navigation-breadcrumb-small-height;
+
+    .nav__wrapper {
+      padding-top: 14px;
+    }
+
+    .nav-back {
+      @extend %nav-back;
+    }
+
+    .nav-title {
+      @extend %nav-title;
+    }
+
+    @include bp-tablet {
+      .nav-back {
+        .nav-text {
+          opacity: 0;
+        }
+      }
+
+      .nav-items {
+        padding: 0;
+        padding-top: 1px;
+      }
+    }
+  }
+}

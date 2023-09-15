@@ -1,0 +1,70 @@
+//
+// Navigation Mixins
+// --------------------------------------------------
+
+// Navigation Container
+// -------------------------
+
+@mixin make-nav-container {
+  @include make-container-fluid(xs);
+  @include make-container-fluid(sm);
+
+  @include make-container-fixed(md);
+  @include make-container-fixed(lg);
+  @include make-container-fixed(xl);
+  @include make-container-fixed(ul);
+}
+
+// Section Column Container
+// -------------------------
+
+@mixin make-section-column-max(
+  $classname,
+  $columns,
+  $bp,
+  $bps: $grid-breakpoints
+) {
+  @include media-breakpoint-down($bp, $bps) {
+    .#{$classname} {
+      column-count: 1;
+    }
+  }
+}
+
+@mixin make-section-column-min(
+  $classname,
+  $columns,
+  $bp,
+  $gutters: $grid-gutters,
+  $bps: $grid-breakpoints
+) {
+  @include media-breakpoint-up($bp, $bps) {
+    $gutter: map-get($gutters, $bp);
+    .#{$classname} {
+      column-gap: $gutter;
+    }
+
+    @for $i from 1 through $columns {
+      .#{$classname}--col-#{$bp}-#{$i} {
+        column-count: $i;
+      }
+    }
+  }
+}
+
+@mixin make-nav-section-columns($classname, $columns: 6) {
+  @for $i from 1 through $columns {
+    .#{$classname}--col-#{$i} {
+      column-count: $i;
+    }
+  }
+
+  // Make columns full width
+  @include make-section-column-max($classname, $columns, sm);
+
+  // Make columns fixed width
+  @include make-section-column-min($classname, $columns, md);
+  @include make-section-column-min($classname, $columns, lg);
+  @include make-section-column-min($classname, $columns, xl);
+  @include make-section-column-min($classname, $columns, ul);
+}

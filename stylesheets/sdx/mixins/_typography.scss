@@ -1,0 +1,283 @@
+@import "../variables/typography";
+
+//
+// Typography Mixins
+// --------------------------------------------------
+
+@mixin default-font-smoothing {
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+}
+
+@mixin font-smoothing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// -------------------------
+
+@mixin font-sans {
+  font-family: $font-family-sans;
+}
+
+@mixin font-serif {
+  font-family: $font-family-serif;
+}
+
+// -------------------------
+
+@mixin font-light {
+  font-weight: $font-weight-light;
+}
+
+@mixin font-semi-light {
+  font-weight: $font-weight-semi-light;
+}
+
+@mixin font-plain {
+  font-weight: $font-weight-plain;
+}
+
+@mixin font-semi-bold {
+  font-weight: $font-weight-semi-bold;
+}
+
+@mixin font-bold {
+  font-weight: $font-weight-bold;
+}
+
+// -------------------------
+
+@mixin typo-display-hero {
+  line-height: 80px;
+  letter-spacing: -1.75px;
+  font-size: 70px;
+
+  @include bp-desktop {
+    line-height: 104px;
+    letter-spacing: -2px;
+    font-size: 96px;
+  }
+}
+
+@mixin typo-display-1 {
+  line-height: 64px;
+  letter-spacing: -1.35px;
+  font-size: 54px;
+
+  @include bp-desktop {
+    line-height: 80px;
+    letter-spacing: -1.75px;
+    font-size: 70px;
+  }
+}
+
+@mixin typo-display-2 {
+  line-height: 56px;
+  letter-spacing: -1.2px;
+  font-size: 48px;
+
+  @include bp-desktop {
+    line-height: 64px;
+    letter-spacing: -1.35px;
+    font-size: 54px;
+  }
+}
+
+@mixin typo-display-3 {
+  line-height: 48px;
+  letter-spacing: -1.2px;
+  font-size: 40px;
+
+  @include bp-desktop {
+    line-height: 56px;
+    letter-spacing: -1.2px;
+    font-size: 48px;
+  }
+}
+
+@mixin typo-headline-1 {
+  line-height: 40px;
+  letter-spacing: -1px;
+  font-size: 32px;
+
+  @include bp-desktop {
+    line-height: 48px;
+    letter-spacing: -1.2px;
+    font-size: 40px;
+  }
+}
+
+@mixin typo-headline-2 {
+  line-height: 32px;
+  letter-spacing: -0.75px;
+  font-size: 28px;
+
+  @include bp-desktop {
+    line-height: 40px;
+    letter-spacing: -1px;
+    font-size: 32px;
+  }
+}
+
+@mixin typo-headline-3 {
+  line-height: 32px;
+  letter-spacing: -0.35px;
+  font-size: 24px;
+
+  @include bp-desktop {
+    line-height: 32px;
+    letter-spacing: -0.75px;
+    font-size: 28px;
+  }
+}
+
+@mixin typo-headline-4 {
+  line-height: 24px;
+  letter-spacing: -0.1px;
+  font-size: 20px;
+
+  @include bp-desktop {
+    line-height: 32px;
+    letter-spacing: -0.35px;
+    font-size: 24px;
+  }
+}
+
+@mixin typo-headline-5 {
+  line-height: 24px;
+  letter-spacing: -0.1px;
+  font-size: 18px;
+}
+
+@mixin typo-headline-6 {
+  line-height: 24px;
+  letter-spacing: -0.1px;
+  font-size: 16px;
+}
+
+@mixin text-compact {
+  line-height: 21px;
+}
+
+// @deprecated: unclear naming (what is body-1?) use "text-standard" instead
+@mixin typo-body-1 {
+  line-height: 24px;
+  letter-spacing: -0.1px;
+  font-size: 18px;
+}
+
+@mixin text-standard {
+  @include typo-body-1;
+}
+
+// @deprecated: unclear naming (what is body-2?) use "text-small" instead
+@mixin typo-body-2 {
+  @include text-compact;
+  letter-spacing: 0;
+  font-size: 16px;
+}
+
+@mixin text-small {
+  @include typo-body-2;
+}
+
+@mixin typo-small {
+  line-height: 18px;
+  letter-spacing: 0.1px;
+  font-size: 14px;
+}
+
+// @deprecated: font definition adapted in line with the other definitions above (standard, small, smaller)
+@mixin text-smaller {
+  @include typo-small;
+}
+
+// -------------------------
+
+@mixin typo-nav-level0 {
+  @include font-semi-light;
+  @include text-small;
+}
+
+@mixin typo-nav-level1 {
+  @include font-semi-light;
+  @include typo-headline-4;
+}
+
+@mixin typo-nav-content-title {
+  @include font-semi-bold;
+  @include text-standard;
+}
+
+@mixin typo-nav-content-text {
+  @include font-semi-light;
+  @include text-small;
+}
+
+// -------------------------
+
+@mixin typo-search {
+  @include font-light;
+  @include typo-headline-4;
+}
+
+// -------------------------
+
+@mixin typo-footer {
+  @include font-semi-light;
+  @include text-standard;
+
+  @include font-smoothing;
+}
+
+@mixin typo-footer-small {
+  @include font-semi-light;
+  @include text-small;
+
+  @include font-smoothing;
+}
+
+@mixin typo-footer-tiny {
+  @include font-semi-light;
+  @include text-smaller;
+
+  @include font-smoothing;
+}
+
+// -------------------------
+
+@mixin typo-pie-chart-title {
+  @include font-semi-light;
+  @include font-smoothing;
+
+  line-height: 28px;
+  letter-spacing: -0.89px;
+  font-size: 32px;
+}
+
+@mixin typo-bar-chart-unlimited-title {
+  @include font-semi-light;
+  @include font-smoothing;
+
+  line-height: 24px;
+  letter-spacing: -0.22px;
+  font-size: 20px;
+}
+
+// -------------------------
+
+@mixin typo-tabs-big {
+  @include font-semi-light;
+  @include typo-headline-4;
+}
+
+@mixin typo-tabs-normal {
+  @include font-semi-light;
+  @include typo-headline-5;
+}
+
+@mixin typo-tabs-small {
+  @include font-semi-light;
+  @include typo-headline-6;
+}

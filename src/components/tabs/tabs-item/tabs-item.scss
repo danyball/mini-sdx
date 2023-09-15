@@ -1,0 +1,11 @@
+:host {
+  outline: none; // for focus through tabindex
+}
+
+.component {
+  display: none;
+
+  &.selected {
+    display: block;
+  }
+}

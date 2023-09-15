@@ -1,0 +1,228 @@
+//
+// Accordion
+// --------------------------------------------------
+
+.accordion {
+  // Accordion mixin / responsive
+  // -------------------------
+
+  @mixin accordion-hidden {
+    .js-hidden {
+      visibility: hidden !important;
+    }
+
+    .accordion {
+      &__toggle {
+        display: inherit;
+        width: inherit;
+        justify-content: inherit;
+        align-items: inherit;
+        cursor: inherit;
+
+        .arrow-icon {
+          display: none !important;
+        }
+      }
+
+      &__collapse {
+        display: block;
+        height: 100%;
+        width: 100%;
+        opacity: 1;
+      }
+    }
+  }
+
+  // Responsive visibility utilities
+  // -------------------------
+
+  @each $bp in map-keys($grid-breakpoints) {
+    &--hidden-#{$bp}-up {
+      @include media-breakpoint-up($bp) {
+        @include accordion-hidden;
+      }
+    }
+    &--hidden-#{$bp}-down {
+      @include media-breakpoint-down($bp) {
+        @include accordion-hidden;
+      }
+    }
+  }
+
+  &--hidden-phone-up {
+    @include bp-phone {
+      @include accordion-hidden;
+    }
+  }
+
+  &--hidden-phone-down {
+    @include bp-phone-max {
+      @include accordion-hidden;
+    }
+  }
+
+  &--hidden-tablet-up {
+    @include bp-tablet {
+      @include accordion-hidden;
+    }
+  }
+
+  &--hidden-tablet-down {
+    @include bp-tablet-max {
+      @include accordion-hidden;
+    }
+  }
+
+  &--hidden-desktop-up {
+    @include bp-desktop {
+      @include accordion-hidden;
+    }
+  }
+
+  &--hidden-desktop-down {
+    @include bp-desktop-max {
+      @include accordion-hidden;
+    }
+  }
+
+  // JS Accordion classes
+  // -------------------------
+
+  .js-hidden {
+    display: none;
+
+    position: absolute;
+    left: -9999px;
+
+    visibility: visible;
+  }
+}
+
+.accordion {
+  // Accordion Styles
+  // -------------------------
+
+  &__item {
+    position: relative;
+  }
+
+  &__toggle {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width: 100%;
+    cursor: pointer;
+
+    .arrow-icon {
+      float: right;
+      pointer-events: none;
+      transform-origin: 50% 50%;
+
+      &:focus {
+        color: $color-int-blue--active;
+      }
+    }
+
+    .arrow-icon {
+      float: right;
+      pointer-events: none;
+      transform-origin: 50% 50%;
+    }
+
+    &--arrow-left {
+      .accordion__header {
+        padding-left: 10px;
+      }
+
+      .arrow-icon {
+        float: left;
+      }
+    }
+
+    &--arrow-centered {
+      width: 100%;
+      min-height: 32px;
+      border-top: 1px solid $color-accordion-border;
+
+      .arrow-icon {
+        display: table;
+        margin: 3px auto 0 auto;
+        float: none;
+      }
+    }
+  }
+
+  &__header {
+    display: inline-block;
+    position: relative;
+  }
+
+  &__keep-open {
+    display: block;
+  }
+
+  &__collapse {
+    position: relative;
+    overflow: hidden;
+
+    display: none;
+    height: 0;
+    width: 100%;
+
+    opacity: 0;
+
+    &.is-open {
+      display: block;
+      height: auto;
+      width: 100%;
+      opacity: 1;
+    }
+  }
+
+  // Accordion Arrow Styles
+  // -------------------------
+
+  &,
+  // @deprecated
+  &--arrow-flat {
+    @include accordion-arrow-flat($color-accordion, $color-accordion--active);
+  }
+
+  // Accordion with Border (default)
+  // ----------------------------------
+
+  &--border {
+    border-bottom: 1px solid $color-accordion-border;
+
+    .accordion__item {
+      border: 1px solid $color-accordion-border;
+      border-bottom: 0;
+      padding: 13px 13px 14px 19px;
+    }
+  }
+
+  // Accordion Border
+  // (useful for Centered Accordion)
+  // ----------------------------------
+
+  .accordion__border {
+    border: 1px solid $color-accordion-border;
+
+    .accordion__header {
+      padding-top: $accordion-padding-vertical;
+      padding-bottom: $accordion-padding-vertical;
+      padding-left: $accordion-padding-horizontal;
+      padding-right: $accordion-padding-horizontal;
+    }
+
+    .accordion__collapse {
+      padding-left: $accordion-padding-horizontal;
+      padding-right: $accordion-padding-horizontal;
+
+      &.is-open {
+        padding-bottom: $accordion-padding-vertical;
+      }
+    }
+  }
+}

@@ -1,0 +1,97 @@
+//
+// Reset
+// --------------------------------------------------
+
+/*
+ * Set html to full width and height
+ * Set touch-action to avoid touch delay on mobile IE
+ */
+html {
+  touch-action: manipulation;
+
+  // Disables gray touch highlight on mobile safari
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-text-size-adjust: 100%;
+}
+
+/*
+ * Set display none to hidden elements
+ * IE 9 and 10 support
+ */
+*[hidden] {
+  display: none !important;
+}
+
+/*
+ * Reset fonts for relevant elements
+ */
+input,
+button,
+select,
+textarea {
+  margin: 0;
+  outline: none;
+  border-radius: 0;
+  text-align: left;
+
+  line-height: normal;
+  font: inherit;
+  font-size: 100%;
+}
+
+hr {
+  height: 0;
+  box-sizing: content-box;
+}
+
+/*
+ * Remove the gray background color from active links in IE 10.
+ */
+a {
+  background-color: transparent;
+
+  /*
+   * Improve readability of focused elements when they are also in an
+   * active/hover state.
+   */
+  &:active,
+  &:hover {
+    outline: 0;
+  }
+}
+
+input,
+button,
+submit {
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+  color: inherit;
+
+  /*
+   * Improve readability of focused elements when they are also in an
+   * active/hover state.
+   */
+  &:active,
+  &:hover {
+    outline: 0;
+  }
+
+  /*
+   * Remove IE11+ item jump on click
+   */
+  > * {
+    position: relative;
+  }
+}
+
+/* iOS "clickable elements" fix for role="button"
+ *
+ * Fixes "clickability" issue (and more generally, the firing of events such as focus as well)
+ * for traditionally non-focusable elements with role="button"
+ * see https://developer.mozilla.org/en-US/docs/Web/Events/click#Safari_Mobile
+ */
+[role="button"] {
+  cursor: pointer;
+}

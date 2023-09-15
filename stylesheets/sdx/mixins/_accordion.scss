@@ -1,0 +1,94 @@
+//
+// Accordion Mixins
+// --------------------------------------------------
+
+// Accordion normal
+// -------------------------
+
+@mixin accordion-arrow-normal($color-lo, $color-hi) {
+  .accordion__toggle {
+    .accordion__header {
+      width: calc(100% - 16px - #{$baseline});
+    }
+
+    .arrow-icon {
+      @include arrow($color-lo);
+      @include arrow--down;
+
+      top: 4px;
+      left: 0;
+
+      width: 16px;
+      height: 16px;
+
+      transform: none;
+    }
+
+    // Accordion Hover Styles
+    // -------------------------
+
+    &:hover .arrow-icon {
+      &::before,
+      &::after {
+        background: $color-hi;
+
+        // undo :hover style on touch devices; IE11 doesn't support the hover mediaquery ergo this workaround
+        @media (hover: none) {
+          background: $color-lo;
+        }
+      }
+    }
+  }
+
+  // Accordion Open Styles
+  // -------------------------
+
+  .is-open {
+    .accordion__toggle {
+      .arrow-icon {
+        @include arrow--up;
+      }
+    }
+  }
+}
+
+// Accordion flat
+// -------------------------
+
+@mixin accordion-arrow-flat($color-lo, $color-hi) {
+  .accordion__toggle {
+    .accordion__header {
+      width: calc(100% - 35px - #{$baseline});
+    }
+
+    .arrow-icon {
+      @include arrow-flat($color-lo);
+      @include arrow-flat--down;
+
+      top: 4px;
+      left: 0;
+      width: 16px;
+      height: 16px;
+    }
+
+    // Accordion Hover Styles
+    // -------------------------
+
+    &:hover {
+      .arrow-icon {
+        @include arrow-flat($color-hi);
+      }
+    }
+  }
+
+  // Accordion Open Styles
+  // -------------------------
+
+  .is-open {
+    .accordion__toggle {
+      .arrow-icon {
+        @include arrow-flat--up;
+      }
+    }
+  }
+}

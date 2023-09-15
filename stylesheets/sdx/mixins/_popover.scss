@@ -1,0 +1,255 @@
+@mixin indicator(
+  $position,
+  $location: "after",
+  $color: $color-white,
+  $size: $indicator-size
+) {
+  &:#{$location} {
+    position: absolute;
+    width: $size;
+    height: $size;
+
+    transform: rotate(45deg);
+    background-color: $color;
+
+    content: "";
+
+    $indicator-center: (($size * 0.5) * -1);
+
+    @if $position == top {
+      left: 50%;
+      top: $indicator-center;
+      margin-left: $indicator-center;
+    } @else if $position == bottom {
+      left: 50%;
+      bottom: $indicator-center;
+      margin-left: $indicator-center;
+    } @else if $position == left {
+      top: 50%;
+      left: $indicator-center;
+      margin-top: $indicator-center;
+    } @else if $position == right {
+      top: 50%;
+      right: $indicator-center;
+      margin-top: $indicator-center;
+    }
+  }
+}
+
+@mixin popover-indicator($class, $color: inherit, $shadow: true) {
+  .#{$class}--top {
+    @include indicator(top, "before", $color);
+
+    @if $shadow != null {
+      @include indicator(top, $color: $color);
+
+      &::after {
+        box-shadow: -1px -1px 0 0 rgba($color-black, 0.1);
+        z-index: -1;
+      }
+    }
+  }
+
+  .#{$class}--top-left {
+    @include indicator(top, "before", $color);
+
+    @if $shadow != null {
+      @include indicator(top, $color: $color);
+
+      &::after {
+        box-shadow: -1px -1px 0 0 rgba($color-black, 0.1);
+        z-index: -1;
+      }
+    }
+
+    &::before,
+    &::after {
+      left: $indicator-spacing;
+      top: (($indicator-size * 0.5) * -1);
+    }
+  }
+
+  .#{$class}--top-right {
+    @include indicator(top, "before", $color);
+
+    @if $shadow != null {
+      @include indicator(top, $color: $color);
+
+      &::after {
+        box-shadow: -1px -1px 0 0 rgba($color-black, 0.1);
+        z-index: -1;
+      }
+    }
+
+    &::before,
+    &::after {
+      left: auto;
+      right: $indicator-spacing;
+      top: (($indicator-size * 0.5) * -1);
+      margin-right: (($indicator-size * 0.5) * -1);
+    }
+  }
+
+  .#{$class}--bottom {
+    @include indicator(bottom, "before", $color);
+
+    @if $shadow != null {
+      @include indicator(bottom, $color: $color);
+
+      &::after {
+        box-shadow: 2px 2px 4px 0 rgba($color-black, 0.1);
+        z-index: -1;
+      }
+    }
+  }
+
+  .#{$class}--bottom-left {
+    @include indicator(bottom, "before", $color);
+
+    @if $shadow != null {
+      @include indicator(bottom, $color: $color);
+
+      &::after {
+        box-shadow: 2px 2px 4px 0 rgba($color-black, 0.1);
+        z-index: -1;
+      }
+    }
+
+    &::before,
+    &::after {
+      left: $indicator-spacing;
+      top: 100%;
+      margin-top: (($indicator-size * 0.5) * -1);
+    }
+  }
+
+  .#{$class}--bottom-right {
+    @include indicator(bottom, "before", $color);
+
+    @if $shadow != null {
+      @include indicator(bottom, $color: $color);
+
+      &::after {
+        box-shadow: 2px 2px 4px 0 rgba($color-black, 0.1);
+        z-index: -1;
+      }
+    }
+
+    &::before,
+    &::after {
+      left: auto;
+      right: $indicator-spacing;
+      top: 100%;
+      margin-top: (($indicator-size * 0.5) * -1);
+      margin-right: (($indicator-size * 0.5) * -1);
+    }
+  }
+
+  .#{$class}--left {
+    @include indicator(left, "before", $color);
+
+    @if $shadow != null {
+      @include indicator(left, $color: $color);
+
+      &::after {
+        box-shadow: -1px 1px 2px 0 rgba($color-black, 0.1);
+        z-index: -1;
+      }
+    }
+  }
+
+  .#{$class}--left-top {
+    @include indicator(left, "before", $color);
+
+    @if $shadow != null {
+      @include indicator(left, $color: $color);
+
+      &::after {
+        box-shadow: -1px 1px 2px 0 rgba($color-black, 0.1);
+        z-index: -1;
+      }
+    }
+
+    &::before,
+    &::after {
+      top: $indicator-spacing;
+    }
+  }
+
+  .#{$class}--left-bottom {
+    @include indicator(left, "before", $color);
+
+    @if $shadow != null {
+      @include indicator(left, $color: $color);
+
+      &::before {
+        margin-bottom: -1px;
+      }
+
+      &::after {
+        box-shadow: -1px 2px 3px 0 rgba($color-black, 0.1);
+        z-index: -1;
+      }
+    }
+
+    &::before,
+    &::after {
+      top: auto;
+      bottom: $indicator-spacing;
+    }
+  }
+
+  .#{$class}--right {
+    @include indicator(right, "before", $color);
+
+    @if $shadow != null {
+      @include indicator(right, $color: $color);
+
+      &::after {
+        box-shadow: 1px -1px 2px 0 rgba($color-black, 0.1);
+        z-index: -1;
+      }
+    }
+  }
+
+  .#{$class}--right-top {
+    @include indicator(right, "before", $color);
+
+    @if $shadow != null {
+      @include indicator(right, $color: $color);
+
+      &::after {
+        box-shadow: 1px -1px 2px 0 rgba($color-black, 0.1);
+        z-index: -1;
+      }
+    }
+
+    &::before,
+    &::after {
+      top: $indicator-spacing;
+    }
+  }
+
+  .#{$class}--right-bottom {
+    @include indicator(right, "before", $color);
+
+    @if $shadow != null {
+      @include indicator(right, $color: $color);
+
+      &::before {
+        margin-bottom: -1px;
+      }
+
+      &::after {
+        box-shadow: 2px -1px 3px 0 rgba($color-black, 0.1);
+        z-index: -1;
+      }
+    }
+
+    &::before,
+    &::after {
+      top: auto;
+      bottom: $indicator-spacing;
+    }
+  }
+}

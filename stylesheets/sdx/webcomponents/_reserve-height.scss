@@ -1,0 +1,216 @@
+@use "sass:math";
+
+@import "../../libs/normalize/variables.scss";
+
+$preload-label-margin: $baseline - 4px; // _label.scss
+$preload-label-height: $base-line-height + $preload-label-margin;
+$preload-tabs-body: $baseline * 3; // tabs.scss
+
+sdx-color-picker,
+sdx-option-picker,
+sdx-search,
+sdx-filter,
+sdx-input-item.input-container {
+  display: block;
+  min-height: $interaction-element-height;
+}
+
+sdx-show-more {
+  display: block;
+  min-height: $interaction-element-height;
+
+  // on mobile the label is positioned above the button
+  @include bp-desktop-max {
+    min-height: $interaction-element-height + $base-line-height + $baseline;
+  }
+}
+
+// elements with label:
+
+sdx-input,
+sdx-select,
+sdx-numeric-stepper {
+  display: block;
+  min-height: $interaction-element-height;
+
+  &[label]:not([label=""]) {
+    min-height: $interaction-element-height + $preload-label-height;
+  }
+}
+
+sdx-filter sdx-select[label]:not([label=""]) {
+  min-height: $interaction-element-height;
+}
+
+sdx-input-mask {
+  display: block;
+  min-height: $interaction-element-height + $preload-label-height;
+
+  &[label]:not([label=""]) {
+    min-height: $interaction-element-height + $preload-label-height * 2;
+  }
+}
+
+// elements with individual display:
+sdx-input-item {
+  display: inline-block;
+}
+sdx-input-group {
+  display: block;
+}
+sdx-input-item,
+sdx-input-group {
+  min-height: $base-line-height;
+
+  &[label]:not([label=""]) {
+    min-height: $base-line-height + $preload-label-height;
+  }
+}
+
+sdx-button {
+  display: inline-block;
+  vertical-align: middle; // align text within the same line ("align-items: center" in button.scss has same effect)
+
+  &:not([theme="transparent"]) {
+    // exclude if inside sdx-button-group with layout "fill"
+    :not(sdx-button-group.fill) > & {
+      min-width: $button-min-width; // to also reserve the width when using inline-block
+    }
+    min-height: $interaction-element-height;
+  }
+}
+
+// elements with individual height:
+
+sdx-header {
+  display: block; // ensure "height" works
+
+  // This is the lowest possible height that can be guaranteed (bp-xs).
+  min-height: $header-height-mobile;
+
+  @media (min-width: 1024px) {
+    min-height: $header-height-desktop;
+  }
+}
+
+sdx-tabs {
+  display: block;
+  // add the minimal height of tabs body
+  min-height: $interaction-element-height + $preload-tabs-body;
+}
+
+sdx-accordion {
+  $item-height: 68px; // 1px border
+  display: block;
+  min-height: $item-height;
+
+  // ":has" not working in FF yet: https://caniuse.com/?search=%3Ahas
+  &:has(sdx-accordion-item:nth-last-child(2)) {
+    min-height: 2 * $item-height;
+  }
+  &:has(sdx-accordion-item:nth-last-child(3)) {
+    min-height: 3 * $item-height;
+  }
+  &:has(sdx-accordion-item:nth-last-child(4)) {
+    min-height: 4 * $item-height;
+  }
+  &:has(sdx-accordion-item:nth-last-child(5)) {
+    min-height: 5 * $item-height;
+  }
+  &:has(sdx-accordion-item:nth-last-child(6)) {
+    min-height: 6 * $item-height;
+  }
+  &:has(sdx-accordion-item:nth-last-child(7)) {
+    min-height: 7 * $item-height;
+  }
+  &:has(sdx-accordion-item:nth-last-child(8)) {
+    min-height: 8 * $item-height;
+  }
+  &:has(sdx-accordion-item:nth-last-child(9)) {
+    min-height: 9 * $item-height;
+  }
+}
+
+sdx-progress-full {
+  display: block;
+  min-height: 101px; // button + gap + span + vertical padding
+}
+
+sdx-content-slider {
+  display: block;
+  // conservative guess, but still better than nothing
+  min-height: 200px;
+}
+
+sdx-tag {
+  min-height: 32px;
+  display: flex;
+}
+
+sdx-teaser {
+  display: block;
+
+  &:not([layout]),
+  &[layout="card"] {
+    padding-top: calc(75% + 153px); // image 4:3, label, description, link
+    height: 0;
+  }
+  &[layout="split"] {
+    min-height: 520px;
+
+    @include bp-md {
+      min-height: 482px;
+    }
+    @include bp-xl {
+      min-height: 562px;
+    }
+  }
+  &[layout="cover"] {
+    min-height: 520px;
+
+    @include bp-md {
+      min-height: 480px;
+    }
+    @include bp-xl {
+      min-height: 560px;
+    }
+  }
+  &[layout="split-sidekick"] {
+    min-height: 340px;
+
+    @include bp-md {
+      min-height: 432px;
+    }
+  }
+  &[layout="gradient-sidekick"] {
+    min-height: 342px;
+
+    @include bp-md {
+      min-height: 432px;
+    }
+  }
+  &[layout="cover-sidekick"] {
+    min-height: 342px;
+
+    @include bp-md {
+      min-height: 432px;
+    }
+  }
+  &[layout="product"],
+  &[layout="product-out-of-stock"] {
+    padding-top: calc(100% + 164px); // image 1:1, label, description, link
+    height: 0;
+
+    @include bp-md {
+      padding-top: calc(100% + 196px);
+    }
+  }
+  &[layout="product-button"] {
+    padding-top: calc(100% + 188px); // image 1:1, label, description, button
+    height: 0;
+
+    @include bp-md {
+      padding-top: calc(100% + 220px);
+    }
+  }
+}

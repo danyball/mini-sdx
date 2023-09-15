@@ -1,0 +1,66 @@
+/*!
+ * SDX Library v$VERSION$ - SDX "light" for consumers of Web Components.
+ * Wrapped version
+ */
+
+// Variables and Mixins
+// -------------------------
+
+@import "sdx/variables";
+@import "sdx/functions";
+@import "sdx/mixins";
+@import "sdx/css-variables";
+
+// Fonts
+// -------------------------
+
+@import "sdx/fonts";
+
+// Flatpickr Date Picker
+// -------------------------
+
+@import "../node_modules/flatpickr/dist/flatpickr";
+@import "sdx/form/flatpickr";
+
+// Init
+// -------------------------
+
+@import "sdx/hide-all-webcomponents";
+@import "sdx/webcomponents/reserve-height";
+
+// Icons & Themes
+// -------------------------
+
+@import "sdx/icons";
+@import "sdx/base/themes";
+
+.sdx {
+  // Core
+  // -------------------------
+
+  @import "sdx/base/core";
+  @import "sdx/base/layout";
+
+  // Foundation
+  // -------------------------
+
+  @import "sdx/background/background";
+  @import "sdx/typography/typography";
+  @import "sdx/grid/grid";
+  @import "sdx/color/color";
+
+  // Components
+  // -------------------------
+
+  @import "sdx/divider/divider";
+  @import "sdx/list/list";
+  @import "sdx/link/link";
+
+  // Utilities
+  // -------------------------
+
+  @import "sdx/utilities";
+
+  // For <body class="sdx"> or a <div> that acts as a body (container).
+  @include body-without-margin;
+}

@@ -1,0 +1,31 @@
+//
+// Global Variables
+// --------------------------------------------------
+
+// Path prefixes for SDX assets
+$font-path: "../fonts/" !default;
+$image-path: "../images/" !default;
+
+// Animation
+$standard-easing: cubic-bezier(0.4, 0, 0.2, 1);
+$button-easing: cubic-bezier(0.4, 0, 0.6, 1);
+
+// Z-Indexes
+$zindex-ribbon: 10;
+$zindex-form: 100;
+$zindex-form-select: 500;
+$zindex-footer: 20000;
+$zindex-navigation: 50000;
+$zindex-scroll-to-top: 55000;
+$zindex-menu: 60000;
+$zindex-empty-state: 700000;
+$zindex-modal: 900000;
+$zindex-topmost: 999999;
+
+// Spinner
+$loader-sw-large: 3750px;
+$loader-sh-large: 50px;
+$loader-sw-small: 1875px;
+$loader-sh-small: 25px;
+$loader-duration: 1.25s;
+$loader-steps: 75;

@@ -1,0 +1,29 @@
+//
+// Text Mixins
+// --------------------------------------------------
+
+@mixin headings {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @content;
+  }
+}
+
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// As of 2021, the line-clamp property has not officially landed in CSS, yet.
+// However, when used as below, it works on all major browsers (apart from IE11).
+@mixin line-clamp($lines) {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+  display: -webkit-box;
+  overflow: hidden;
+}

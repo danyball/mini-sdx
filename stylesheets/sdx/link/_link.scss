@@ -1,0 +1,137 @@
+//
+// Links
+// --------------------------------------------------
+
+@mixin link-hover {
+  text-decoration-thickness: 2px;
+  color: $color-link--active;
+  text-decoration-color: $color-link--active;
+}
+
+@mixin link-hover-dark {
+  color: $color-link-dark;
+  text-decoration-color: $color-link-dark;
+}
+
+@mixin link-hover-dark-theme {
+  color: $color-int-blue2-dark-theme--active;
+  text-decoration-color: $color-int-blue2-dark-theme--active;
+}
+
+a,
+a.link,
+button.link {
+  position: relative;
+  transition:
+    color 200ms $button-easing,
+    text-decoration-color 200ms $button-easing;
+  outline: none; // Safari 15.3
+  text-decoration: underline; // needed in case link class is set to button tag
+  text-underline-offset: 5px;
+  color: $color-link;
+
+  &:where(:any-link) {
+    &:hover,
+    &:focus-visible {
+      @include link-hover;
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  & + a,
+  & + a.link,
+  & + button.link {
+    margin-left: 24px;
+  }
+
+  // Links with icon
+  &[class*="icon-"],
+  &.link--standalone,
+  &.link--anchor {
+    display: inline-block;
+    margin-left: $baseline-3;
+
+    &:not(:hover) {
+      text-decoration-color: transparent;
+    }
+
+    &::before {
+      margin-left: -$baseline-3;
+      display: inline-block; // to ensure that no text-decoration is visible
+      font-family: $font-family-sdx;
+      padding-right: 6px; // padding is clickable, margin not
+      position: relative; // needed for Safari 15 (button.link icon was missing)
+    }
+  }
+
+  &.link--standalone {
+    &::before {
+      content: "\e004";
+    }
+  }
+
+  &.link--anchor {
+    &::before {
+      content: "\e002";
+    }
+  }
+}
+
+// No underline for anchors without href, since they aren't links
+a:not(:any-link) {
+  text-decoration: none;
+}
+
+p,
+.list {
+  a,
+  a.link,
+  button.link {
+    & + a,
+    & + a.link,
+    & + button.link {
+      margin-left: 0;
+    }
+  }
+}
+
+// Dark Theme
+// -------------------------
+
+.sdx--dark-theme {
+  a,
+  a.link,
+  button.link {
+    color: $color-int-blue2-dark-theme;
+
+    &:hover,
+    &:focus-visible {
+      @include link-hover-dark-theme;
+    }
+  }
+}
+
+// These styles are explicitely put below the .dark-theme declarations because
+// they also apply to them
+.bg--dark a,
+.bg--dark a.link,
+.bg--dark button.link,
+a.link.link--dark,
+a.link.link--white,
+button.link.link--dark,
+button.link.link--dark,
+// Backwards compatibility only, never use BEM modifiers standalone
+a.link--dark,
+a.link--white,
+button.link--dark,
+button.link--white {
+  color: $color-link-dark;
+
+  &:hover,
+  &:focus-visible {
+    @include link-hover-dark;
+  }
+}

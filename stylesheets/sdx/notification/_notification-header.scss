@@ -1,0 +1,168 @@
+//
+// Notification Header
+// --------------------------------------------------
+
+// --------------------------------------------------
+
+$notification-height: 74px;
+
+$notification-easing: cubic-bezier(0.35, 0.035, 0.275, 0.9);
+
+// --------------------------------------------------
+
+// Notification Header
+// --------------------------------------------------
+
+.notification-header {
+  position: relative;
+  overflow: hidden;
+
+  height: 0;
+
+  transition: height 400ms $notification-easing;
+
+  .notification__content {
+    display: flex;
+    position: absolute;
+
+    bottom: 0;
+
+    width: 100%;
+    height: $notification-height;
+
+    padding: 21px 24px;
+
+    transition: background 400ms $notification-easing;
+
+    background: $color-int-blue;
+
+    align-items: center;
+    justify-content: space-between;
+
+    cursor: pointer;
+
+    z-index: 1;
+    outline: none;
+
+    &:hover {
+      background: $color-int-blue--active;
+    }
+
+    @include bp-tablet {
+      padding: 21px 38px;
+    }
+
+    .notification__body {
+      @include font-semi-light;
+      @include text-standard;
+      @include text-truncate;
+      @include font-smoothing;
+
+      color: $color-white;
+
+      opacity: 0;
+      animation: fade-in 300ms 400ms forwards $notification-easing;
+
+      strong {
+        @include font-semi-bold;
+        font-size: 16px;
+      }
+    }
+
+    button {
+      position: relative;
+      right: -5px;
+
+      cursor: pointer;
+
+      width: 32px;
+      height: 32px;
+
+      opacity: 0;
+      animation: fade-in 300ms 400ms forwards $notification-easing;
+
+      .icon {
+        line-height: 32px;
+        color: $color-white;
+
+        font-size: 34px;
+      }
+    }
+  }
+}
+
+.notification {
+  // Notification Open
+  // -------------------------
+
+  &--open {
+    height: $notification-height;
+  }
+
+  // Notification Color
+  // -------------------------
+
+  &--alert {
+    .notification__content {
+      background: $color-int-orange;
+
+      &:hover {
+        background: $color-int-orange--active;
+      }
+    }
+  }
+
+  &--confirmation {
+    .notification__content {
+      background: $color-int-green;
+
+      &:hover {
+        background: $color-int-green--active;
+      }
+    }
+  }
+}
+
+.sdx--dark-theme {
+  .notification-header {
+    .notification__content {
+      background: $color-int-blue-dark-theme;
+
+      &:hover {
+        background: $color-int-blue-dark-theme--active;
+      }
+    }
+  }
+  .notification {
+    &--alert {
+      .notification__content {
+        background: $color-int-orange-dark-theme;
+        &:hover {
+          background: $color-int-orange-dark-theme--active;
+        }
+      }
+    }
+
+    &--confirmation {
+      .notification__content {
+        background: $color-int-green-dark-theme;
+        &.hover {
+          background: $color-int-green-dark-theme--active;
+        }
+      }
+    }
+  }
+}
+
+// Notification Animation
+// --------------------------------------------------
+
+@keyframes notification-show {
+  0% {
+    height: 0;
+  }
+
+  100% {
+    height: $notification-height;
+  }
+}

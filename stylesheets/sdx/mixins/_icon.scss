@@ -1,0 +1,28 @@
+//
+// Icon Mixins
+// --------------------------------------------------
+
+// Icon
+// -------------------------
+
+@mixin icon {
+  @include font-smoothing;
+
+  display: inline-block;
+
+  text-transform: none;
+  text-decoration: none;
+  text-rendering: auto;
+
+  line-height: 1;
+
+  font-family: "sdx-icons";
+  font-size: inherit;
+  font-weight: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-variant-ligatures: normal;
+  font-variant-caps: normal;
+  font-variant-numeric: normal;
+  font-stretch: normal;
+}

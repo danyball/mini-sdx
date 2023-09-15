@@ -1,0 +1,33 @@
+// Can be applied to both <a> and <button> elements and when doing so they'll
+// both equally look completely unstyled.
+.button-reset {
+  @include font-sans;
+  @include font-plain;
+  @include text-standard;
+  @include text-truncate;
+  vertical-align: middle;
+  text-decoration: none;
+  text-align: center; // for <a> elements
+  color: inherit;
+  margin: 0; // normalize Safari (last checked on Safari 13.0.5)
+  transition: all 150ms $button-easing;
+  -webkit-tap-highlight-color: transparent; // disable blue highlight on Android Chrome
+  white-space: unset;
+  padding: unset;
+  border: none;
+  background: transparent;
+  user-select: none;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  // Firefox: disable dotted focus outline (last checked on Firefox 73.0)
+  &::-moz-focus-inner {
+    border: 0;
+  }
+}

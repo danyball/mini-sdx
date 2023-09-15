@@ -1,0 +1,298 @@
+//
+// SDX Font Faces
+// --------------------------------------------------
+
+// TheSans Regular
+// -------------------------
+
+@font-face {
+  font-family: "TheSans";
+  font-weight: 200;
+  font-style: normal;
+  src:
+    url("#{$font-path}TheSans/TheSansB_200_.woff2") format("woff2"),
+    url("#{$font-path}TheSans/TheSansB_200_.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSans";
+  font-weight: 300;
+  font-style: normal;
+  src:
+    url("#{$font-path}TheSans/TheSansB_300_.woff2") format("woff2"),
+    url("#{$font-path}TheSans/TheSansB_300_.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSans";
+  font-weight: 400;
+  font-style: normal;
+  src:
+    url("#{$font-path}TheSans/TheSansB_400_.woff2") format("woff2"),
+    url("#{$font-path}TheSans/TheSansB_400_.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSans";
+  font-weight: 500;
+  font-style: normal;
+  src:
+    url("#{$font-path}TheSans/TheSansB_500_.woff2") format("woff2"),
+    url("#{$font-path}TheSans/TheSansB_500_.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSans";
+  font-weight: 600;
+  font-style: normal;
+  src:
+    url("#{$font-path}TheSans/TheSansB_600_.woff2") format("woff2"),
+    url("#{$font-path}TheSans/TheSansB_600_.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSans";
+  font-weight: 700;
+  font-style: normal;
+  src:
+    url("#{$font-path}TheSans/TheSansB_700_.woff2") format("woff2"),
+    url("#{$font-path}TheSans/TheSansB_700_.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSans";
+  font-weight: 800;
+  font-style: normal;
+  src:
+    url("#{$font-path}TheSans/TheSansB_800_.woff2") format("woff2"),
+    url("#{$font-path}TheSans/TheSansB_800_.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSans";
+  font-weight: 900;
+  font-style: normal;
+  src:
+    url("#{$font-path}TheSans/TheSansB_900_.woff2") format("woff2"),
+    url("#{$font-path}TheSans/TheSansB_900_.ttf") format("truetype");
+}
+
+// TheSans Italic
+// -------------------------
+
+@font-face {
+  font-family: "TheSans";
+  font-weight: 200;
+  font-style: italic;
+  src:
+    url("#{$font-path}TheSans/TheSansB_200i.woff2") format("woff2"),
+    url("#{$font-path}TheSans/TheSansB_200i.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSans";
+  font-weight: 300;
+  font-style: italic;
+  src:
+    url("#{$font-path}TheSans/TheSansB_300i.woff2") format("woff2"),
+    url("#{$font-path}TheSans/TheSansB_300i.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSans";
+  font-weight: 400;
+  font-style: italic;
+  src:
+    url("#{$font-path}TheSans/TheSansB_400i.woff2") format("woff2"),
+    url("#{$font-path}TheSans/TheSansB_400i.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSans";
+  font-weight: 500;
+  font-style: italic;
+  src:
+    url("#{$font-path}TheSans/TheSansB_500i.woff2") format("woff2"),
+    url("#{$font-path}TheSans/TheSansB_500i.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSans";
+  font-weight: 600;
+  font-style: italic;
+  src:
+    url("#{$font-path}TheSans/TheSansB_600i.woff2") format("woff2"),
+    url("#{$font-path}TheSans/TheSansB_600i.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSans";
+  font-weight: 700;
+  font-style: italic;
+  src:
+    url("#{$font-path}TheSans/TheSansB_700i.woff2") format("woff2"),
+    url("#{$font-path}TheSans/TheSansB_700i.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSans";
+  font-weight: 800;
+  font-style: italic;
+  src:
+    url("#{$font-path}TheSans/TheSansB_800i.woff2") format("woff2"),
+    url("#{$font-path}TheSans/TheSansB_800i.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSans";
+  font-weight: 900;
+  font-style: italic;
+  src:
+    url("#{$font-path}TheSans/TheSansB_900i.woff2") format("woff2"),
+    url("#{$font-path}TheSans/TheSansB_900i.ttf") format("truetype");
+}
+
+// TheSerif Normal
+// -------------------------
+
+@font-face {
+  font-family: "TheSerif";
+  font-weight: 200;
+  font-style: normal;
+  src:
+    url("#{$font-path}TheSerif/TheSerifB_200_.woff2") format("woff2"),
+    url("#{$font-path}TheSerif/TheSerifB_200_.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSerif";
+  font-weight: 300;
+  font-style: normal;
+  src:
+    url("#{$font-path}TheSerif/TheSerifB_300_.woff2") format("woff2"),
+    url("#{$font-path}TheSerif/TheSerifB_300_.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSerif";
+  font-weight: 400;
+  font-style: normal;
+  src:
+    url("#{$font-path}TheSerif/TheSerifB_400_.woff2") format("woff2"),
+    url("#{$font-path}TheSerif/TheSerifB_400_.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSerif";
+  font-weight: 500;
+  font-style: normal;
+  src:
+    url("#{$font-path}TheSerif/TheSerifB_500_.woff2") format("woff2"),
+    url("#{$font-path}TheSerif/TheSerifB_500_.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSerif";
+  font-weight: 600;
+  font-style: normal;
+  src:
+    url("#{$font-path}TheSerif/TheSerifB_600_.woff2") format("woff2"),
+    url("#{$font-path}TheSerif/TheSerifB_600_.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSerif";
+  font-weight: 700;
+  font-style: normal;
+  src:
+    url("#{$font-path}TheSerif/TheSerifB_700_.woff2") format("woff2"),
+    url("#{$font-path}TheSerif/TheSerifB_700_.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSerif";
+  font-weight: 800;
+  font-style: normal;
+  src:
+    url("#{$font-path}TheSerif/TheSerifB_800_.woff2") format("woff2"),
+    url("#{$font-path}TheSerif/TheSerifB_800_.ttf") format("truetype");
+}
+
+// TheSerif Italic
+// -------------------------
+
+@font-face {
+  font-family: "TheSerif";
+  font-weight: 200;
+  font-style: italic;
+  src:
+    url("#{$font-path}TheSerif/TheSerifB_200i.woff2") format("woff2"),
+    url("#{$font-path}TheSerif/TheSerifB_200i.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSerif";
+  font-weight: 300;
+  font-style: italic;
+  src:
+    url("#{$font-path}TheSerif/TheSerifB_300i.woff2") format("woff2"),
+    url("#{$font-path}TheSerif/TheSerifB_300i.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSerif";
+  font-weight: 400;
+  font-style: italic;
+  src:
+    url("#{$font-path}TheSerif/TheSerifB_400i.woff2") format("woff2"),
+    url("#{$font-path}TheSerif/TheSerifB_400i.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSerif";
+  font-weight: 500;
+  font-style: italic;
+  src:
+    url("#{$font-path}TheSerif/TheSerifB_500i.woff2") format("woff2"),
+    url("#{$font-path}TheSerif/TheSerifB_500i.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSerif";
+  font-weight: 600;
+  font-style: italic;
+  src:
+    url("#{$font-path}TheSerif/TheSerifB_600i.woff2") format("woff2"),
+    url("#{$font-path}TheSerif/TheSerifB_600i.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSerif";
+  font-weight: 700;
+  font-style: italic;
+  src:
+    url("#{$font-path}TheSerif/TheSerifB_700i.woff2") format("woff2"),
+    url("#{$font-path}TheSerif/TheSerifB_700i.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheSerif";
+  font-weight: 800;
+  font-style: italic;
+  src:
+    url("#{$font-path}TheSerif/TheSerifB_800i.woff2") format("woff2"),
+    url("#{$font-path}TheSerif/TheSerifB_800i.ttf") format("truetype");
+}
+
+// Icon Font
+// -------------------------
+
+@font-face {
+  font-family: "sdx-icons";
+  font-weight: normal;
+  font-style: normal;
+
+  src:
+    url("#{$font-path}sdx-icons/sdx-icons.woff2") format("woff2"),
+    url("#{$font-path}sdx-icons/sdx-icons.ttf") format("truetype");
+}

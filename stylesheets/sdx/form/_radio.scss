@@ -1,0 +1,274 @@
+//
+// Radio Buttons
+// --------------------------------------------------
+
+// Mixins
+// -------------------------
+
+@use "sass:math";
+
+@mixin radio-hover($scale, $color) {
+  &::before {
+    border: $border-width solid $color;
+  }
+
+  &::after {
+    background: $color;
+    border: 5px solid $color;
+    border-radius: 52%;
+    content: "";
+    left: 6px;
+    opacity: 1;
+    position: absolute;
+    top: 6px;
+    transform: scale($scale);
+  }
+}
+
+@mixin radio-focus($color: $color-radio-fill) {
+  &::before {
+    border: $border-width solid $color;
+  }
+
+  &::after {
+    border: 5px solid $color;
+    border-radius: 52%;
+    content: "";
+    left: 6px;
+    opacity: 1;
+    position: absolute;
+    top: 6px;
+  }
+}
+
+// Radio wrapper styles
+// -------------------------
+
+.radio {
+  box-sizing: border-box;
+  + .radio {
+    margin-top: 14px;
+  }
+
+  &.add-space {
+    margin-bottom: 24px;
+  }
+
+  p {
+    @include font-semi-light;
+    @include text-small;
+
+    margin-top: 5px;
+    margin-bottom: 0;
+    padding-left: 36px;
+
+    color: $color-checkbox-supporting;
+  }
+
+  // Remove default Radio Buttons
+  // -------------------------
+
+  [type="radio"]:not(:checked),
+  [type="radio"]:checked {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+  }
+
+  // Radio Button styles
+  // -------------------------
+
+  [type="radio"] {
+    // Base styles
+    // -------------------------
+
+    + label {
+      @include font-semi-light;
+      @include text-standard;
+
+      display: inline-block;
+      position: relative;
+
+      cursor: pointer;
+
+      margin-bottom: 0;
+      padding-left: 36px;
+
+      color: $color-radio-label;
+
+      user-select: none;
+      backface-visibility: hidden;
+
+      &::before,
+      &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        z-index: 0;
+        margin-top: 1px;
+
+        border-radius: 50%;
+
+        content: "";
+      }
+
+      &::before {
+        transition: all 120ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+        width: $radio-size;
+        height: $radio-size;
+      }
+
+      &::after {
+        top: math.div($radio-size - $radio-active-size, 2);
+        left: math.div($radio-size - $radio-active-size, 2);
+
+        transition: all 120ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        transform-origin: 50% 50%;
+
+        width: $radio-active-size;
+        height: $radio-active-size;
+      }
+    }
+
+    &:not(:checked) + label {
+      @include radio-hover(0, $color-radio-empty);
+    }
+
+    // Hover styles
+    // -------------------------
+
+    &:hover + label {
+      @include radio-hover(0.5, $color-radio-empty-hover);
+    }
+
+    // Focus styles
+    // -------------------------
+
+    &:focus + label {
+      @include radio-focus;
+    }
+
+    // Checked styles
+    // -------------------------
+
+    &:checked + label {
+      @include radio-hover(1, $color-radio-fill);
+    }
+
+    &:checked:focus + label {
+      @include radio-focus;
+    }
+
+    &:checked:hover + label {
+      @include radio-hover(1, $color-radio-fill-active);
+    }
+
+    // Disabled styles
+    // -------------------------
+
+    &:disabled + label {
+      opacity: 0.4;
+
+      pointer-events: none;
+
+      &::before {
+        border-color: $color-radio-empty;
+        background-color: transparent;
+      }
+    }
+
+    &:disabled:hover + label {
+      &::before {
+        border: $border-width solid $color-radio-empty;
+      }
+
+      &::after {
+        background: none;
+      }
+    }
+
+    &:disabled:checked + label {
+      &::before {
+        border: $border-width solid $color-radio-empty;
+      }
+
+      &::after {
+        background-color: $color-radio-empty;
+      }
+    }
+
+    &:disabled:not(:checked) + label::before {
+      border-color: $color-radio-empty;
+    }
+  }
+
+  // Radiobutton only style no label
+  // --------------------------------------------------
+
+  &--only {
+    [type="radio"] + label {
+      padding-left: $radio-size;
+    }
+  }
+}
+
+// Radio Form styles
+// --------------------------------------------------
+
+// Inline styles
+// -------------------------
+
+.form-inline {
+  .radio {
+    display: inline-block;
+    vertical-align: top;
+
+    + .radio {
+      margin-top: 0;
+      margin-left: 14px;
+    }
+  }
+}
+
+// Group styles
+// -------------------------
+
+.form-group {
+  label,
+  .label {
+    display: block;
+
+    margin-bottom: 8px;
+  }
+
+  // Validation Message
+  // -------------------------
+
+  .message {
+    max-height: 0;
+    margin-top: 0;
+
+    opacity: 0;
+
+    transition: 150ms all $standard-easing;
+
+    z-index: 10;
+  }
+
+  // Invalid Input Style
+  // -------------------------
+
+  &.invalid {
+    > .message {
+      max-height: 50px;
+      margin-top: 6px;
+
+      opacity: 1;
+
+      color: $color-input-invalid-text;
+      font-size: $form-input-invalid-font-size;
+    }
+  }
+}

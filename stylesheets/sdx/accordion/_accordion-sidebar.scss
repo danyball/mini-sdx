@@ -1,0 +1,115 @@
+//
+// Accordion
+// Used only for the website's sidebar (left menu)
+// --------------------------------------------------
+
+.accordion--sidebar {
+  @include accordion-arrow-normal($color-nav-link, $color-nav-link--active);
+
+  a,
+  button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    text-decoration: none;
+
+    transition: color 200ms $standard-easing;
+
+    color: $color-nav-link;
+
+    &:hover {
+      color: $color-nav-link--active;
+    }
+  }
+
+  // Navigation Items
+  // -------------------------
+
+  .nav-items {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 8px;
+    margin-bottom: 0;
+  }
+
+  .nav-item {
+    position: relative;
+    float: left;
+
+    margin: 0;
+
+    transition: opacity 500ms $standard-easing;
+
+    &::before {
+      content: none;
+    }
+
+    &:not(:first-child) {
+      margin-top: 8px;
+    }
+
+    &:last-child {
+      margin-right: 0;
+      padding-bottom: 2px;
+    }
+  }
+
+  .nav-title {
+    @include typo-nav-content-title;
+  }
+
+  .nav-link {
+    @include typo-nav-content-text;
+
+    text-decoration: none;
+    white-space: normal;
+
+    &.is-active,
+    &--active {
+      border-bottom: 1px solid $color-nav-link;
+      &:hover {
+        border-bottom: 1px solid $color-nav-link--active;
+      }
+    }
+
+    &:hover {
+      color: $color-nav-link--active;
+    }
+  }
+}
+
+.sdx--dark-theme {
+  .accordion--sidebar {
+    @include accordion-arrow-normal(
+      $color-int-blue2-dark-theme,
+      $color-int-blue2-dark-theme--active
+    );
+
+    a,
+    button {
+      color: $color-gray-dark-theme;
+
+      &:hover {
+        color: $color-int-gray-dark-theme--active;
+      }
+    }
+
+    .nav-link {
+      @include font-plain;
+      @include text-small;
+
+      &.is-active,
+      &--active {
+        border-bottom: 1px solid $color-int-gray-dark-theme;
+        &:hover {
+          border-bottom: 1px solid $color-int-gray-dark-theme--active;
+        }
+      }
+
+      &:hover {
+        color: $color-int-gray-dark-theme--active;
+      }
+    }
+  }
+}

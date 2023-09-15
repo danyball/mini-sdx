@@ -1,0 +1,806 @@
+//
+// Cards
+// --------------------------------------------------
+
+.card {
+  // Setup 8 column grid system in Cards
+  // -------------------------
+
+  .row {
+    @include make-card-row($card-grid-gutter);
+  }
+
+  @include make-card-columns($card-grid-columns, $card-grid-gutter);
+
+  // Base Styles
+  // -------------------------
+
+  position: relative;
+
+  width: 100%;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  padding: 30px 24px;
+
+  background: $color-card-bg;
+
+  color: $color-gray;
+
+  overflow: hidden;
+
+  transition: background 200ms $standard-easing;
+
+  &::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background: $color-card-navy;
+  }
+
+  .card__header {
+    @include typo-headline-5;
+    @include font-semi-bold;
+  }
+
+  .card__footer {
+    padding: 24px;
+  }
+
+  .card__text {
+    @include text-standard;
+    margin: 0;
+  }
+
+  .link:not(:hover):not(focus) {
+    text-decoration: none;
+  }
+
+  .link::before {
+    content: "";
+    display: block;
+    margin-top: 4px;
+  }
+
+  // Card Variant Styles
+  // -------------------------
+
+  &--dark {
+    background: $color-card-gray-bg;
+  }
+
+  // Clickable Card Styles
+  // -------------------------
+
+  &.card--clickable {
+    cursor: pointer;
+
+    &:hover {
+      background: $color-card-bg--active;
+
+      &.card--dark {
+        background: $color-card-gray-bg--active;
+      }
+    }
+  }
+
+  // Card Styles
+  // --------------------------------------------------
+
+  // Notification Styles
+  // -------------------------
+
+  &--notification {
+    padding: 12px 16px 20px;
+
+    border-radius: $card-border;
+
+    .card__header {
+      @include clearfix;
+
+      h1,
+      h2,
+      span {
+        @include text-smaller;
+        margin-bottom: 4px;
+      }
+
+      h1 {
+        @include font-semi-bold;
+      }
+
+      h2,
+      span {
+        @include font-semi-light;
+        color: $color-gray-tint-4;
+      }
+    }
+  }
+
+  // Image Styles
+  // -------------------------
+
+  &--image-top,
+  &--image-bottom {
+    padding: 0;
+
+    &::before {
+      content: none;
+    }
+
+    .card__image {
+      position: relative;
+
+      width: 100%;
+      height: $card-image-height;
+
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+
+      overflow: hidden;
+
+      // filter would be the nice solution, but IE 10 and 11 is not supporting it :(
+      // so we use a ::before element with a black background
+      //filter: brightness(1);
+
+      &::before {
+        content: "";
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        background: rgba($color-black, 0.1);
+
+        opacity: 0;
+
+        transition: opacity 200ms $standard-easing;
+      }
+    }
+
+    .card__body {
+      position: relative;
+
+      padding: 12px 16px 20px;
+
+      &::before {
+        content: "";
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 4px;
+
+        background: $color-card-navy;
+      }
+    }
+  }
+
+  &--image-top {
+    .card__image::before {
+      border-radius: $card-border $card-border 0 0;
+    }
+
+    &.card--clickable {
+      &:hover {
+        // filter would be the nice solution, but IE 10 and 11 is not supporting it :(
+        //.card__image {
+        //  filter: brightness(.9);
+        //}
+
+        .card__image::before {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &--image-bottom {
+    .card__image::before {
+      border-radius: 0 0 $card-border $card-border;
+    }
+
+    &.card--clickable {
+      &:hover {
+        // filter would be the nice solution, but IE 10 and 11 is not supporting it :(
+        //.card__image {
+        //  filter: brightness(.9);
+        //}
+
+        .card__image::before {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  // Promo Styles
+  // -------------------------
+
+  &--promo {
+    .card__image {
+      display: block;
+
+      max-width: 100%;
+
+      margin: 0 auto;
+
+      opacity: 1;
+
+      transition: opacity 200ms $standard-easing;
+    }
+
+    &.card--clickable {
+      &:hover {
+        .card__image {
+          // filter would be the nice solution, but IE 10 and 11 is not supporting it :(
+          // so we use opacity to fade the image slightly
+          // filter: brightness(.9);
+
+          opacity: 0.95;
+        }
+      }
+    }
+  }
+
+  // Upload Styles
+  // -------------------------
+
+  &--upload-photos {
+    padding-top: 23px;
+    padding-bottom: 24px;
+
+    border-radius: 0;
+
+    .card__header {
+      padding-bottom: 25px;
+    }
+
+    .card__body {
+      display: flex;
+      overflow: hidden;
+    }
+
+    .card__image {
+      &:not(:last-child) {
+        margin-right: 20px;
+      }
+
+      img {
+        display: block;
+
+        width: auto;
+        height: 103px;
+      }
+    }
+  }
+
+  &--upload-files {
+    padding: 0;
+
+    border-radius: 0;
+
+    .card__header {
+      padding: 25px 24px 21px;
+      border-bottom: 1px solid $color-aluminum;
+    }
+
+    .card__item {
+      @include text-standard;
+
+      padding: 21px 24px 22px;
+      align-items: center;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid $color-aluminum;
+      }
+
+      .card__item-icon {
+        margin-right: 6px;
+
+        float: left;
+        font-size: 30px;
+      }
+
+      .card__text {
+        @include text-truncate;
+      }
+    }
+  }
+
+  // Document Styles
+  // -------------------------
+
+  &--document {
+    padding: 0;
+
+    border-radius: 0;
+
+    a {
+      margin: 0;
+      color: inherit;
+      border-bottom: inherit;
+      text-decoration: none;
+
+      .card__item-detail {
+        color: $color-int-blue;
+      }
+
+      &:hover {
+        .card__item-detail {
+          color: $color-int-blue--active;
+        }
+      }
+    }
+
+    &.card--no-color {
+      .card__item:hover {
+        background-color: $color-card-bg--active;
+      }
+    }
+
+    .card__header {
+      @include typo-headline-4;
+      @include font-semi-bold;
+
+      padding: 22px 24px 17px;
+      border-bottom: 1px solid $color-aluminum;
+    }
+
+    .card__footer {
+      border-top: 1px solid $color-aluminum;
+
+      text-align: center;
+    }
+
+    .card__item {
+      @include text-standard;
+
+      display: block;
+
+      padding: 15px 24px 16px;
+      align-items: center;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid $color-aluminum;
+      }
+
+      &:hover {
+        background-color: $color-card-gray-bg--active;
+      }
+
+      .card__item-icon {
+        margin-top: 1px;
+        margin-right: 6px;
+
+        float: left;
+        font-size: 30px;
+      }
+
+      .card__item-detail {
+        font-size: 21px;
+      }
+
+      .card__item-wrapper {
+        overflow: hidden;
+        p {
+          &:hover {
+            text-decoration: underline;
+            color: $color-int-blue--active;
+          }
+        }
+      }
+
+      &.card__item--no-truncate {
+        h1,
+        p {
+          white-space: normal;
+        }
+      }
+
+      h1,
+      p {
+        @include text-truncate;
+        margin: 0;
+      }
+
+      h1 {
+        @include font-semi-bold;
+
+        line-height: 22px;
+        letter-spacing: 0;
+        font-size: 16px;
+      }
+
+      p {
+        line-height: normal;
+        letter-spacing: 0.1px;
+        font-size: 14px;
+
+        color: $color-gray-tint-4;
+      }
+    }
+
+    // Travel Styles
+    // -------------------------
+
+    .card__travel {
+      &-station {
+        h1 {
+          @include typo-headline-4;
+          @include font-semi-bold;
+
+          color: $color-gray-tint-4;
+        }
+
+        p {
+          @include text-standard;
+          @include font-light;
+
+          color: $color-gray-tint-4;
+
+          strong {
+            @include font-semi-bold;
+            color: $color-gray;
+          }
+        }
+      }
+
+      &-time {
+        h1 {
+          @include typo-headline-4;
+          @include font-semi-bold;
+
+          color: $color-gray;
+        }
+
+        p {
+          @include text-small;
+          @include font-semi-light;
+
+          color: $color-gray-tint-4;
+        }
+      }
+
+      &-direction {
+        h1 {
+          @include text-small;
+          @include font-semi-bold;
+
+          color: $color-gray;
+        }
+
+        p {
+          @include text-small;
+          @include font-semi-light;
+
+          color: $color-gray-tint-4;
+        }
+      }
+    }
+  }
+
+  // News Styles
+  // -------------------------
+
+  &--news {
+    padding: 0;
+
+    &::before {
+      content: none;
+    }
+
+    .card__image {
+      position: relative;
+
+      width: 100%;
+      height: $card-image-news-height;
+
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center top;
+
+      overflow: hidden;
+    }
+
+    .card__header {
+      @include clearfix;
+
+      h2,
+      p,
+      a {
+        @include text-small;
+      }
+    }
+
+    .card__body {
+      position: relative;
+
+      padding: 7px 16px 12px;
+
+      .card__title {
+        @include typo-headline-4;
+        @include font-semi-bold;
+
+        margin-bottom: 5px;
+      }
+
+      .card__text {
+        @include text-small;
+        @include font-semi-light;
+      }
+    }
+
+    .card__tray {
+      width: 100%;
+      margin-top: 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .tray-item {
+      position: relative;
+      margin-right: 30px;
+
+      .icon {
+        color: $color-int-blue;
+        font-size: 24px;
+      }
+
+      .count {
+        @include font-semi-light;
+
+        position: absolute;
+        top: -4px;
+
+        font-size: 12px;
+        color: $color-gray;
+      }
+    }
+  }
+
+  // News Dark Style
+  // -------------------------
+
+  &--dark {
+    &.card--news {
+      @include font-smoothing;
+
+      background: $color-navy;
+      color: $color-white;
+
+      .tray-item {
+        .count {
+          color: $color-int-blue;
+        }
+      }
+    }
+  }
+
+  // Border Options
+  // -------------------------
+
+  &--rounded {
+    border-radius: $card-border;
+  }
+
+  &--not-rounded {
+    &,
+    .card__image::before {
+      border-radius: 0;
+    }
+  }
+
+  &--border {
+    border: 0 solid $color-gray-tint-8;
+    border-width: 0 1px 1px 1px;
+  }
+
+  // Navigation Card
+  // -------------------------
+
+  &--navigation {
+    .card__header {
+      .icon {
+        margin-right: 16px;
+      }
+    }
+
+    .card__item {
+      &:hover {
+        background: $color-card-gray-bg--active;
+      }
+
+      h1 {
+        font-size: 16px;
+        font-weight: normal;
+      }
+    }
+
+    .card__text {
+      padding: 15px 24px;
+
+      a {
+        color: $color-blue;
+
+        &:hover {
+          color: $color-int-blue--active;
+        }
+      }
+      .link::before {
+        content: normal;
+      }
+    }
+  }
+
+  &--icon {
+    .card__body {
+      padding-bottom: 0;
+      padding-left: $card-compact-padding-left;
+      padding-right: 0;
+      padding-top: 3px;
+    }
+  }
+
+  &--compact {
+    .card__body {
+      padding-bottom: 0;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 3px;
+
+      > h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        padding-left: $card-compact-padding-left;
+      }
+    }
+  }
+
+  &__item-icon {
+    float: left;
+  }
+
+  // Message Cards
+  // -------------------------
+
+  &--message-action {
+    &::before {
+      background: $color-blue;
+    }
+
+    .card__item-icon {
+      color: $color-blue;
+    }
+  }
+
+  &--message-info {
+    &::before {
+      background: $color-turquoise;
+    }
+
+    .card__item-icon {
+      color: $color-turquoise;
+    }
+  }
+
+  &--message-success {
+    &::before {
+      background: $color-int-green;
+    }
+
+    .card__item-icon {
+      color: $color-int-green;
+    }
+  }
+
+  &--message-important {
+    &::before {
+      background: $color-int-orange;
+    }
+
+    .card__item-icon {
+      color: $color-int-orange;
+    }
+  }
+
+  &--message-alert {
+    &::before {
+      background: $color-int-red;
+    }
+
+    .card__item-icon {
+      color: $color-int-red;
+    }
+  }
+
+  // Card Color
+  // -------------------------
+
+  &--navy::before {
+    background: $color-card-navy;
+  }
+
+  &--blue::before {
+    background: $color-card-blue;
+  }
+
+  &--purple::before {
+    background: $color-card-purple;
+  }
+
+  &--turquoise::before,
+  &--apple::before,   // deprecated
+  &--petrol::before {
+    // deprecated
+    background: $color-card-turquoise;
+  }
+
+  &--iris::before {
+    background: $color-card-iris;
+  }
+
+  &--pink::before {
+    background: $color-card-pink;
+  }
+
+  &--orchid::before {
+    background: $color-orchid;
+  }
+
+  &--green::before {
+    background: $color-int-green;
+  }
+
+  &--orange::before {
+    background: $color-int-orange;
+  }
+
+  &--red::before {
+    background: $color-int-red;
+  }
+
+  &--no-color::before {
+    background: $color-gray-tint-8;
+    height: 1px;
+  }
+
+  .badge.badge--icon {
+    margin: 0 0 16px 16px;
+  }
+}
+
+// Margin after Heading for Message Cards
+//
+[class^="card card--message-"] {
+  .card__body {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      line-height: 32px;
+      letter-spacing: -0.35px;
+      font-size: 24px;
+      margin-bottom: 24px;
+    }
+  }
+}

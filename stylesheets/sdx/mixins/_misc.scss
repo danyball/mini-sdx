@@ -1,0 +1,58 @@
+//
+// Generic Mixins
+// --------------------------------------------------
+
+// Center-align a block level element
+// -------------------------
+
+@mixin center-block {
+  display: block;
+  float: none;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+// WebKit-style focus
+// -------------------------
+
+@mixin tab-focus {
+  // Default
+  outline: thin dotted;
+
+  // WebKit
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+// Background svg mixin
+@mixin background-svg($svg) {
+  background-image: svg-url($svg);
+}
+
+// Disabled links/buttons
+// -------------------------
+
+@mixin disabled {
+  &.disabled,
+  &:disabled {
+    cursor: not-allowed;
+
+    &:active {
+      pointer-events: none;
+      transform: none;
+    }
+  }
+}
+
+// Disabled input label
+// -------------------------
+
+@mixin disabled-label {
+  &.disabled > label,
+  &:disabled + label {
+    cursor: not-allowed;
+    opacity: 0.4;
+    // Opacity fix for IE + Edge
+    filter: alpha(opacity=40);
+  }
+}

@@ -1,0 +1,25 @@
+//
+// Navigation Reset Classes
+// --------------------------------------------------
+
+& {
+  // Reset global styles
+  // -------------------------
+
+  a,
+  button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    text-decoration: none;
+
+    transition: color 200ms $standard-easing;
+  }
+
+  ul,
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}

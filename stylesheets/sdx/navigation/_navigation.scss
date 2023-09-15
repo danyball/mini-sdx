@@ -1,0 +1,85 @@
+//
+// Navigation
+// --------------------------------------------------
+
+// Navigation wrapper styles
+// --------------------------------------------------
+
+.nav {
+  // Import Reset / Generic
+  // -------------------------
+
+  @import "reset";
+  @import "generic";
+
+  // -------------------------
+
+  // Set Nav Position and Background
+  // -------------------------
+
+  position: relative; // needed for search overlay
+
+  z-index: $zindex-navigation;
+
+  background: $color-nav-bg;
+
+  // Responsive Nav Container
+  // -------------------------
+
+  .container {
+    @include make-nav-container;
+  }
+
+  // Responsive Nav Section
+  // -------------------------
+
+  @include make-nav-section-columns(nav-section);
+
+  .nav-section {
+    margin: 24px 0;
+
+    .nav-col {
+      width: 100%;
+      padding-bottom: 10px;
+
+      &.nav-col {
+        // more specificity (e.g. when an older version of SDX exists on the same page)
+        overflow: hidden; // Edge and IE11 hack
+        -webkit-transform: scale(1); // Safari hack
+      }
+    }
+  }
+
+  // Swisscom Logo
+  // -------------------------
+
+  .logo {
+    float: left;
+
+    margin-left: -18px;
+    margin-right: 37px;
+
+    margin-top: 22px;
+
+    @include bp-xl {
+      margin-right: 80px;
+    }
+
+    @include bp-ul {
+      margin-right: 106px;
+    }
+
+    @include bp-xs-max {
+      .logo-type {
+        display: none;
+      }
+    }
+  }
+
+  // Imports
+  // -------------------------
+
+  @import "level0";
+  @import "level1";
+  @import "level2";
+}

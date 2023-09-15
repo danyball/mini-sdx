@@ -1,0 +1,83 @@
+//
+// Tab Navigation
+// --------------------------------------------------
+
+.nav-tabs {
+  // Import Reset
+  // -------------------------
+
+  @import "reset";
+
+  // -------------------------
+
+  background: $color-white;
+  border-top: 1px solid $color-aluminum-tint-2;
+
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 65px;
+
+  // Item Styles
+  // -------------------------
+
+  .nav-items {
+    display: flex;
+    flex: 0 1 auto;
+
+    height: 100%;
+  }
+
+  .nav-item {
+    width: 100%;
+    height: 100%;
+
+    .nav-link {
+      width: 100%;
+      height: 100%;
+
+      color: $color-navy;
+
+      &:focus {
+        color: $color-int-blue;
+      }
+    }
+
+    .nav-link__wrapper {
+      display: flex;
+      flex-direction: column;
+
+      width: 100%;
+      height: 100%;
+
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon {
+      font-size: 30px;
+      text-align: center;
+    }
+
+    .button__label {
+      @include font-semi-light;
+      @include text-truncate;
+
+      // Set the max width of the text
+      width: 64px;
+
+      font-size: 12px;
+      line-height: 1;
+      text-align: center;
+
+      // Fixes clipping of large characters
+      padding-bottom: 1px;
+    }
+
+    &--active {
+      .nav-link {
+        color: $color-int-blue;
+      }
+    }
+  }
+}

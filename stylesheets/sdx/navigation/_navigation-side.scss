@@ -1,0 +1,217 @@
+//
+// Side Navigation
+// --------------------------------------------------
+
+.nav-side {
+  // Import Reset / Generic
+  // -------------------------
+
+  @import "reset";
+  @import "generic";
+
+  // -------------------------
+
+  display: flex;
+  flex-direction: column;
+
+  position: fixed;
+  top: 0;
+  width: $navigation-side-width;
+  height: 100%;
+
+  background: $color-horizon;
+
+  overflow-y: auto;
+
+  z-index: $zindex-navigation + 500;
+
+  ~ .site-wrapper {
+    transition: left 0.3s cubic-bezier(0.55, 0.085, 0.32, 1);
+  }
+
+  // Menu Position
+  // -------------------------
+
+  &,
+  &--left {
+    left: -$navigation-side-width;
+    transition: left 0.3s cubic-bezier(0.55, 0.085, 0.32, 1);
+
+    &.is-open {
+      left: 0;
+    }
+
+    // Set Sitewrapper
+    // -------------------------
+
+    ~ .site-wrapper {
+      position: relative;
+      left: 0;
+
+      &.is-open {
+        left: $navigation-side-width;
+      }
+    }
+  }
+
+  &--right {
+    left: auto;
+    right: -$navigation-side-width;
+    transition: right 0.3s cubic-bezier(0.55, 0.085, 0.32, 1);
+
+    &.is-open {
+      left: auto;
+      right: 0;
+    }
+
+    // Set Sitewrapper
+    // -------------------------
+
+    ~ .site-wrapper.is-open {
+      left: -$navigation-side-width;
+    }
+  }
+
+  // Swisscom Logo
+  // -------------------------
+
+  .logo {
+    display: block;
+
+    margin: 0 30px 30px;
+  }
+
+  // Item Styles
+  // -------------------------
+
+  .nav-items {
+    flex: 1 1 auto;
+
+    margin: 30px 36px;
+
+    // Item Border Styles
+    // -------------------------
+
+    &--border {
+      .nav-item {
+        &:not(:last-child) {
+          border-bottom: 1px solid $color-aluminum;
+        }
+      }
+    }
+  }
+
+  .nav-item {
+    width: 100%;
+
+    .nav-link {
+      display: flex;
+
+      padding: 10px 0 9px;
+
+      color: $color-navy;
+
+      align-items: center;
+
+      .text-underline {
+        position: relative;
+        pointer-events: none;
+
+        &::before {
+          position: absolute;
+          top: 24px;
+
+          width: 100%;
+          height: 1px;
+
+          pointer-events: none;
+
+          background-color: $color-nav-link;
+
+          transform: scaleX(0);
+          transition: all 200ms $standard-easing;
+
+          content: "";
+        }
+      }
+
+      &.is-active,
+      &--active {
+        .text-underline {
+          &::before {
+            transform: scaleX(1);
+          }
+        }
+      }
+
+      &:hover {
+        color: $color-nav-link--active;
+
+        .text-underline {
+          &::before {
+            background-color: $color-nav-link--active;
+          }
+        }
+      }
+    }
+
+    .icon {
+      margin-right: 16px;
+
+      font-size: 30px;
+      text-align: center;
+    }
+
+    &--active {
+      .nav-link {
+        color: $color-int-blue;
+      }
+    }
+  }
+
+  // Mobile Styles
+  // --------------------------------------------------
+
+  @include bp-phone-max {
+    width: $navigation-side-mobile-width;
+
+    // Menu Position
+    // -------------------------
+
+    &,
+    &--left {
+      // Set Sitewrapper
+      // -------------------------
+
+      ~ .site-wrapper.is-open {
+        left: $navigation-side-mobile-width;
+      }
+    }
+
+    &--right {
+      left: auto;
+      right: -$navigation-side-mobile-width;
+
+      // Set Sitewrapper
+      // -------------------------
+
+      ~ .site-wrapper.is-open {
+        left: -$navigation-side-mobile-width;
+      }
+    }
+
+    // Swisscom Logo
+    // -------------------------
+
+    .logo {
+      margin: 0 14px 14px;
+    }
+
+    // Item Styles
+    // -------------------------
+
+    .nav-items {
+      margin: 30px 20px;
+    }
+  }
+}

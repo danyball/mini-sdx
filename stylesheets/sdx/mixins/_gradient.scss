@@ -1,0 +1,19 @@
+@mixin gradient-1 {
+  background: radial-gradient(
+      110% 240% at 0% 130%,
+      rgba(19, 163, 244, 0.9) 0%,
+      rgba(22, 158, 255, 0.5) 55%,
+      rgba(16, 136, 222, 0) 130%
+    ),
+    #001155;
+}
+
+@mixin gradient-2 {
+  background: radial-gradient(
+      110% 220% at 0% 140%,
+      #13a3f4 0%,
+      rgba(22, 158, 255, 0.5) 40%,
+      rgba(16, 136, 222, 0) 100%
+    ),
+    radial-gradient(290% 800% at 220% -440%, #dd1122 30%, #001155 100%);
+}

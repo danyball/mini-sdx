@@ -1,0 +1,58 @@
+@mixin whitespace($whitespace) {
+  @each $bp in append(map-keys($grid-breakpoints), "") {
+    $bpsuffix: "";
+
+    @if ($bp != "") {
+      $bpsuffix: -#{$bp};
+    }
+
+    @include media-breakpoint-up($bp) {
+      $gutter: map-get($grid-gutters, $bp);
+
+      // all, top, bottom, left, right
+      @each $suffix in "", -top, -bottom, -left, -right {
+        @if ($gutter) {
+          .#{$whitespace}#{$suffix}-gutters {
+            #{$whitespace}#{$suffix}: $gutter !important;
+          }
+        }
+
+        @for $i from 0 through 4 {
+          .#{$whitespace}#{$bpsuffix}#{$suffix}-#{$i} {
+            #{$whitespace}#{$suffix}: $baseline * $i !important;
+          }
+        }
+      }
+
+      // horizontal
+      @if ($gutter) {
+        .#{$whitespace}-h-gutters {
+          #{$whitespace}-left: $gutter !important;
+          #{$whitespace}-right: $gutter !important;
+        }
+      }
+
+      @for $i from 0 through 4 {
+        .#{$whitespace}#{$bpsuffix}-h-#{$i} {
+          #{$whitespace}-left: $baseline * $i !important;
+          #{$whitespace}-right: $baseline * $i !important;
+        }
+      }
+
+      // vertical
+      @if ($gutter) {
+        .#{$whitespace}-v-gutters {
+          #{$whitespace}-top: $gutter !important;
+          #{$whitespace}-bottom: $gutter !important;
+        }
+      }
+
+      @for $i from 0 through 4 {
+        .#{$whitespace}#{$bpsuffix}-v-#{$i} {
+          #{$whitespace}-top: $baseline * $i !important;
+          #{$whitespace}-bottom: $baseline * $i !important;
+        }
+      }
+    }
+  }
+}

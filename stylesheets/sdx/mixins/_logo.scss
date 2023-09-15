@@ -1,0 +1,47 @@
+//
+// Swisscom Lifeform
+// --------------------------------------------------
+
+@mixin logo-lifeform {
+  $logo-width: 40px;
+  $logo-height: 40px;
+
+  $logo-sprite-width: 3600px;
+  $logo-sprite-height: 40px;
+
+  @include spritesheet(
+    "#{$image-path}lifeform-spritesheet",
+    "png",
+    $logo-width,
+    $logo-height,
+    $logo-sprite-width,
+    $logo-sprite-height
+  );
+
+  min-width: $logo-width;
+
+  // The initial animation of the sprite
+  @keyframes initialAnimation {
+    100% {
+      background-position: -#{$logo-sprite-width};
+    }
+  }
+
+  // This second animation simulates a delay of 20s by making the
+  // animation duration longer and doing nothing in the beginning.
+  @keyframes repeatingAnimation {
+    0% {
+      background-position: 0;
+    }
+    80% {
+      background-position: 0;
+    }
+    100% {
+      background-position: -#{$logo-sprite-width};
+    }
+  }
+
+  animation:
+    repeatingAnimation 30s steps(90) infinite,
+    initialAnimation 6s steps(90);
+}

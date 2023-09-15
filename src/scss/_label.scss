@@ -1,0 +1,16 @@
+label {
+  display: block;
+  margin-bottom: $baseline - 4px; // 4px fine adjustment
+  cursor: inherit; // inherit cursor: not-allowed; when disabled
+  color: $color-input-label;
+  font-size: $form-input-label-font-size;
+
+  &.readonly,
+  &.disabled {
+    color: $color-input-disabled-text;
+  }
+}
+
+label.sdx--dark-theme {
+  color: $color-gray-tint-5-dark-theme;
+}

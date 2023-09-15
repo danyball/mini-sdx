@@ -1,0 +1,500 @@
+//
+// Colour Variables
+// For internal use only, use CSS variables instead
+// --------------------------------------------------
+
+// Primary Colours
+// --------------------------------------------------
+
+// Swisscom Navy
+$color-navy: #015 !default;
+$color-sc-navy: $color-navy !default;
+
+// White
+$color-white: #fff !default;
+
+// Swisscom Blue
+$color-sc-blue: #1af !default;
+
+// Swisscom Red
+$color-sc-red: #d12 !default;
+
+// Support Colours
+// --------------------------------------------------
+
+// Blue
+$color-blue: #086adb !default;
+$color-blue-tint-2: #a2cdf4 !default;
+$color-blue-tint-3: #d1e6f9 !default;
+
+// Aluminium
+$color-aluminum: #dde3e7 !default;
+$color-aluminum-tint-2: #e4e9ec !default;
+
+// Horizon
+$color-horizon: #eef3f6 !default;
+$color-horizon-tint-2: #f8fafb !default;
+
+// Grey
+$color-gray: #333 !default;
+$color-gray-tint-2: #474747 !default;
+$color-gray-tint-3: #5c5c5c !default;
+$color-gray-tint-4: #666 !default;
+$color-gray-tint-5: #858585 !default;
+$color-gray-tint-6: #adadad !default;
+$color-gray-tint-7: #bbb !default;
+$color-gray-tint-8: #d6d6d6 !default;
+
+// Interaction Colours
+// --------------------------------------------------
+
+// - Primary Interaction Colours
+// --------------------------------------------------
+
+// Interaction Blue
+$color-int-blue: $color-blue;
+// Interaction Blue Rollover
+$color-int-blue--active: #0048cf !default;
+
+// Interaction Grey
+$color-int-gray: #cfd5d9 !default;
+// Interaction Grey Rollover
+$color-int-gray--active: #b1b9be !default;
+
+// - Secondary Interaction Colours
+// --------------------------------------------------
+
+// Interaction Green
+$color-int-green: #1b8712 !default;
+// Interaction Green Rollover
+$color-int-green--active: #0d6f2c !default;
+
+// Interaction Red
+$color-int-red: #d12 !default;
+// Interaction Red Rollover
+$color-int-red--active: #be0000 !default;
+
+// Interaction Orange
+$color-int-orange: #cf4a0c !default;
+// Interaction Orange Rollover
+$color-int-orange--active: #ba3e06 !default;
+
+// Accent Colours
+// --------------------------------------------------
+
+// Azure
+$color-azure: #1781e3 !default;
+// Azure Rollover
+$color-azure--active: #0851da !default;
+
+// Orchid
+$color-orchid: #a63297 !default;
+// Orchid Rollover
+$color-orchid--active: #7f2879 !default;
+
+// Iris
+$color-iris: #5944c6 !default;
+// Iris Rollover
+$color-iris--active: #42389e !default;
+
+// Pink
+$color-pink: #e61e64 !default;
+// Pink Rollover
+$color-pink--active: #bf1b5a !default;
+
+// Turquoise
+$color-turquoise: #0eaba9 !default;
+// Turquoise Rollover
+$color-turquoise--active: #0c847e !default;
+
+// Accent Colour Tints
+// --------------------------------------------------
+
+// Orchid
+$color-orchid-tint-2: #ab449f !default;
+$color-orchid-tint-3: #b458a8 !default;
+$color-orchid-tint-4: #bb6ab1 !default;
+$color-orchid-tint-5: #c47fbb !default;
+$color-orchid-tint-6: #cb91c2 !default;
+$color-orchid-tint-7: #d2a4cc !default;
+$color-orchid-tint-8: #dab7d5 !default;
+
+// Iris
+$color-iris-tint-2: #6754c8 !default;
+$color-iris-tint-3: #7765ce !default;
+$color-iris-tint-4: #7177d2 !default;
+$color-iris-tint-5: #9589d7 !default;
+$color-iris-tint-6: #a59adb !default;
+$color-iris-tint-7: #b4abe0 !default;
+$color-iris-tint-8: #c3bce2 !default;
+
+// Pink
+$color-pink-tint-2: #e63a70 !default;
+$color-pink-tint-3: #e74e7f !default;
+$color-pink-tint-4: #e8628d !default;
+$color-pink-tint-5: #ea779c !default;
+$color-pink-tint-6: #eb8baa !default;
+$color-pink-tint-7: #eca0b8 !default;
+$color-pink-tint-8: #edb4c6 !default;
+
+// Turquoise
+$color-turquoise-tint-2: #21b1af !default;
+$color-turquoise-tint-3: #38b8b6 !default;
+$color-turquoise-tint-4: #4cc0bd !default;
+$color-turquoise-tint-5: #67c7c5 !default;
+$color-turquoise-tint-6: #7ececd !default;
+$color-turquoise-tint-7: #97d5d4 !default;
+$color-turquoise-tint-8: #a9dbdb !default;
+
+// Filetype Colors
+// --------------------------------------------------
+
+$color-file-excel: #008236 !default;
+$color-file-powerpoint: #e86416 !default;
+$color-file-word: #1781e3 !default;
+$color-file-pdf: #d12 !default;
+
+// Generic Colors
+// --------------------------------------------------
+
+$color-black: #000 !default;
+$color-disabled: $color-gray-tint-8 !default;
+
+// Selection Colors
+// --------------------------------------------------
+
+$color-selection-fg: $color-white !default;
+$color-selection-bg: $color-gray !default;
+
+// Button Colors
+// --------------------------------------------------
+
+$color-button-primary: $color-int-blue !default;
+$color-button-primary--active: $color-int-blue--active !default;
+$color-button-secondary: $color-white !default;
+$color-button-secondary--active: $color-blue-tint-3 !default;
+$color-button-confirm: $color-int-green !default;
+$color-button-confirm--active: $color-int-green--active !default;
+
+// Link Colors
+// --------------------------------------------------
+
+$color-link: $color-int-blue !default;
+$color-link--active: $color-int-blue--active !default;
+
+$color-link-dark: $color-white !default;
+$color-link-dark--active: $color-white !default;
+
+// Form Colors
+// --------------------------------------------------
+
+// Input Fields
+// -------------------------
+
+$color-input-bg: $color-white !default;
+$color-input-placeholder: #767676 !default; // see SDX-1226
+
+$color-input-label: $color-gray-tint-4 !default;
+
+$color-input-normal-form: $color-gray-tint-4 !default;
+$color-input-normal-form-hover: $color-gray !default;
+$color-input-normal-text: $color-gray !default;
+
+$color-input-selected-form: $color-int-blue !default;
+$color-input-selected-text: $color-gray !default;
+
+$color-input-disabled-bg: $color-horizon-tint-2 !default;
+$color-input-disabled-form: $color-aluminum !default;
+$color-input-disabled-text: $color-gray-tint-7 !default;
+
+$color-input-invalid-form: $color-int-red !default;
+$color-input-invalid-form-hover: $color-int-red--active !default;
+$color-input-invalid-text: $color-int-red !default;
+
+$color-input-success-form: $color-gray-tint-7 !default;
+$color-input-success-text: $color-gray !default;
+$color-input-success-icon: $color-int-green !default;
+
+$color-input-autocomplete-bg: $color-white !default;
+$color-input-autocomplete-bg-hover: $color-horizon !default;
+$color-input-autocomplete-text: $color-gray !default;
+$color-input-autocomplete-text: $color-gray !default;
+
+// Input Items
+// -------------------------
+$color-input-item-disabled: $color-gray-tint-7 !default;
+
+// Radio Buttons
+// -------------------------
+
+$color-radio-label: $color-gray !default;
+$color-radio-supporting: $color-gray-tint-4 !default;
+
+$color-radio-empty: $color-gray-tint-4 !default;
+$color-radio-empty-hover: $color-input-normal-form-hover !default;
+$color-radio-fill: $color-int-blue !default;
+$color-radio-fill-active: $color-int-blue--active !default;
+
+// Checkboxes
+// -------------------------
+
+$color-checkbox-label: $color-gray !default;
+$color-checkbox-supporting: $color-gray-tint-4 !default;
+
+$color-checkbox-empty: $color-gray-tint-4 !default;
+$color-checkbox-empty-hover: $color-gray-tint-2 !default;
+$color-checkbox-fill: $color-int-blue !default;
+$color-checkbox-fill-hover: $color-int-blue--active !default;
+$color-checkbox-focus: $color-int-blue !default;
+
+$color-checkbox-inverted-bg: $color-white !default;
+$color-checkbox-inverted-fill: $color-int-blue !default;
+$color-checkbox-inverted-fill-hover: $color-int-blue--active !default;
+$color-checkbox-inverted-focus: $color-int-blue--active !default;
+
+// Toggle Buttons
+// -------------------------
+
+$color-toggle-label: $color-gray;
+$color-toggle-label-inverted: $color-white;
+$color-toggle-border: $color-gray-tint-8;
+$color-toggle-active: $color-int-blue;
+$color-toggle-active-hover: $color-int-blue--active;
+
+// Card Colors
+// --------------------------------------------------
+
+$color-card-bg: $color-white !default;
+$color-card-bg--active: $color-horizon !default;
+$color-card-gray-bg: $color-horizon !default;
+$color-card-gray-bg--active: $color-aluminum !default;
+
+$color-card-navy: $color-navy !default;
+$color-card-blue: $color-blue !default;
+$color-card-purple: $color-orchid !default;
+$color-card-turquoise: $color-turquoise !default;
+$color-card-iris: $color-iris !default;
+$color-card-pink: $color-pink !default;
+
+// Table Colors
+// --------------------------------------------------
+
+$color-table-text: $color-gray !default;
+$color-table-border: $color-gray-tint-6 !default;
+$color-table-header-dark: $color-horizon-tint-2 !default;
+
+// Loader Colors
+// --------------------------------------------------
+
+$color-loader-bar-bg: $color-gray-tint-8 !default;
+
+// Tabs Colors
+// --------------------------------------------------
+
+$color-tabs-light-border: $color-gray-tint-8 !default;
+$color-tabs-dark-border: $color-white !default;
+
+$color-tabs-light-indicator: $color-int-blue !default;
+$color-tabs-dark-indicator: $color-white !default;
+$color-tabs-dark-inverted-indicator: $color-navy !default;
+
+$color-tabs-light-text: $color-gray !default;
+$color-tabs-light-hover-text: $color-int-blue--active !default;
+$color-tabs-light-disabled-text: $color-gray !default;
+
+$color-tabs-dark-text: $color-white !default;
+$color-tabs-dark-hover-text: $color-white !default;
+$color-tabs-dark-disabled-text: $color-white !default;
+
+$color-tabs-dark-inverted-text: $color-navy !default;
+$color-tabs-dark-inverted-hover-text: $color-navy !default;
+$color-tabs-dark-inverted-disabled-text: $color-gray !default;
+
+$color-tabs-light-image-background: $color-horizon !default;
+
+// Accordion Colors
+// --------------------------------------------------
+
+$color-accordion: $color-int-blue !default;
+$color-accordion--active: $color-int-blue--active !default;
+$color-accordion-border: $color-gray-tint-8 !default;
+
+// Navigation Colors
+// --------------------------------------------------
+
+$color-nav-bg: $color-white !default;
+$color-nav-menu-bg: $color-horizon !default;
+$color-nav-footer-bg: $color-aluminum !default;
+
+$color-nav-divider: $color-aluminum !default;
+
+$color-nav-link: $color-navy !default;
+$color-nav-link--active: $color-int-blue--active !default;
+
+$color-nav-link-alt: $color-gray-tint-4 !default;
+$color-nav-link-alt--active: $color-int-blue--active !default;
+
+// Search Colors
+// --------------------------------------------------
+
+$color-search-inactive-bg: $color-horizon !default;
+$color-search-light-bg: $color-blue-tint-3 !default;
+$color-search-dark-bg: $color-blue !default;
+
+$color-search-inactive-text: $color-gray-tint-4 !default;
+$color-search-light-text: $color-gray !default;
+$color-search-dark-text: $color-white !default;
+
+$color-search-live-bg: $color-white !default;
+$color-search-live-text: $color-gray !default;
+$color-search-live-text-match: $color-blue !default;
+
+// Footer Colors
+// --------------------------------------------------
+
+$color-footer-dark-bg: $color-gray-tint-2 !default;
+$color-footer-dark-bg-second: $color-gray !default;
+$color-footer-dark-divider: rgba($color-white, 0.4) !default;
+$color-footer-dark-input-bg: #1d1d1d !default;
+
+$color-footer-light-bg: $color-horizon !default;
+$color-footer-light-bg-second: $color-aluminum !default;
+$color-footer-light-divider: $color-gray-tint-7 !default;
+
+$color-footer-dark-link: $color-white !default;
+$color-footer-dark-link--active: $color-int-blue !default;
+
+$color-footer-light-link: $color-gray !default;
+$color-footer-light-link--active: $color-int-blue !default;
+
+$color-footer-light-link-top: $color-gray-tint-4 !default;
+$color-footer-light-link-bottom: $color-gray !default;
+
+// Chart Colors
+// --------------------------------------------------
+
+$color-chart-divider: $color-gray-tint-8 !default;
+$color-chart-bar-vertical-empty: $color-gray-tint-8 !default;
+
+// Comment Colors
+// --------------------------------------------------
+
+$color-comment-border: $color-aluminum-tint-2 !default;
+$color-comment-dark-border: $color-aluminum-tint-2 !default;
+
+// Deprecated Colors
+// --------------------------------------------------
+// deprecated and kept for backwards compatibility only
+// renamed: -----------------------------------------
+$color-blue-40: $color-blue-tint-2;
+$color-blue-20: $color-blue-tint-3;
+$color-aluminium: $color-aluminum;
+$color-aluminium-80: $color-aluminum-tint-2;
+$color-aluminum-80: $color-aluminum-tint-2;
+$color-horizon-40: $color-horizon-tint-2;
+$color-gray-90: $color-gray-tint-2;
+$color-gray-80: $color-gray-tint-3;
+$color-gray-60: $color-gray-tint-5;
+$color-gray-40: $color-gray-tint-6;
+$color-gray-20: $color-gray-tint-8;
+$color-gray-mid: $color-gray-tint-4;
+$color-gray-light: $color-gray-tint-7;
+$color-sc-white: $color-white;
+$color-sc-gray: $color-gray !default;
+$color-sc-gray-mid: $color-gray-tint-4 !default;
+$color-sc-gray-light: $color-gray-tint-7 !default;
+
+// Dark Theme Colors
+// --------------------------------------------------
+
+// Dusk - Elevation Colours
+// --------------------------------------------------
+
+$color-dusk-dark-theme: #141414;
+$color-dusk-tint-2-dark-theme: #1d1d1d;
+$color-dusk-tint-3-dark-theme: #222;
+$color-dusk-tint-4-dark-theme: #242424;
+
+// Grey
+$color-gray-dark-theme: #e6e6e6;
+$color-gray-tint-2-dark-theme: #d6d6d6;
+$color-gray-tint-3-dark-theme: #cfd5d9;
+$color-gray-tint-4-dark-theme: #b1b9be;
+$color-gray-tint-5-dark-theme: #adadad;
+$color-gray-tint-6-dark-theme: #8c8c8c;
+$color-gray-tint-7-dark-theme: #707070;
+$color-gray-tint-8-dark-theme: #5c5c5c;
+
+// Blue
+$color-blue-dark-theme: #0a71e9;
+$color-blue-tint-2-dark-theme: #147df5;
+$color-blue-tint-3-dark-theme: #4294ff;
+$color-blue-tint-4-dark-theme: #5ca3ff;
+
+// Green
+$color-green-dark-theme: #1c8912;
+$color-green-tint-2-dark-theme: #1f9414;
+$color-green-tint-3-dark-theme: #21a716;
+$color-green-tint-4-dark-theme: #55c24a;
+
+// Red
+$color-red-dark-theme: #eb1224;
+$color-red-tint-2-dark-theme: #ef2e3e;
+$color-red-tint-3-dark-theme: #f35d6a;
+$color-red-tint-4-dark-theme: #fe7e89;
+
+// Orange
+$color-orange-dark-theme: #ce4a0c;
+$color-orange-tint-2-dark-theme: #de4f0d;
+$color-orange-tint-3-dark-theme: #f26726;
+$color-orange-tint-4-dark-theme: #f37b46;
+
+// Tourquoise
+$color-turquoise-dark-theme: #0a7b7a;
+$color-turquoise-tint-2-dark-theme: #0b8483;
+
+// Azure
+$color-azure-dark-theme: #136fc3;
+$color-azure-tint-2-dark-theme: #1578d3;
+
+// Iris
+$color-iris-dark-theme: #6f5ccb;
+$color-iris-tint-2-dark-theme: #7867ce;
+
+// Orchid
+$color-orchid-dark-theme: #a54c9b;
+$color-orchid-tint-2-dark-theme: #b053a5;
+
+// Pink
+$color-pink-dark-theme: #d41d56; /*New*/
+$color-pink-tint-2-dark-theme: #e1245f;
+
+$color-int-gray-dark-theme: $color-gray-tint-5-dark-theme;
+$color-int-gray-dark-theme--active: $color-gray-tint-2-dark-theme;
+
+$color-int-blue-dark-theme: $color-blue-dark-theme;
+$color-int-blue-dark-theme--active: $color-blue-tint-2-dark-theme;
+$color-int-blue2-dark-theme: $color-blue-tint-3-dark-theme;
+$color-int-blue2-dark-theme--active: $color-blue-tint-4-dark-theme;
+
+$color-int-green-dark-theme: $color-green-dark-theme;
+$color-int-green-dark-theme--active: $color-green-tint-2-dark-theme;
+$color-int-green2-dark-theme: $color-green-tint-3-dark-theme;
+$color-int-green2-dark-theme--active: $color-green-tint-4-dark-theme;
+
+$color-int-orange-dark-theme: $color-orange-dark-theme;
+$color-int-orange-dark-theme--active: $color-orange-tint-2-dark-theme;
+$color-int-orange2-dark-theme: $color-orange-tint-3-dark-theme;
+$color-int-orange2-dark-theme--active: $color-orange-tint-4-dark-theme;
+
+$color-int-red-dark-theme: $color-red-dark-theme;
+$color-int-red-dark-theme--active: $color-red-tint-2-dark-theme;
+$color-int-red2-dark-theme: $color-red-tint-3-dark-theme;
+$color-int-red2-dark-theme--active: $color-red-tint-4-dark-theme;
+
+$color-placeholder-dark-theme: $color-gray-tint-6-dark-theme;
+$color-disabled-dark-theme: $color-gray-tint-8-dark-theme;
+
+$color-valid-dark-theme: $color-green-tint-3-dark-theme;
+$color-invalid-dark-theme: $color-int-red2-dark-theme;
+$color-invalid-dark-theme--active: $color-int-red2-dark-theme--active;

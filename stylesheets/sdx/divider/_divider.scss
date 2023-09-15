@@ -1,0 +1,39 @@
+//
+// Divider
+// --------------------------------------------------
+
+hr,
+.divider {
+  margin: 32px 0;
+
+  border: 0;
+  border-bottom: 1px solid $color-gray-tint-8;
+
+  &--light-gray {
+    border-bottom-color: $color-gray-tint-8;
+  }
+
+  &--mid-gray {
+    border-bottom-color: $color-gray-tint-6;
+  }
+
+  &--dark-gray {
+    border-bottom-color: $color-gray-tint-3;
+  }
+
+  // should only be used on dark backgrounds
+  &--white {
+    border-bottom-color: transparentize($color-white, 0.4);
+  }
+}
+
+// Dark Background
+// -------------------------
+
+.bg--dark {
+  hr,
+  .divider {
+    border: 0;
+    border-bottom: 1px solid transparentize($color-white, 0.4);
+  }
+}

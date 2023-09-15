@@ -1,0 +1,28 @@
+.collapse {
+  display: none;
+
+  position: relative;
+  height: 0;
+
+  overflow: hidden;
+
+  &.is-open {
+    display: block;
+    height: auto;
+  }
+}
+
+// Collapse style for Tables
+// -------------------------
+
+tr {
+  &.collapse.is-open {
+    display: table-row;
+  }
+}
+
+tbody {
+  &.collapse.is-open {
+    display: table-row-group;
+  }
+}

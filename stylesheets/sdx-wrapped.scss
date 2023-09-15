@@ -1,0 +1,19 @@
+/*!
+ * SDX Library v$VERSION$
+ */
+
+//
+// Wrapped version of the SDX library for legacy project.
+// --------------------------------------------------
+
+.sdx-container {
+  @import "libs/normalize/normalize";
+}
+
+// The header must be included outside of the container.
+@import "header";
+
+.sdx-container {
+  @include body;
+  @import "imports";
+}

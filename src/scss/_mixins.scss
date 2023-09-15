@@ -1,0 +1,71 @@
+// just use sass mixins if there is no handy way to build it with inline code
+
+@mixin focus-active-hover {
+  &:active,
+  &:focus-visible {
+    @content;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin badge($dimension: 24px, $background: $color-int-blue) {
+  @include text-truncate;
+  @include font-semi-bold;
+
+  border-radius: $dimension;
+  color: $color-white;
+  font-size: 13px;
+  height: $dimension;
+  line-height: $dimension;
+  min-width: $dimension;
+  max-width: 50px;
+  text-align: center;
+  padding: 0 5px;
+  user-select: none;
+  animation: badge 300ms linear both;
+  background: $background;
+  pointer-events: none; // ensure nothing happens if the user hovers on the badge itself
+  transition: background 150ms $button-easing;
+
+  @keyframes badge {
+    0% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(1.15);
+    }
+    50% {
+      transform: scale(1);
+    }
+    75% {
+      transform: scale(0.85);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+}
+
+@mixin badge-top-right {
+  $dimension: 18px;
+
+  position: relative;
+
+  &:hover {
+    .badge {
+      background: $color-int-orange--active;
+    }
+  }
+
+  .badge {
+    @include badge($dimension, $color-int-orange);
+    position: absolute;
+    bottom: calc(100% - #{$dimension * 0.5 + 4});
+    left: calc(100% - #{$dimension * 0.5});
+  }
+}

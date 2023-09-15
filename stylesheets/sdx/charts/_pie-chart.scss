@@ -1,0 +1,153 @@
+//
+// Pie Chart
+// --------------------------------------------------
+
+$pie-chart-height: 182px;
+$pie-chart-offset: 10px;
+
+.pie-chart {
+  position: relative;
+
+  .js-chart {
+    position: relative;
+
+    height: $pie-chart-height;
+    width: $pie-chart-height;
+
+    text-align: center;
+    margin: 0 auto;
+
+    transform: rotate(-90deg);
+
+    > svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: $pie-chart-height;
+      height: $pie-chart-height;
+
+      fill: transparent;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+  }
+
+  .meta {
+    @include typo-pie-chart-title;
+
+    position: absolute;
+    display: flex;
+
+    top: $pie-chart-offset;
+    left: 0;
+
+    width: $pie-chart-height;
+    height: $pie-chart-height - $pie-chart-offset;
+
+    margin: 0 auto;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .subtitle {
+      @include font-light;
+
+      font-size: 16px;
+      color: $color-gray-tint-4;
+      text-transform: capitalize;
+    }
+  }
+
+  .chart-wrapper {
+    position: relative;
+
+    margin: 20px auto;
+    width: $pie-chart-height;
+  }
+
+  // Stacked pie chart
+  // --------------------------------------------------
+
+  &--stacked {
+    display: flex;
+    justify-content: center;
+
+    .chart-wrapper {
+      margin: 20px;
+    }
+
+    .pie-chart__legend {
+      flex-direction: column;
+      align-items: flex-start;
+
+      margin-left: 32px;
+
+      li {
+        margin-bottom: 5px;
+      }
+
+      .bullet {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  // Chart Colors
+  // --------------------------------------------------
+
+  .orchid {
+    stroke: $color-orchid;
+
+    &--active {
+      stroke: $color-orchid--active;
+    }
+  }
+
+  .iris {
+    stroke: $color-iris;
+
+    &--active {
+      stroke: $color-iris--active;
+    }
+  }
+
+  .pink {
+    stroke: $color-pink;
+
+    &--active {
+      stroke: $color-pink--active;
+    }
+  }
+
+  .turquoise,
+  .apple, // deprecated
+  .petrol {
+    // deprecated
+    stroke: $color-turquoise;
+
+    &--active {
+      stroke: $color-turquoise--active;
+    }
+  }
+
+  // Chart Legend
+  // --------------------------------------------------
+
+  &__legend {
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// Dark Background
+// --------------------------------------------------
+
+.bg--dark {
+  .pie-chart {
+    .meta .subtitle {
+      color: $color-white;
+    }
+  }
+}

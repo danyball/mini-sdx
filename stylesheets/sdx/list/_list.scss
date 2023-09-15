@@ -1,0 +1,210 @@
+$bullet-spacing-default: 12px;
+$bullet-spacing-single-line: 6px;
+
+//
+// Lists
+// --------------------------------------------------
+
+// Reset
+// -------------------------
+
+ul,
+menu,
+dir {
+  display: block;
+  padding: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// List Base
+// --------------------------------------------------
+
+ul.list,
+ol.list {
+  margin-top: $baseline-2;
+  margin-bottom: $baseline-2;
+
+  @include bp-desktop {
+    margin-top: $baseline-3;
+    margin-bottom: $baseline-3;
+  }
+
+  // Nested lists have a smaller spacing
+  ul.list,
+  ol.list {
+    margin-top: $baseline;
+    margin-bottom: $baseline;
+
+    @include bp-desktop {
+      margin-top: $baseline-2;
+      margin-bottom: $baseline-2;
+    }
+  }
+
+  li {
+    &::before {
+      color: $color-blue;
+    }
+  }
+}
+
+// Bullet List
+// --------------------------------------------------
+
+ul.list {
+  &.single-line {
+    li {
+      &:not(:last-of-type) {
+        margin-bottom: $bullet-spacing-single-line;
+      }
+    }
+  }
+
+  li {
+    margin-left: 18px;
+
+    &:not(:last-of-type) {
+      margin-bottom: $bullet-spacing-default;
+    }
+
+    &::before {
+      float: left;
+      margin-left: -18px;
+      font-size: 33px;
+    }
+
+    // Default icon
+    &:not([class*="icon-"])::before {
+      content: "•";
+    }
+
+    // List items with icon
+    // --------------------------------------------------
+
+    &[class*="icon-"],
+    &.list--link,
+    &.list--anchor {
+      margin-left: $baseline-3;
+
+      &::before {
+        @include icon;
+        position: relative;
+        top: 3px;
+        margin-left: -$baseline-3;
+      }
+
+      & > a {
+        text-decoration: none;
+
+        &:hover,
+        &:focus-visible {
+          text-decoration: underline;
+          text-decoration-thickness: 2px;
+        }
+      }
+    }
+
+    &.list--link {
+      &:before {
+        content: "\e004";
+      }
+    }
+
+    &.list--anchor {
+      &:before {
+        content: "\e002";
+      }
+    }
+
+    &.single-line {
+      &:not(:last-of-type) {
+        margin-bottom: $bullet-spacing-single-line;
+      }
+    }
+  }
+}
+
+// Numbered List
+// --------------------------------------------------
+
+ol.list {
+  counter-reset: mycounter;
+  display: table;
+
+  &.single-line {
+    li {
+      &:not(:last-of-type) {
+        &::after {
+          margin-bottom: $bullet-spacing-single-line;
+        }
+      }
+    }
+  }
+
+  li {
+    list-style: none;
+    counter-increment: mycounter;
+    display: table-row;
+
+    &:not(:last-of-type) {
+      &::after {
+        margin-bottom: $bullet-spacing-default;
+      }
+    }
+
+    &::before {
+      content: counter(mycounter) ".";
+      font-weight: $font-weight-semi-bold;
+      display: table-cell;
+      text-align: right;
+      padding-right: $baseline;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+    }
+  }
+}
+
+// Description Lists
+// -------------------------
+
+dt.list {
+  font-weight: $font-weight-light;
+}
+
+// Dark Theme
+// -------------------------
+
+.sdx--dark-theme {
+  ul.list,
+  ol.list {
+    @include font-plain;
+
+    li {
+      &::before {
+        color: $color-int-blue2-dark-theme;
+      }
+    }
+  }
+}
+
+// Moved below .sdx--dark-theme because it should also override that
+ul.list,
+ol.list {
+  &.list--dark,
+  &.list--white {
+    li {
+      &::before {
+        color: $color-link-dark;
+      }
+    }
+  }
+}

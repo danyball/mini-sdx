@@ -1,0 +1,176 @@
+//
+// Bar chart (vertical)
+// --------------------------------------------------
+
+$bar-chart-vertical-height: 172px;
+$bar-chart-vertical-bottom: 54px;
+$bar-chart-vertical-margin: 30px;
+
+.bar-chart-vertical {
+  min-width: $chart-bar-min-width;
+  width: 100%;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .chart-wrapper {
+    position: relative;
+    height: 100%;
+
+    margin-bottom: $bar-chart-vertical-bottom;
+  }
+
+  .chart {
+    position: relative;
+
+    display: flex;
+    justify-content: space-between;
+
+    margin-left: $bar-chart-vertical-margin;
+    height: $bar-chart-vertical-height;
+
+    .indicator-wrapper {
+      position: relative;
+
+      // Unfortunately a height of 100% does not work on Safari so
+      // we have to specify the height explicitly again.
+      height: $bar-chart-vertical-height;
+      min-width: 70px;
+    }
+
+    .indicator-wrapper-inner {
+      position: absolute;
+
+      bottom: 0;
+      left: calc(50% - #{($chart-bar-thickness * 0.5)});
+
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    li {
+      text-align: center;
+      z-index: 1;
+
+      &:first-child {
+        .indicator-wrapper {
+          min-width: 42px;
+        }
+      }
+
+      &:hover {
+        z-index: 100;
+      }
+    }
+
+    .indicator {
+      width: $chart-bar-thickness;
+
+      margin: 0 auto;
+
+      &:first-child {
+        &::before {
+          position: absolute;
+
+          height: $chart-bar-thickness;
+          width: $chart-bar-thickness;
+          bottom: -$chart-bar-thickness + ($chart-bar-thickness * 0.5);
+
+          transform: translateX(-4px);
+          -ms-transform: translateX(0); // "workaround" for IE10 + 11
+
+          content: "";
+          background: inherit;
+
+          border-radius: $chart-bar-thickness;
+        }
+      }
+
+      &.empty {
+        background-color: $color-chart-bar-vertical-empty;
+      }
+    }
+
+    .axis-x-label {
+      @include text-truncate;
+
+      margin-top: 12px;
+
+      font-size: 16px;
+      align-content: center;
+    }
+
+    .tooltip--right {
+      &::after {
+        bottom: calc(50% - 4px);
+      }
+    }
+
+    .tooltip--multiline {
+      &::before {
+        margin-bottom: -8px;
+      }
+
+      &::after {
+        bottom: calc(50% - 7px);
+      }
+    }
+  }
+
+  .bar-chart__grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    li {
+      border-top: 1px solid $color-gray-tint-6;
+      height: 33.333%;
+
+      &:last-child {
+        border-bottom: 1px solid $color-gray-tint-6;
+      }
+    }
+
+    .axis-y-label {
+      @include text-truncate;
+
+      display: inline-block;
+
+      width: $bar-chart-vertical-margin;
+
+      font-size: 14px;
+    }
+  }
+
+  .bar-chart__legend {
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+
+.sdx--dark-theme {
+  .bar-chart-vertical {
+    .bar-chart__grid {
+      li {
+        border-top-color: $color-gray-tint-7-dark-theme;
+
+        &:last-child {
+          border-bottom-color: $color-gray-tint-7-dark-theme;
+        }
+      }
+    }
+  }
+}
+
+.bg--dark {
+  .bar-chart__grid li {
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+
+    &:last-child {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    }
+  }
+}

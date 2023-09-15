@@ -1,0 +1,157 @@
+//
+// Ribbons and Stickers
+// --------------------------------------------------
+
+.ribbon,
+.ribbon-badge {
+  font-size: $ribbon-font-normal;
+  position: relative;
+  width: 100%;
+  height: 0;
+  z-index: $zindex-ribbon;
+}
+
+.ribbon {
+  .ribbon__wrap {
+    width: $ribbon-regular-dimension;
+    height: $ribbon-regular-dimension;
+    position: absolute;
+    overflow: hidden;
+    top: -5px;
+    right: -5px;
+  }
+
+  &.ribbon--left {
+    .ribbon__wrap {
+      right: auto;
+      left: -5px;
+    }
+
+    .ribbon__content {
+      -webkit-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      -o-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+      top: auto;
+      bottom: 0;
+    }
+  }
+
+  &.ribbon--small {
+    font-size: $ribbon-font-small;
+
+    .ribbon__wrap {
+      width: $ribbon-small-dimension;
+      height: $ribbon-small-dimension;
+    }
+  }
+
+  &.ribbon--large {
+    font-size: $ribbon-font-large;
+
+    .ribbon__wrap {
+      width: $ribbon-large-dimension;
+      height: $ribbon-large-dimension;
+    }
+  }
+
+  .ribbon__content {
+    color: $color-sc-white;
+    background-color: $color-orchid;
+    text-align: center;
+    box-shadow: 0 -1px 3px $color-gray;
+
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+
+    -webkit-transform-origin: bottom left;
+    -moz-transform-origin: bottom left;
+    -ms-transform-origin: bottom left;
+    -o-transform-origin: bottom left;
+    transform-origin: bottom left;
+
+    position: absolute;
+    top: -24px; /* 24px lineheight */
+    width: calc(100% * 1.414); /* 100% * sqrt(2) - pythagoras */
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -$ribbon-corner-size;
+
+      border-left: $ribbon-corner-size solid transparent;
+      border-right: $ribbon-corner-size solid transparent;
+      border-top: $ribbon-corner-size solid $color-orchid--active;
+    }
+    &::before {
+      left: 0;
+    }
+    &::after {
+      right: 0;
+    }
+  }
+}
+
+.ribbon-badge {
+  .ribbon__content {
+    position: absolute;
+    display: inline-block;
+    right: -$ribbon-badge-corner-size;
+    top: 6px;
+
+    min-width: 70px;
+    padding: $ribbon-badge-padding-v $ribbon-badge-padding-h
+      $ribbon-badge-padding-v;
+
+    background-color: $color-turquoise;
+    color: $color-white;
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: -$ribbon-badge-corner-size;
+
+      border-top: $ribbon-badge-corner-size solid $color-turquoise--active;
+      border-right: $ribbon-badge-corner-size solid transparent;
+    }
+  }
+
+  &.ribbon--left {
+    .ribbon__content {
+      right: auto;
+      left: -$ribbon-badge-corner-size;
+
+      &::after {
+        right: auto;
+        left: 0;
+
+        border-right: 0;
+        border-left: $ribbon-badge-corner-size solid transparent;
+      }
+    }
+  }
+
+  &.ribbon--small {
+    font-size: $ribbon-font-small;
+
+    .ribbon__content {
+      padding: $ribbon-badge-padding-v-small $ribbon-badge-padding-h
+        $ribbon-badge-padding-v-small;
+    }
+  }
+
+  &.ribbon--large {
+    font-size: $ribbon-font-large;
+
+    .ribbon__content {
+      padding: $ribbon-badge-padding-v-large $ribbon-badge-padding-h
+        $ribbon-badge-padding-v-large;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+//
+// Images
+// --------------------------------------------------
+
+figure {
+  margin: 0; // overwrite agent styles
+}
+
+.image {
+  width: 100%;
+
+  &--unscaled {
+    width: auto;
+  }
+
+  &--frame-light {
+    padding: 16px;
+    border: 1px solid $color-gray-tint-8;
+  }
+
+  &--frame-dark {
+    padding: 16px;
+    background-color: $color-horizon;
+  }
+
+  &--rounded {
+    border-radius: $border-radius-large;
+  }
+}
+
+.sdx--dark-theme {
+  .image--frame-light {
+    border-color: $color-gray-tint-8-dark-theme;
+  }
+
+  .image--frame-dark {
+    background-color: $color-dusk-tint-4-dark-theme;
+  }
+}

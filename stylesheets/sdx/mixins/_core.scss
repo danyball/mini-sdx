@@ -1,0 +1,20 @@
+//
+// Core mixins
+// --------------------------------------------------
+
+// These mixins can be applied to the <body> or to a <div> that acts as a body (container).
+@mixin body() {
+  @include font-sans;
+  @include font-semi-light;
+  @include text-standard;
+  @include font-smoothing;
+  background-color: $color-white;
+  text-rendering: optimizeLegibility;
+  color: $color-gray;
+  box-sizing: border-box;
+}
+
+@mixin body-without-margin {
+  @include body;
+  margin: 0;
+}
