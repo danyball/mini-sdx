@@ -7,12 +7,12 @@
 
 ## Properties
 
-| Property         | Attribute         | Description                                                                                                                                                                      | Type                                    | Default          |
-| ---------------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- | ---------------- |
-| `animated`       | `animated`        | Disable animations for testing.                                                                                                                                                  | `boolean`                               | `true`           |
-| `changeCallback` | `change-callback` | <span style="color:red">**[DEPRECATED]**</span> use sdxselect event instead.<br/><br/>Callback that will fire when the active tab has changed. Provides the active tab DOM node. | `((activeTab: Node) => void) \| string` | `undefined`      |
-| `srHint`         | `sr-hint`         | Description text read by the screen reader.                                                                                                                                      | `string`                                | `""`             |
-| `theme`          | `theme`           | Arranges the tabs appearance to be either left-aligned (default) or centralised.                                                                                                 | `"centered" \| "left-aligned"`          | `"left-aligned"` |
+| Property         | Attribute         | Description                                                                                                                                                                      | Type                                                 | Default          |
+| ---------------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ---------------- |
+| `animated`       | `animated`        | Disable animations for testing.                                                                                                                                                  | `boolean`                                            | `true`           |
+| `changeCallback` | `change-callback` | <span style="color:red">**[DEPRECATED]**</span> use sdxselect event instead.<br/><br/>Callback that will fire when the active tab has changed. Provides the active tab DOM node. | `((activeTab: Node) => void) \| string \| undefined` | `undefined`      |
+| `srHint`         | `sr-hint`         | Description text read by the screen reader.                                                                                                                                      | `string`                                             | `""`             |
+| `theme`          | `theme`           | Arranges the tabs appearance to be either left-aligned (default) or centralised.                                                                                                 | `"centered" \| "left-aligned"`                       | `"left-aligned"` |
 
 
 ## Events

@@ -32,6 +32,7 @@
     "redux": "4.2.0"
   },
   "devDependencies": {
+    "@types/animejs": "3.1.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.11",
     "jest": "^27.5.1",
