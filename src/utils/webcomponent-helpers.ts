@@ -1,4 +1,3 @@
-import anime, { AnimeInstance, AnimeParams } from "animejs"
 import * as redux from "redux"
 // @ts-ignore
 import componentGraph from "./webcomponent-graph.json"
@@ -22,87 +21,6 @@ const parentKey = "__parent"
 
 const NOOP = () => {
   // Do nothing
-}
-
-export const animation = {
-  set: anime.set,
-  start(params: AnimeParams): AnimeInstance {
-    const { duration, complete, targets } = params
-
-    // Ensure to abort potentially already-running animations to prevent race
-    // condition side effects, like callbacks that were executed too late, see:
-    // https://git.swisscom.com/projects/SDX/repos/sdx/pull-requests/923/overview?commentId=1094510
-    anime.remove(targets!)
-
-    const overrides: AnimeParams = {
-      easing: "cubicBezier(0.550, 0.085, 0.320, 1)",
-    }
-
-    // If the duration is 0 (which means it's not animated), make sure the cb
-    // is executed immediately instead of next tick (which is Anime's default)
-    // which sometimes leads to laggy or incomplete animations.
-    if (duration === 0) {
-      delete params.complete
-    }
-
-    const instance = anime({ ...params, ...overrides })
-
-    if (duration === 0) {
-      complete?.(instance)
-    }
-
-    return instance
-  },
-  scaleIn(el: HTMLElement, duration: number = 200) {
-    animation.set(el, { scale: 0, display: "inline-block" })
-
-    const instance = animation.start({
-      targets: el,
-      duration,
-      scale: 1,
-    })
-
-    return instance.finished
-  },
-  scaleOut(el: HTMLElement, duration: number = 200) {
-    animation.set(el, { scale: 1, display: "inline-block" })
-
-    const instance = animation.start({
-      targets: el,
-      duration,
-      scale: 0,
-      complete: () => {
-        animation.set(el, { display: "none" })
-      },
-    })
-
-    return instance.finished
-  },
-  fadeIn(el: HTMLElement, duration: number = 200) {
-    animation.set(el, { opacity: 0, display: "inline-block" })
-
-    const instance = animation.start({
-      targets: el,
-      duration,
-      opacity: 1,
-    })
-
-    return instance.finished
-  },
-  fadeOut(el: HTMLElement, duration: number = 200) {
-    animation.set(el, { opacity: 1, display: "inline-block" })
-
-    const instance = animation.start({
-      targets: el,
-      duration,
-      opacity: 0,
-      complete: () => {
-        animation.set(el, { display: "none" })
-      },
-    })
-
-    return instance.finished
-  },
 }
 
 /**

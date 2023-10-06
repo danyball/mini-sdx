@@ -18,7 +18,6 @@ import {
   StoreConnection,
   StateHandle,
   waitFor,
-  animation,
 } from "../../utils/webcomponent-helpers"
 import {
   tabsReducer,
@@ -272,6 +271,7 @@ export class Tabs {
   }
 
   private animateIndicatorElToSelectedTab(
+  // @ts-ignore
     animationDuration: number = this.getAnimationDuration(),
   ) {
     const { tabsItemEls, selectedTabsItemEl } = this.state.get()
@@ -292,19 +292,9 @@ export class Tabs {
 
     const scrollLeft = tablistElRect.left - firstClickableElRect.left
 
-    this.indicatorEl!.style.display = this.isInitialLayout ? "none" : ""
-
-    animation.start({
-      targets: this.indicatorEl,
-      duration: animationDuration,
-      easing: "easeOutQuad",
-      translateX:
-        selectedClickableElRect.left - tablistElRect.left - scrollLeft,
-      width: selectedClickableElRect.right - selectedClickableElRect.left,
-      complete: () => {
-        this.indicatorEl!.style.display = ""
-      },
-    })
+    this.indicatorEl!.style.transform = `translateX(${selectedClickableElRect.left - tablistElRect.left - scrollLeft}px)`
+    this.indicatorEl!.style.width = `${selectedClickableElRect.right - selectedClickableElRect.left}px`
+    this.indicatorEl!.style.display = ""
   }
 
   private select(
